@@ -16,11 +16,11 @@ struct Contacts: View {
     let contacts = [
         Contact(
             name: PersonNameComponents(
-                givenName: "Leland",
-                familyName: "Stanford"
+                givenName: "Dr. Michelle",
+                familyName: "Odden"
             ),
             image: Image(systemName: "figure.wave.circle"), // swiftlint:disable:this accessibility_label_for_image
-            title: "University Founder",
+            title: "Principal Investigator",
             description: String(localized: "LELAND_STANFORD_BIO"),
             organization: "Stanford University",
             address: {

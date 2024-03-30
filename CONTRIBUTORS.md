@@ -11,7 +11,5 @@ SPDX-License-Identifier: MIT
 StrokeCog Contributors
 =================================
 
-* [Paul Schmiedmayer](https://github.com/PSchmiedmayer)
-* [Andreas Bauer](https://github.com/Supereg)
-* [Philipp Zagar](https://github.com/philippzagar)
-* [Nikolai Madlener](https://github.com/NikolaiMadlener)
+* [Vishnu Ravi](https://github.com/vishnuravi)
+* [Sylvie Dobrata Lai](https://github.com/sylvieddl)

@@ -1,5 +1,5 @@
 #
-# This source file is part of the StrokeCog based on the Stanford Spezi Template Application project
+# This source file is part of the StrokeCog proejct based on the Stanford Spezi Template Application project
 #
 # SPDX-FileCopyrightText: 2023 Stanford University
 #
@@ -9,13 +9,13 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
-- family-names: "Schmiedmayer"
-  given-names: "Paul"
-  orcid: "https://orcid.org/0000-0002-8607-9148"
 - family-names: "Ravi"
   given-names: "Vishnu"
   orcid: "https://orcid.org/0000-0003-0359-1275"
-- family-names: "Aalami"
-  given-names: "Oliver"
-  orcid: "https://orcid.org/0000-0002-7799-2429"
+- family-names: "Dobrota Lai"
+  given-names: "Sylvie"
+  orcid: "https://orcid.org/0000-0001-5134-2105"
+- family-names: "Odden"
+  given-names: "Michelle"
+  orcid: "https://orcid.org/0000-0002-5974-3648"
 title: "StrokeCog"
