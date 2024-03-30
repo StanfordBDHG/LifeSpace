@@ -186,7 +186,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please make sure your phone is switched on at all times."
+            "value" : "Please make sure your keep your phone switched on and your Apple Watch on all day during the study."
           }
         }
       }
@@ -196,7 +196,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Phone"
+            "value" : "Note"
           }
         }
       }
@@ -216,51 +216,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Battery"
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_AREA3_DESCRIPTION" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "We can put additional important information here."
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_AREA3_TITLE" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Other important information."
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_AREA4_DESCRIPTION" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "We can put additional important information here."
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_AREA4_TITLE" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Other important information."
+            "value" : "Note"
           }
         }
       }
