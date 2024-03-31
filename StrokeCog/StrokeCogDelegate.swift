@@ -23,12 +23,7 @@ class StrokeCogDelegate: SpeziAppDelegate {
         Configuration(standard: StrokeCogStandard()) {
             if !FeatureFlags.disableFirebase {
                 AccountConfiguration(configuration: [
-                    .requires(\.userId),
-                    .requires(\.name),
-
-                    // additional values stored using the `FirestoreAccountStorage` within our Standard implementation
-                    .collects(\.genderIdentity),
-                    .collects(\.dateOfBirth)
+                    .requires(\.userId)
                 ])
 
                 if FeatureFlags.useFirebaseEmulator {
@@ -75,9 +70,18 @@ class StrokeCogDelegate: SpeziAppDelegate {
     
     private var healthKit: HealthKit {
         HealthKit {
-            CollectSample(
-                HKQuantityType(.stepCount),
-                deliverySetting: .anchorQuery(.afterAuthorizationAndApplicationWillLaunch)
+            CollectSamples(
+                [
+                    HKQuantityType(.stepCount),
+                    HKQuantityType(.walkingSpeed),
+                    HKQuantityType(.walkingAsymmetryPercentage),
+                    HKQuantityType(.appleWalkingSteadiness),
+                    HKQuantityType(.stepCount),
+                    HKQuantityType(.appleStandTime),
+                    HKQuantityType(.appleMoveTime),
+                    HKCategoryType(.sleepAnalysis)
+                ],
+                deliverySetting: .manual()
             )
         }
     }

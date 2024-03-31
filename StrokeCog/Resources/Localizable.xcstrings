@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "A study ID should be at least 4 characters long." : {
+
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -36,7 +39,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The StrokeCog demonstrates the usage of the Firebase Account Module."
+            "value" : "Sign Up or Log In to the StrokeCog Study with either your email or Sign In With Apple."
           }
         }
       }
@@ -134,6 +137,9 @@
         }
       }
     },
+    "Error" : {
+
+    },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -149,7 +155,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This onboarding step allows you to customize the onboarding flow to explain how the application uses the HealhtKit data and allows a user to cusomize the selection."
+            "value" : "The data will be used to understand how your activity is related to your condition."
           }
         }
       }
@@ -159,7 +165,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spezi can access data from HealthKit using the HealthKitDataSource module."
+            "value" : "The StrokeCog study app will collect activity data from your phone and/or watch while you are enrolled in the study."
           }
         }
       }
@@ -180,7 +186,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The onboarding module allows you to build an onboarding flow like this one."
+            "value" : "Please make sure your keep your phone switched on and your Apple Watch on all day during the study."
           }
         }
       }
@@ -190,7 +196,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Onboarding"
+            "value" : "Note"
           }
         }
       }
@@ -200,7 +206,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The application uses HL7 FHIR to provide a common standard to encode data gathered by the application."
+            "value" : "Please note that the app may reduce your phone's battery more quickly than expected."
           }
         }
       }
@@ -210,47 +216,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "HL7 FHIR"
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_AREA3_DESCRIPTION" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The contact module allows you to display contact information in your application."
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_AREA3_TITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contact"
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_AREA4_DESCRIPTION" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The HealthKit data source module allows you to fetch data from HealthKit and e.g. transform it to FHIR resources."
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_AREA4_TITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HealthKit Data Source"
+            "value" : "Note"
           }
         }
       }
@@ -270,7 +236,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Here are a few Spezi modules that are interesting to know about ..."
+            "value" : "Please read the following information carefully."
           }
         }
       }
@@ -281,7 +247,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Interesting Modules"
+            "value" : "Information"
           }
         }
       }
@@ -317,6 +283,9 @@
         }
       }
     },
+    "Next" : {
+
+    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -332,7 +301,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Spezi Scheduler module enables to send out local notifications when a new event of a task is scheduled."
+            "value" : "You will receive a notification when it is time to complete each day's survey."
           }
         }
       }
@@ -342,7 +311,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spezi Scheduler Notifications."
+            "value" : "StrokeCog Notifications"
           }
         }
       }
@@ -399,6 +368,12 @@
         }
       }
     },
+    "Study ID" : {
+
+    },
+    "Tap here and enter your Study ID" : {
+
+    },
     "TASK_CONTEXT_ACTION_QUESTIONNAIRE" : {
       "localizations" : {
         "en" : {
@@ -449,12 +424,18 @@
         }
       }
     },
+    "Try Again" : {
+
+    },
+    "Welcome to the StrokeCog study. To get started, please enter your study ID." : {
+
+    },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Spezi Framework builds the foundation of this application."
+            "value" : "Your location data will be collected during the study period."
           }
         }
       }
@@ -464,7 +445,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Spezi Framework"
+            "value" : "Location Data"
           }
         }
       }
@@ -474,7 +455,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spezi uses the Swift Package Manager to import it as a dependency."
+            "value" : "Your activity data will be collected during the study period."
           }
         }
       }
@@ -484,7 +465,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Swift Package Manager"
+            "value" : "Activity Data"
           }
         }
       }
@@ -494,7 +475,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spezi offers several modules including HealthKit integration, questionnaires, and more ..."
+            "value" : "You will be asked to complete daily surveys during the study."
           }
         }
       }
@@ -504,7 +485,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spezi Modules"
+            "value" : "Daily Surveys"
           }
         }
       }
@@ -514,7 +495,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Learn More"
+            "value" : "Next"
           }
         }
       }
@@ -524,7 +505,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This application demonstrates several Spezi features & modules."
+            "value" : "The StrokeCog Study investigates the relationship between life space and cognitive decline after a stroke."
           }
         }
       }
@@ -535,10 +516,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spezi\nStrokeCog"
+            "value" : "StrokeCog Study"
           }
         }
       }
+    },
+    "You've entered an invalid study ID." : {
+
     }
   },
   "version" : "1.0"

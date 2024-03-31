@@ -37,6 +37,7 @@ struct OnboardingFlow: View {
         OnboardingStack(onboardingFlowComplete: $completedOnboardingFlow) {
             Welcome()
             InterestingModules()
+            StudyIDView()
             
             if !FeatureFlags.disableFirebase {
                 AccountOnboarding()

@@ -58,7 +58,7 @@ extension XCUIApplication {
     func conductOnboardingIfNeeded(email: String = "leland@stanford.edu") throws {
         let app = XCUIApplication()
         
-        if app.staticTexts["Spezi\nStrokeCog"].waitForExistence(timeout: 5) {
+        if app.staticTexts["StrokeCog Study"].waitForExistence(timeout: 5) {
             try app.navigateOnboardingFlow(email: email)
         }
     }
@@ -69,6 +69,9 @@ extension XCUIApplication {
     ) throws {
         try navigateOnboardingFlowWelcome()
         try navigateOnboardingFlowInterestingModules()
+        if staticTexts["Study ID"].waitForExistence(timeout: 5) {
+            try navigateStudyID()
+        }
         if staticTexts["Your Account"].waitForExistence(timeout: 5) {
             try navigateOnboardingAccount(email: email)
         }
@@ -82,21 +85,29 @@ extension XCUIApplication {
     }
     
     private func navigateOnboardingFlowWelcome() throws {
-        XCTAssertTrue(staticTexts["Spezi\nStrokeCog"].waitForExistence(timeout: 5))
+        XCTAssertTrue(staticTexts["StrokeCog Study"].waitForExistence(timeout: 5))
         
-        XCTAssertTrue(buttons["Learn More"].waitForExistence(timeout: 2))
-        buttons["Learn More"].tap()
+        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
+        buttons["Next"].tap()
     }
     
     private func navigateOnboardingFlowInterestingModules() throws {
-        XCTAssertTrue(staticTexts["Interesting Modules"].waitForExistence(timeout: 5))
+        XCTAssertTrue(staticTexts["Information"].waitForExistence(timeout: 5))
         
-        for _ in 1..<4 {
+        for _ in 1..<2 {
             XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
             buttons["Next"].tap()
         }
         
         XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
+        buttons["Next"].tap()
+    }
+    
+    private func navigateStudyID() throws {
+        XCTAssertTrue(staticTexts["Study ID"].waitForExistence(timeout: 5))
+        
+        try textFields["Tap here and enter your Study ID"].enter(value: "1234")
+        
         buttons["Next"].tap()
     }
     
@@ -112,8 +123,6 @@ extension XCUIApplication {
         
         try collectionViews.textFields["E-Mail Address"].enter(value: email)
         try collectionViews.secureTextFields["Password"].enter(value: "StanfordRocks")
-        try textFields["enter first name"].enter(value: "Leland")
-        try textFields["enter last name"].enter(value: "Stanford")
 
         XCTAssertTrue(collectionViews.buttons["Signup"].waitForExistence(timeout: 2))
         collectionViews.buttons["Signup"].tap()
@@ -123,7 +132,6 @@ extension XCUIApplication {
         if staticTexts["HealthKit Access"].waitForExistence(timeout: 5) && navigationBars.buttons["Back"].waitForExistence(timeout: 5) {
             navigationBars.buttons["Back"].tap()
             
-            XCTAssertTrue(staticTexts["Leland Stanford"].waitForExistence(timeout: 2))
             XCTAssertTrue(staticTexts[email].waitForExistence(timeout: 2))
             
             XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
@@ -133,6 +141,10 @@ extension XCUIApplication {
     
     private func navigateOnboardingFlowConsent() throws {
         XCTAssertTrue(staticTexts["Consent"].waitForExistence(timeout: 5))
+        
+        for _ in 1...7 {
+            swipeUp()
+        }
         
         XCTAssertTrue(staticTexts["First Name"].waitForExistence(timeout: 2))
         try textFields["Enter your first name ..."].enter(value: "Leland")
@@ -180,9 +192,7 @@ extension XCUIApplication {
         navigationBars.buttons["Your Account"].tap()
 
         XCTAssertTrue(staticTexts["Account Overview"].waitForExistence(timeout: 5.0))
-        XCTAssertTrue(staticTexts["Leland Stanford"].exists)
         XCTAssertTrue(staticTexts[email].exists)
-        XCTAssertTrue(staticTexts["Gender Identity, Choose not to answer"].exists)
 
 
         XCTAssertTrue(navigationBars.buttons["Close"].waitForExistence(timeout: 0.5))

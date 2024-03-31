@@ -67,6 +67,8 @@
 		5680DD392AB8983D004E6D4A /* PackageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5680DD382AB8983D004E6D4A /* PackageCell.swift */; };
 		5680DD3E2AB8CD84004E6D4A /* ContributionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5680DD3D2AB8CD84004E6D4A /* ContributionsTest.swift */; };
 		56F6F2A02AB441930022FE5A /* ContributionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F6F29F2AB441930022FE5A /* ContributionsList.swift */; };
+		63BBF8162BB8993B006890CE /* StudyIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BBF8152BB8993B006890CE /* StudyIDView.swift */; };
+		63BBF8192BB89CF7006890CE /* studyIDs.csv in Resources */ = {isa = PBXBuildFile; fileRef = 63BBF8182BB89CF7006890CE /* studyIDs.csv */; };
 		653A2551283387FE005D4D48 /* StrokeCog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* StrokeCog.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
 		653A256228338800005D4D48 /* StrokeCogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A256128338800005D4D48 /* StrokeCogTests.swift */; };
@@ -140,6 +142,8 @@
 		5680DD382AB8983D004E6D4A /* PackageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageCell.swift; sourceTree = "<group>"; };
 		5680DD3D2AB8CD84004E6D4A /* ContributionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionsTest.swift; sourceTree = "<group>"; };
 		56F6F29F2AB441930022FE5A /* ContributionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionsList.swift; sourceTree = "<group>"; };
+		63BBF8152BB8993B006890CE /* StudyIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyIDView.swift; sourceTree = "<group>"; };
+		63BBF8182BB89CF7006890CE /* studyIDs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = studyIDs.csv; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* StrokeCog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrokeCog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* StrokeCog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeCog.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 				2FE5DC2F29EDD7CA004B9AB4 /* Consent.swift */,
 				2FE5DC3029EDD7CA004B9AB4 /* HealthKitPermissions.swift */,
 				2F65B44D2A3B8B0600A36932 /* NotificationPermissions.swift */,
+				63BBF8152BB8993B006890CE /* StudyIDView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 			children = (
 				653A255428338800005D4D48 /* Assets.xcassets */,
 				2FA0BFEC2ACC977500E0EF83 /* Localizable.xcstrings */,
+				63BBF8182BB89CF7006890CE /* studyIDs.csv */,
 				2FE5DC2C29EDD78E004B9AB4 /* ConsentDocument.md */,
 				2FE5DC2A29EDD78D004B9AB4 /* AppIcon.png */,
 				2FE5DC5529EDD811004B9AB4 /* SocialSupportQuestionnaire.json */,
@@ -537,6 +543,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63BBF8192BB89CF7006890CE /* studyIDs.csv in Resources */,
 				2FC3439229EE634B002D773C /* ConsentDocument.md in Resources */,
 				2FC3439129EE6349002D773C /* AppIcon.png in Resources */,
 				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
@@ -615,6 +622,7 @@
 				5680DD392AB8983D004E6D4A /* PackageCell.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* StrokeCogDelegate.swift in Sources */,
 				2FE5DC5229EDD7FA004B9AB4 /* StrokeCogScheduler.swift in Sources */,
+				63BBF8162BB8993B006890CE /* StudyIDView.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
 				653A2551283387FE005D4D48 /* StrokeCog.swift in Sources */,
 				2FE5DC3629EDD7CA004B9AB4 /* HealthKitPermissions.swift in Sources */,
@@ -751,10 +759,10 @@
 				INFOPLIST_KEY_NSMotionUsageDescription = "This message should never appear. Please adjust this when you start using motion information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "This message should never appear. Please adjust this when you start using speecg information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIStrokeCoglicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIStrokeCoglicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -953,10 +961,10 @@
 				INFOPLIST_KEY_NSMotionUsageDescription = "This message should never appear. Please adjust this when you start using motion information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "This message should never appear. Please adjust this when you start using speecg information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIStrokeCoglicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIStrokeCoglicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1000,10 +1008,10 @@
 				INFOPLIST_KEY_NSMotionUsageDescription = "This message should never appear. Please adjust this when you start using motion information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "This message should never appear. Please adjust this when you start using speecg information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIStrokeCoglicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIStrokeCoglicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1012,7 +1020,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.odden.strokecog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "StrokeCog";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = StrokeCog;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
