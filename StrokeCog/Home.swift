@@ -16,6 +16,7 @@ struct HomeView: View {
         case schedule
         case contact
         case mockUpload
+        case map
     }
     
     static var accountEnabled: Bool {
@@ -29,6 +30,11 @@ struct HomeView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
+            MapView()
+                .tag(Tabs.map)
+                .tabItem {
+                    Label("Map", systemImage: "map.circle")
+                }
             ScheduleView(presentingAccount: $presentingAccount)
                 .tag(Tabs.schedule)
                 .tabItem {

@@ -272,6 +272,9 @@
         }
       }
     },
+    "Map" : {
+
+    },
     "MOCK_WEB_SERVICE_TAB_TITLE" : {
       "comment" : "MARK: - Mock Upload Data Storage Provider",
       "localizations" : {
@@ -327,6 +330,12 @@
         }
       }
     },
+    "OK" : {
+
+    },
+    "Options" : {
+
+    },
     "PROJECT_LICENSE_DESCRIPTION" : {
       "localizations" : {
         "en" : {
@@ -369,6 +378,12 @@
       }
     },
     "Study ID" : {
+
+    },
+    "Survey Not Available" : {
+
+    },
+    "Take Daily Survey" : {
 
     },
     "Tap here and enter your Study ID" : {
@@ -423,6 +438,9 @@
           }
         }
       }
+    },
+    "Track My Location" : {
+
     },
     "Try Again" : {
 
