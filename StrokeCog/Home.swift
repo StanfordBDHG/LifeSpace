@@ -30,7 +30,7 @@ struct HomeView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            MapView()
+            StrokeCogMapView()
                 .tag(Tabs.map)
                 .tabItem {
                     Label("Map", systemImage: "map.circle")

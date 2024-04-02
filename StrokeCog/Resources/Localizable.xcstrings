@@ -330,12 +330,6 @@
         }
       }
     },
-    "OK" : {
-
-    },
-    "Options" : {
-
-    },
     "PROJECT_LICENSE_DESCRIPTION" : {
       "localizations" : {
         "en" : {
@@ -378,12 +372,6 @@
       }
     },
     "Study ID" : {
-
-    },
-    "Survey Not Available" : {
-
-    },
-    "Take Daily Survey" : {
 
     },
     "Tap here and enter your Study ID" : {
@@ -438,9 +426,6 @@
           }
         }
       }
-    },
-    "Track My Location" : {
-
     },
     "Try Again" : {
 
