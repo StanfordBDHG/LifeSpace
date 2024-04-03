@@ -5,8 +5,7 @@
 //  Created by Vishnu Ravi on 4/2/24.
 //
 
-class Constants {
-    
+enum Constants {
     static let prefConfirmedLogin = "PREF_CONFIRMED_LOGIN"
     static let prefFirstRunWasMarked = "PREF_FIRST_RUN"
     static let prefUserEmail = "PREF_USER_EMAIL"

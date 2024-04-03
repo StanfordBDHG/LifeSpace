@@ -18,16 +18,17 @@ struct MapManagerViewWrapper: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: MapManagerView, context: Context) {}
 }
 
-class MapManagerView: UIViewController {
-    internal var mapView: MapView!
+public class MapManagerView: UIViewController {
+    internal lazy var mapView: MapView = {
+        let map = MapView(frame: view.bounds)
+        map.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        MapboxMap.initializeMap(mapView: map, reload: true)
+        map.location.options.puckType = .puck2D()
+        return map
+    }()
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-
-        mapView = MapView(frame: view.bounds)
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.addSubview(mapView)
-        MapboxMap.initializeMap(mapView: mapView, reload: true)
-        mapView.location.options.puckType = .puck2D()
     }
 }

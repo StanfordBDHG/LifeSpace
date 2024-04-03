@@ -12,7 +12,7 @@ import SwiftUI
 
 struct LocationPermissions: View {
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
-    @ObservedObject var locationFetcher = LocationService.shared
+    @ObservedObject var locationService = LocationService.shared
     
     @State private var locationProcessing = false
     
@@ -37,7 +37,7 @@ struct LocationPermissions: View {
                 }
             }, actionView: {
                 OnboardingActionsView(
-                    "NOTIFICATION_PERMISSIONS_BUTTON",
+                    "LOCATION_PERMISSIONS_BUTTON",
                     action: {
                         do {
                             locationProcessing = true
@@ -45,7 +45,7 @@ struct LocationPermissions: View {
                             if ProcessInfo.processInfo.isPreviewSimulator {
                                 try await _Concurrency.Task.sleep(for: .seconds(5))
                             } else {
-                                locationFetcher.requestAuthorizationLocation()
+                                locationService.requestAuthorizationLocation()
                             }
                         } catch {
                             print("Could not request notification permissions.")
@@ -74,4 +74,3 @@ struct LocationPermissions: View {
         }
 }
 #endif
-

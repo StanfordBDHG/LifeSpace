@@ -8,7 +8,7 @@ import CoreLocation
 import Firebase
 import Foundation
 
-class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
+public class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
     static let shared = LocationService()
 
     private let manager = CLLocationManager()
@@ -48,7 +48,7 @@ class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
         }
     }
 
-    func startTracking() {
+    public func startTracking() {
         if CLLocationManager.locationServicesEnabled() {
             self.manager.startUpdatingLocation()
             self.manager.startMonitoringSignificantLocationChanges()
@@ -61,13 +61,13 @@ class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
         }
     }
 
-    func stopTracking() {
+    public func stopTracking() {
         self.manager.stopUpdatingLocation()
         self.manager.stopMonitoringSignificantLocationChanges()
         print("[LIFESPACE] Stopping tracking...")
     }
 
-    func calculateIfCanShowRequestMessage() {
+    public func calculateIfCanShowRequestMessage() {
         let previousState = authorizationStatus
         authorizationStatus = self.manager.authorizationStatus
 
@@ -91,21 +91,21 @@ class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
         }
     }
 
-    func requestAuthorizationLocation() {
+    public func requestAuthorizationLocation() {
         self.manager.requestWhenInUseAuthorization()
         self.manager.requestAlwaysAuthorization()
     }
 
     /// Get all the points for a particular date from the database
     /// - Parameter date: the date for which to fetch all points
-//    func fetchPoints(date: Date = Date()) {
+    func fetchPoints(date: Date = Date()) {
 //        JHMapDataManager.shared.getAllMapPoints(date: date, onCompletion: {(results) in
 //            if let results = results as? [CLLocationCoordinate2D] {
 //                self.allLocations = results
 //                self.onLocationsUpdated?(self.allLocations)
 //            }
 //        })
-//    }
+    }
 
     /// Adds a new point to the map and saves the location to the database,
     /// if it meets the criteria to be added.
@@ -115,7 +115,6 @@ class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
 
         if let previousLocation = previousLocation,
            let previousDate = previousDate {
-
             // Check if distance between current point and previous point is greater than the minimum
             add = LocationUtils.isAboveMinimumDistance(
                 previousLocation: previousLocation,
@@ -125,7 +124,7 @@ class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
             // Reset all points when day changes
             if Date().startOfDay != previousDate.startOfDay {
                 add = true
-                //fetchPoints()
+                fetchPoints()
             }
         }
 
@@ -161,11 +160,11 @@ class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
         }
     }
 
-    func userAuthorizeAlways() -> Bool {
-        return self.manager.authorizationStatus == .authorizedAlways
+    public func userAuthorizeAlways() -> Bool {
+        self.manager.authorizationStatus == .authorizedAlways
     }
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // An additional check that we only append points if location tracking is turned on
         guard UserDefaults.standard.bool(forKey: Constants.prefTrackingStatus) else {
             return
@@ -174,7 +173,7 @@ class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
         lastKnownLocation = locations.first?.coordinate
     }
 
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+    public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         self.calculateIfCanShowRequestMessage()
     }
 }

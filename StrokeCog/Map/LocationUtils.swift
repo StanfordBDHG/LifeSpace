@@ -3,19 +3,19 @@
 //  LifeSpace
 //
 //  Created by Vishnu Ravi on 7/12/22.
-//  Copyright © 2022 CocoaPods. All rights reserved.
+//  Copyright © 2022 LifeSpace. All rights reserved.
 //
 
 import CoreLocation
 import Foundation
 
-class LocationUtils {
+enum LocationUtils {
     /// Checks if the last two points are above the minimum distance apart required to record them for the study.
     /// - Parameters:
     ///   - previousLocation: the last point recorded
     ///   - currentLocation: the latest point
     /// - Returns: Boolean
-    public static func isAboveMinimumDistance(
+    static func isAboveMinimumDistance(
         previousLocation: CLLocationCoordinate2D,
         currentLocation: CLLocationCoordinate2D
     ) -> Bool {
