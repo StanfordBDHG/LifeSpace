@@ -76,6 +76,7 @@
 		63F4C39B2BBCCCF80033D985 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F4C39A2BBCCCF80033D985 /* LocationService.swift */; };
 		63F4C39D2BBCCD200033D985 /* LocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F4C39C2BBCCD200033D985 /* LocationUtils.swift */; };
 		63F4C39F2BBCCDB70033D985 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F4C39E2BBCCDB70033D985 /* Date+Helpers.swift */; };
+		63F4C3A32BBCE79B0033D985 /* LocationPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F4C3A22BBCE79B0033D985 /* LocationPermissions.swift */; };
 		653A2551283387FE005D4D48 /* StrokeCog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* StrokeCog.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
 		653A256228338800005D4D48 /* StrokeCogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A256128338800005D4D48 /* StrokeCogTests.swift */; };
@@ -157,6 +158,7 @@
 		63F4C39A2BBCCCF80033D985 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		63F4C39C2BBCCD200033D985 /* LocationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUtils.swift; sourceTree = "<group>"; };
 		63F4C39E2BBCCDB70033D985 /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
+		63F4C3A22BBCE79B0033D985 /* LocationPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissions.swift; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* StrokeCog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrokeCog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* StrokeCog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeCog.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				2FE5DC3029EDD7CA004B9AB4 /* HealthKitPermissions.swift */,
 				2F65B44D2A3B8B0600A36932 /* NotificationPermissions.swift */,
 				63BBF8152BB8993B006890CE /* StudyIDView.swift */,
+				63F4C3A22BBCE79B0033D985 /* LocationPermissions.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -646,6 +649,7 @@
 				63F4C3972BBCCC070033D985 /* MapboxMap.swift in Sources */,
 				63F4C3992BBCCC300033D985 /* MapboxView.swift in Sources */,
 				2FE5DC5029EDD7FA004B9AB4 /* EventContextView.swift in Sources */,
+				63F4C3A32BBCE79B0033D985 /* LocationPermissions.swift in Sources */,
 				63F4C39F2BBCCDB70033D985 /* Date+Helpers.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* StrokeCogTestingSetup.swift in Sources */,
 				63F4C39B2BBCCCF80033D985 /* LocationService.swift in Sources */,

@@ -5,14 +5,14 @@
 //  Created by Vishnu Ravi on 4/2/24.
 //
 
-import SwiftUI
 import MapboxMaps
+import SwiftUI
 
 struct MapManagerViewWrapper: UIViewControllerRepresentable {
     typealias UIViewControllerType = MapManagerView
 
     func makeUIViewController(context: Context) -> MapManagerView {
-        return MapManagerView()
+        MapManagerView()
     }
 
     func updateUIViewController(_ uiViewController: MapManagerView, context: Context) {}
