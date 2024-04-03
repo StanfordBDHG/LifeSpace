@@ -50,6 +50,7 @@ class StrokeCogDelegate: SpeziAppDelegate {
             
             StrokeCogScheduler()
             OnboardingDataSource()
+            LocationModule()
         }
     }
     

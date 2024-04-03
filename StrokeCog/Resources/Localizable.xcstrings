@@ -273,16 +273,44 @@
       }
     },
     "LOCATION_PERMISSIONS_BUTTON" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow Sharing Location"
+          }
+        }
+      }
     },
     "LOCATION_PERMISSIONS_DESCRIPTION" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The app will track your location while you are in the study."
+          }
+        }
+      }
     },
     "LOCATION_PERMISSIONS_SUBTITLE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "StrokeCog Location"
+          }
+        }
+      }
     },
     "LOCATION_PERMISSIONS_TITLE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location"
+          }
+        }
+      }
     },
     "Map" : {
 

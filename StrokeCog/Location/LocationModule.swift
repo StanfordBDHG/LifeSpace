@@ -7,11 +7,10 @@
 import CoreLocation
 import Firebase
 import Foundation
+import Spezi
 
-public class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
-    static let shared = LocationService()
-
-    private let manager = CLLocationManager()
+public class LocationModule: NSObject, CLLocationManagerDelegate, Module, DefaultInitializable, EnvironmentAccessible {
+    private(set) var manager = CLLocationManager()
 
     public var allLocations = [CLLocationCoordinate2D]()
     public var onLocationsUpdated: (([CLLocationCoordinate2D]) -> Void)?
@@ -31,7 +30,7 @@ public class LocationService: NSObject, CLLocationManagerDelegate, ObservableObj
         }
     }
 
-    override init() {
+    required public override init() {
         super.init()
         manager.delegate = self
 
