@@ -26,7 +26,7 @@ jobs:
       contents: read
   build:
     name: Build
-    runs-on: macos-latest
+    runs-on: [macos-latest, self-hosted]
     steps:
     - uses: actions/checkout@v2
     - uses: maxim-lobanov/setup-xcode@v1
