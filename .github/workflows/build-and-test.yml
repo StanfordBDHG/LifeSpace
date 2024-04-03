@@ -24,7 +24,7 @@ jobs:
     uses: StanfordBDHG/.github/.github/workflows/markdown-link-check.yml@v2
     permissions:
       contents: read
-  build:
+  buildandtest:
     name: Build
     runs-on: [macos-latest, self-hosted]
     steps:
@@ -44,13 +44,3 @@ jobs:
         chmod 0600 ~/.netrc
     - name: Build
       run: xcodebuild test -project StrokeCog.xcodeproj -scheme StrokeCog -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
-  uploadcoveragereport:
-    name: Upload Coverage Report
-    needs: buildandtest
-    uses: StanfordBDHG/.github/.github/workflows/create-and-upload-coverage-report.yml@v2
-    permissions:
-      contents: read
-    with:
-      coveragereports: StrokeCog.xcresult
-    secrets:
-      token: ${{ secrets.CODECOV_TOKEN }}
