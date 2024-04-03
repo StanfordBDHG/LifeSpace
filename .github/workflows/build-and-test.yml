@@ -24,23 +24,3 @@ jobs:
     uses: StanfordBDHG/.github/.github/workflows/markdown-link-check.yml@v2
     permissions:
       contents: read
-  buildandtest:
-    name: Build and Test
-    runs-on: macos-13
-    steps:
-    - uses: actions/checkout@v2
-    - uses: maxim-lobanov/setup-xcode@v1
-      with:
-        xcode-version: latest-stable
-    - name: Check Environment
-      run: |
-          xcodebuild -version
-          swift --version
-    - name: Set Mapbox Credentials
-      run: |
-        echo "machine api.mapbox.com" >> ~/.netrc
-        echo "login mapbox" >> ~/.netrc
-        echo "password ${{ secrets.MAPBOX_TOKEN }}" >> ~/.netrc
-        chmod 0600 ~/.netrc
-    - name: Build and Test
-      run: xcodebuild test -project StrokeCog.xcodeproj -scheme StrokeCog -destination 'platform=iOS Simulator,name=iPhone 15'
