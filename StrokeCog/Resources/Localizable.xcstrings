@@ -252,6 +252,16 @@
         }
       }
     },
+    "INVALID_STUDYID_MESSAGE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You entered an invalid Study ID."
+          }
+        }
+      }
+    },
     "LELAND_STANFORD_BIO" : {
       "localizations" : {
         "en" : {
@@ -390,6 +400,16 @@
         }
       }
     },
+    "RETRY_BUTTON_LABEL" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try Again"
+          }
+        }
+      }
+    },
     "SCHEDULE_LIST_TITLE" : {
       "localizations" : {
         "en" : {
@@ -411,11 +431,35 @@
         }
       }
     },
-    "Study ID" : {
-
+    "STUDYID_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to the StrokeCog study. Please enter your study ID below."
+          }
+        }
+      }
     },
-    "Tap here and enter your Study ID" : {
-
+    "STUDYID_TEXT_FIELD_LABEL" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap here and enter your Study ID"
+          }
+        }
+      }
+    },
+    "STUDYID_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Study ID"
+          }
+        }
+      }
     },
     "TASK_CONTEXT_ACTION_QUESTIONNAIRE" : {
       "localizations" : {
@@ -466,12 +510,6 @@
           }
         }
       }
-    },
-    "Try Again" : {
-
-    },
-    "Welcome to the StrokeCog study. To get started, please enter your study ID." : {
-
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {
@@ -563,9 +601,6 @@
           }
         }
       }
-    },
-    "You've entered an invalid study ID." : {
-
     }
   },
   "version" : "1.0"

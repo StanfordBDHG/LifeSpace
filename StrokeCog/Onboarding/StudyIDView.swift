@@ -21,8 +21,8 @@ struct StudyIDView: View {
             OnboardingView(
                 titleView: {
                     OnboardingTitleView(
-                        title: "Study ID",
-                        subtitle: "Welcome to the StrokeCog study. To get started, please enter your study ID."
+                        title: "STUDYID_TITLE",
+                        subtitle: "STUDYID_SUBTITLE"
                     )
                 },
                 contentView: {
@@ -50,7 +50,7 @@ struct StudyIDView: View {
     
     @ViewBuilder private var studyIDEntryView: some View {
         VerifiableTextField(
-            LocalizedStringResource("Tap here and enter your Study ID"),
+            LocalizedStringResource("STUDYID_TEXT_FIELD_LABEL"),
             text: $studyID
         )
         .autocorrectionDisabled()
@@ -62,8 +62,8 @@ struct StudyIDView: View {
             "Error",
             isPresented: $showInvalidIDAlert
         ) {
-            Text("You've entered an invalid study ID.")
-            Button("Try Again") { }
+            Text("INVALID_STUDYID_MESSAGE")
+            Button("RETRY_BUTTON_LABEL") { }
         }
     }
     

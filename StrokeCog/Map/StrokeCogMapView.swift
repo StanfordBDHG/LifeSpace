@@ -6,7 +6,7 @@
 //  Copyright © 2024 StrokeCog. All rights reserved.
 //
 
-@_spi(Experimental) import MapboxMaps
+import MapboxMaps
 import SwiftUI
 
 struct StrokeCogMapView: View {
@@ -21,10 +21,6 @@ struct StrokeCogMapView: View {
         ZStack {
             MapManagerViewWrapper()
         }
-    }
-    
-    init() {
-        MapboxOptions.accessToken = ""
     }
 }
 

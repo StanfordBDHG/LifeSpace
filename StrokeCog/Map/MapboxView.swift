@@ -10,9 +10,10 @@ import Spezi
 import SwiftUI
 
 struct MapManagerViewWrapper: UIViewControllerRepresentable {
-    @Environment(LocationModule.self) private var locationModule
     typealias UIViewControllerType = MapManagerView
-
+    
+    @Environment(LocationModule.self) private var locationModule
+    
     func makeUIViewController(context: Context) -> MapManagerView {
         MapManagerView(locationModule: locationModule)
     }
@@ -21,14 +22,14 @@ struct MapManagerViewWrapper: UIViewControllerRepresentable {
 }
 
 public class MapManagerView: UIViewController {
-    private var locationModule: LocationModule?
-    
     private enum Constants {
         static let geoSourceId = "GEOSOURCE"
         static let circleLayerId = "CIRCLELAYER"
         static let zoomLevel: Double = 14.0
         static let countryLabelLayerId = "country-label"
     }
+    
+    private var locationModule: LocationModule?
     
     private lazy var mapView: MapView = {
         let map = MapView(frame: view.bounds)

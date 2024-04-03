@@ -11,7 +11,6 @@ import Spezi
 
 public class LocationModule: NSObject, CLLocationManagerDelegate, Module, DefaultInitializable, EnvironmentAccessible {
     private(set) var manager = CLLocationManager()
-
     public var allLocations = [CLLocationCoordinate2D]()
     public var onLocationsUpdated: (([CLLocationCoordinate2D]) -> Void)?
 
@@ -30,11 +29,9 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         }
     }
 
-    required public override init() {
+    override public required init() {
         super.init()
         manager.delegate = self
-
-        calculateIfCanShowRequestMessage()
 
         // If user doesn't have a tracking preference, default to true
         if UserDefaults.standard.value(forKey: Constants.prefTrackingStatus) == nil {
@@ -45,6 +42,9 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         if UserDefaults.standard.bool(forKey: Constants.prefTrackingStatus) {
             self.startTracking()
         }
+        
+        // Disable Mapbox telemetry
+        UserDefaults.standard.set(false, forKey: "MGLMapboxMetricsEnabled")
     }
 
     public func startTracking() {
@@ -66,30 +66,6 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         print("[LIFESPACE] Stopping tracking...")
     }
 
-    public func calculateIfCanShowRequestMessage() {
-        let previousState = authorizationStatus
-        authorizationStatus = self.manager.authorizationStatus
-
-        let first = UserDefaults.standard.bool(forKey: Constants.JHFirstLocationRequest)
-
-        if authorizationStatus == .authorizedWhenInUse && !first && previousState != authorizationStatus {
-            UserDefaults.standard.set(true, forKey: Constants.JHFirstLocationRequest)
-        } else {
-            UserDefaults.standard.set(false, forKey: Constants.JHFirstLocationRequest)
-        }
-
-        if authorizationStatus == .authorizedAlways {
-            // LaunchModel.sharedinstance.showPermissionView = false
-        }
-
-        if self.manager.authorizationStatus == .notDetermined ||
-            (self.manager.authorizationStatus == .authorizedWhenInUse && UserDefaults.standard.bool(forKey: Constants.JHFirstLocationRequest)) {
-            canShowRequestMessage = true
-        } else {
-            canShowRequestMessage = false
-        }
-    }
-
     public func requestAuthorizationLocation() {
         self.manager.requestWhenInUseAuthorization()
         self.manager.requestAlwaysAuthorization()
@@ -98,12 +74,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     /// Get all the points for a particular date from the database
     /// - Parameter date: the date for which to fetch all points
     func fetchPoints(date: Date = Date()) {
-//        JHMapDataManager.shared.getAllMapPoints(date: date, onCompletion: {(results) in
-//            if let results = results as? [CLLocationCoordinate2D] {
-//                self.allLocations = results
-//                self.onLocationsUpdated?(self.allLocations)
-//            }
-//        })
+        // TODO: Fetch from Firestore
     }
 
     /// Adds a new point to the map and saves the location to the database,
@@ -134,28 +105,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
             previousLocation = point
             previousDate = Date()
 
-//            // write this location to the database
-//            if let mapPointsCollection = CKStudyUser.shared.mapPointsCollection,
-//               let user = CKStudyUser.shared.currentUser,
-//               let studyID = CKStudyUser.shared.studyID {
-//                let db = Firestore.firestore()
-//                db.collection(mapPointsCollection)
-//                    .document(UUID().uuidString)
-//                    .setData([
-//                        "currentdate": NSDate(),
-//                        "time": NSDate().timeIntervalSince1970,
-//                        "latitude": point.latitude,
-//                        "longitude": point.longitude,
-//                        "studyID": studyID,
-//                        "UpdatedBy": user.uid
-//                    ]) { err in
-//                        if let err = err {
-//                            print("[LIFESPACE] Error writing location to database: \(err)")
-//                        }
-//                    }
-//            } else {
-//                print("[LIFESPACE] Unable to save point due to missing metadata.")
-//            }
+            // TODO: Save to Firestore
         }
     }
 
@@ -173,6 +123,6 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     }
 
     public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        self.calculateIfCanShowRequestMessage()
+        // TODO: Handle authorization change
     }
 }
