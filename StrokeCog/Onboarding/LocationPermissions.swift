@@ -67,10 +67,7 @@ struct LocationPermissions: View {
 #if DEBUG
 #Preview {
     OnboardingStack {
-        NotificationPermissions()
+        LocationPermissions()
     }
-        .previewWith {
-            StrokeCogScheduler()
-        }
 }
 #endif
