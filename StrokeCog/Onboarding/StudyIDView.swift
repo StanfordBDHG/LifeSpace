@@ -72,7 +72,7 @@ struct StudyIDView: View {
             rule: { studyID in
                 studyID.count >= 4
             },
-            message: "A study ID should be at least 4 characters long."
+            message: "STUDYID_VALIDATION_MESSAGE"
         )
     }
     

@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "A study ID should be at least 4 characters long." : {
-
-    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -457,6 +454,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Study ID"
+          }
+        }
+      }
+    },
+    "STUDYID_VALIDATION_MESSAGE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A study ID should be at least 4 characters long."
           }
         }
       }

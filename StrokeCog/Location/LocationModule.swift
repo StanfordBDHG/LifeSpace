@@ -10,6 +10,8 @@ import Foundation
 import Spezi
 
 public class LocationModule: NSObject, CLLocationManagerDelegate, Module, DefaultInitializable, EnvironmentAccessible {
+    @Dependency private var standard: StrokeCogStandard?
+    
     private(set) var manager = CLLocationManager()
     public var allLocations = [CLLocationCoordinate2D]()
     public var onLocationsUpdated: (([CLLocationCoordinate2D]) -> Void)?
@@ -104,8 +106,14 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
             onLocationsUpdated?(allLocations)
             previousLocation = point
             previousDate = Date()
-
-            // TODO: Save to Firestore
+            
+            Task {
+                do {
+                    try await standard?.add(location: point)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 
