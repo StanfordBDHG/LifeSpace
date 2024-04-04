@@ -5,8 +5,8 @@
 //  Created by Vishnu Ravi on 4/4/24.
 //
 
-import Foundation
 import CoreLocation
+import Foundation
 
 struct LocationDataPoint: Codable {
     var currentDate: Date
