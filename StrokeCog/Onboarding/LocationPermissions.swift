@@ -5,6 +5,7 @@
 //  Created by Vishnu Ravi on 4/2/24.
 //
 
+import OSLog
 import SpeziOnboarding
 import SpeziScheduler
 import SwiftUI
@@ -16,6 +17,8 @@ struct LocationPermissions: View {
     
     @State private var locationProcessing = false
     
+    private let logger = Logger(subsystem: "StrokeCog", category: "Onboarding")
+    
     
     var body: some View {
         OnboardingView(
@@ -26,7 +29,7 @@ struct LocationPermissions: View {
                         subtitle: "LOCATION_PERMISSIONS_SUBTITLE"
                     )
                     Spacer()
-                    Image(systemName: "bell.square.fill")
+                    Image(systemName: "mappin.and.ellipse")
                         .font(.system(size: 150))
                         .foregroundColor(.accentColor)
                         .accessibilityHidden(true)
@@ -44,22 +47,30 @@ struct LocationPermissions: View {
                             // Location authorization is not available in the preview simulator.
                             if ProcessInfo.processInfo.isPreviewSimulator {
                                 try await _Concurrency.Task.sleep(for: .seconds(5))
+                                locationProcessing = false
                             } else {
                                 locationModule.requestAuthorizationLocation()
                             }
                         } catch {
-                            print("Could not request notification permissions.")
+                            logger.debug("Could not request location permissions.")
                         }
-                        locationProcessing = false
-                        
-                        onboardingNavigationPath.nextStep()
                     }
                 )
             }
         )
             .navigationBarBackButtonHidden(locationProcessing)
-            // Small fix as otherwise "Login" or "Sign up" is still shown in the nav bar
             .navigationTitle(Text(verbatim: ""))
+            .onReceive(locationModule.$authorizationStatus) { status in
+                switch status {
+                case .authorizedWhenInUse:
+                    locationModule.requestAuthorizationLocation()
+                case .authorizedAlways:
+                    onboardingNavigationPath.nextStep()
+                    locationProcessing = false
+                default:
+                    break
+                }
+            }
     }
 }
 

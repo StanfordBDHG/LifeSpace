@@ -123,6 +123,6 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     }
 
     public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        // TODO: Handle authorization change
+        authorizationStatus = manager.authorizationStatus
     }
 }
