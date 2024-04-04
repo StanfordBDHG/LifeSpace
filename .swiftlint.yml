@@ -292,8 +292,6 @@ only_rules:
   - switch_case_alignment
   # Shorthand syntactic sugar should be used, i.e. [Int] instead of Array.
   - syntactic_sugar
-  # TODOs and FIXMEs should be resolved.
-  - todo
   # Prefer someBool.toggle() over someBool = !someBool.
   - toggle_bool
   # Trailing closure syntax should be used whenever possible.

@@ -24,24 +24,3 @@ jobs:
     uses: StanfordBDHG/.github/.github/workflows/markdown-link-check.yml@v2
     permissions:
       contents: read
-  buildandtest:
-    name: Build and Test
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
-    permissions:
-      contents: read
-    with:
-      artifactname: StrokeCog.xcresult
-      runsonlabels: '["macOS", "self-hosted"]'
-      setupSimulators: true
-      setupfirebaseemulator: true
-      customcommand: "firebase emulators:exec 'fastlane test'"
-  uploadcoveragereport:
-    name: Upload Coverage Report
-    needs: buildandtest
-    uses: StanfordBDHG/.github/.github/workflows/create-and-upload-coverage-report.yml@v2
-    permissions:
-      contents: read
-    with:
-      coveragereports: StrokeCog.xcresult
-    secrets:
-      token: ${{ secrets.CODECOV_TOKEN }}

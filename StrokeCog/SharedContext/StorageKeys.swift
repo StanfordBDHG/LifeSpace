@@ -18,4 +18,6 @@ enum StorageKeys {
     // MARK: - Home
     /// The currently selected home tab.
     static let homeTabSelection = "home.tabselection"
+    
+    static let trackingPreference = "tracking.preference"
 }

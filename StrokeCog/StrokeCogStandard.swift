@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import CoreLocation
 import FirebaseFirestore
 import FirebaseStorage
 import HealthKitOnFHIR
@@ -113,6 +114,26 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         } catch {
             logger.error("Could not store questionnaire response: \(error)")
         }
+    }
+    
+    func add(location: CLLocationCoordinate2D) async throws {
+        guard let details = await account.details else {
+            throw StrokeCogStandardError.userNotAuthenticatedYet
+        }
+        
+        let dataPoint = LocationDataPoint(
+            currentDate: Date(),
+            time: Date().timeIntervalSince1970,
+            latitude: location.latitude,
+            longitude: location.longitude,
+            studyID: details.userId,
+            updatedBy: details.accountId
+        )
+        
+        try await userDocumentReference
+            .collection("location_data")
+            .document(UUID().uuidString)
+            .setData(from: dataPoint)
     }
     
     
