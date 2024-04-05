@@ -26,9 +26,11 @@ struct OptionsPanel: View {
                     .frame(maxWidth: .infinity)
             }
             .alert(isPresented: $showingSurveyAlert) {
-                Alert(title: Text("OPTIONS_ALERT_SURVEY_NOT_AVAILABLE"),
-                      message: Text(self.alertMessage),
-                      dismissButton: .default(Text("OPTIONS_ALERT_OK")))
+                Alert(
+                    title: Text("OPTIONS_ALERT_SURVEY_NOT_AVAILABLE"),
+                    message: Text(self.alertMessage),
+                    dismissButton: .default(Text("OPTIONS_ALERT_OK"))
+                )
             }
             .sheet(isPresented: $showingSurvey) {
                 // TODO: Launch Survey

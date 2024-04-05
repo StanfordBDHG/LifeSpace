@@ -20,13 +20,10 @@ struct StrokeCogMapView: View {
     var body: some View {
         ZStack {
             MapManagerViewWrapper()
-            
             VStack {
                 Spacer()
-                
                 GroupBox {
                     optionsPanelButton
-                    
                     if self.optionsPanelOpen {
                         OptionsPanel()
                     }
@@ -45,6 +42,7 @@ struct StrokeCogMapView: View {
                 Text("OPTIONS_PANEL_TITLE")
                 Spacer()
                 Image(systemName: self.optionsPanelOpen ? "chevron.down" : "chevron.up")
+                    .accessibilityLabel(Text(verbatim: "Toggle Panel"))
             }
         }
     }

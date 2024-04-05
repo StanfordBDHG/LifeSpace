@@ -378,16 +378,44 @@
       }
     },
     "OPTIONS_ALERT_OK" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
     },
     "OPTIONS_ALERT_SURVEY_NOT_AVAILABLE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Survey Not Available"
+          }
+        }
+      }
     },
     "OPTIONS_PANEL_SURVEY_BUTTON" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take Daily Survey"
+          }
+        }
+      }
     },
     "OPTIONS_PANEL_TITLE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Options"
+          }
+        }
+      }
     },
     "PROJECT_LICENSE_DESCRIPTION" : {
       "localizations" : {
@@ -531,7 +559,14 @@
       }
     },
     "TRACK_LOCATION_BUTTON" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Track My Location"
+          }
+        }
+      }
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {
