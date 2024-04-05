@@ -5,7 +5,8 @@
 //  Created by Vishnu Ravi on 4/4/24.
 //
 
-
+import ResearchKit
+import ResearchKitSwiftUI
 import Spezi
 import SwiftUI
 
@@ -33,7 +34,14 @@ struct OptionsPanel: View {
                 )
             }
             .sheet(isPresented: $showingSurvey) {
-                // TODO: Launch StrokeCog Survey
+                ORKOrderedTaskView(tasks: DailySurveyTask(identifier: "DailySurveyTask")) { result in
+                    guard case let .completed(taskResult) = result else {
+                        return
+                    }
+                    
+                    // TODO: Save result to Firestore
+                    self.showingSurvey.toggle()
+                }
             }
         }
         

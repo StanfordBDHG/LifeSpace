@@ -73,6 +73,7 @@
 		63497B732BBF855E001F8419 /* OptionsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63497B722BBF855E001F8419 /* OptionsPanel.swift */; };
 		63BBF8162BB8993B006890CE /* StudyIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BBF8152BB8993B006890CE /* StudyIDView.swift */; };
 		63BBF8192BB89CF7006890CE /* studyIDs.csv in Resources */ = {isa = PBXBuildFile; fileRef = 63BBF8182BB89CF7006890CE /* studyIDs.csv */; };
+		63EA5F7B2BC04F8400A48590 /* DailySurveyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA5F7A2BC04F8400A48590 /* DailySurveyTask.swift */; };
 		63F4C3992BBCCC300033D985 /* MapboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F4C3982BBCCC300033D985 /* MapboxView.swift */; };
 		63F4C39B2BBCCCF80033D985 /* LocationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F4C39A2BBCCCF80033D985 /* LocationModule.swift */; };
 		63F4C39D2BBCCD200033D985 /* LocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F4C39C2BBCCD200033D985 /* LocationUtils.swift */; };
@@ -156,6 +157,7 @@
 		63497B722BBF855E001F8419 /* OptionsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsPanel.swift; sourceTree = "<group>"; };
 		63BBF8152BB8993B006890CE /* StudyIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyIDView.swift; sourceTree = "<group>"; };
 		63BBF8182BB89CF7006890CE /* studyIDs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = studyIDs.csv; sourceTree = "<group>"; };
+		63EA5F7A2BC04F8400A48590 /* DailySurveyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySurveyTask.swift; sourceTree = "<group>"; };
 		63F4C3982BBCCC300033D985 /* MapboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxView.swift; sourceTree = "<group>"; };
 		63F4C39A2BBCCCF80033D985 /* LocationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModule.swift; sourceTree = "<group>"; };
 		63F4C39C2BBCCD200033D985 /* LocationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUtils.swift; sourceTree = "<group>"; };
@@ -347,6 +349,14 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
+		63EA5F792BC04F6E00A48590 /* Survey */ = {
+			isa = PBXGroup;
+			children = (
+				63EA5F7A2BC04F8400A48590 /* DailySurveyTask.swift */,
+			);
+			path = Survey;
+			sourceTree = "<group>";
+		};
 		653A2544283387FE005D4D48 = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +382,7 @@
 		653A254F283387FE005D4D48 /* StrokeCog */ = {
 			isa = PBXGroup;
 			children = (
+				63EA5F792BC04F6E00A48590 /* Survey */,
 				653A2550283387FE005D4D48 /* StrokeCog.swift */,
 				2F5E32BC297E05EA003432F8 /* StrokeCogDelegate.swift */,
 				2FF53D8C2A8729D600042B76 /* StrokeCogStandard.swift */,
@@ -672,6 +683,7 @@
 				56F6F2A02AB441930022FE5A /* ContributionsList.swift in Sources */,
 				566155292AB8447C00209B80 /* Package+LicenseType.swift in Sources */,
 				5680DD392AB8983D004E6D4A /* PackageCell.swift in Sources */,
+				63EA5F7B2BC04F8400A48590 /* DailySurveyTask.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* StrokeCogDelegate.swift in Sources */,
 				2FE5DC5229EDD7FA004B9AB4 /* StrokeCogScheduler.swift in Sources */,
 				63BBF8162BB8993B006890CE /* StudyIDView.swift in Sources */,
