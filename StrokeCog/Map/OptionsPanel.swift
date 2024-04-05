@@ -5,6 +5,7 @@
 //  Created by Vishnu Ravi on 4/4/24.
 //
 
+
 import Spezi
 import SwiftUI
 
@@ -22,7 +23,6 @@ struct OptionsPanel: View {
                 self.showingSurvey.toggle()
             } label: {
                 Text("OPTIONS_PANEL_SURVEY_BUTTON")
-                    .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
             }
             .alert(isPresented: $showingSurveyAlert) {
@@ -33,13 +33,13 @@ struct OptionsPanel: View {
                 )
             }
             .sheet(isPresented: $showingSurvey) {
-                // TODO: Launch Survey
+                // TODO: Launch StrokeCog Survey
             }
         }
         
         GroupBox {
             Toggle("TRACK_LOCATION_BUTTON", isOn: $trackingOn)
-                .onChange(of: trackingOn) { _ in
+                .onChange(of: trackingOn) {
                     if trackingOn {
                         locationModule.startTracking()
                     } else {

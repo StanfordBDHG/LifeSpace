@@ -17,6 +17,7 @@ struct HomeView: View {
         case contact
         case mockUpload
         case map
+        case profile
     }
     
     static var accountEnabled: Bool {
@@ -29,30 +30,7 @@ struct HomeView: View {
 
     
     var body: some View {
-        TabView(selection: $selectedTab) {
-            StrokeCogMapView()
-                .tag(Tabs.map)
-                .tabItem {
-                    Label("Map", systemImage: "map.circle")
-                }
-            ScheduleView(presentingAccount: $presentingAccount)
-                .tag(Tabs.schedule)
-                .tabItem {
-                    Label("SCHEDULE_TAB_TITLE", systemImage: "list.clipboard")
-                }
-            Contacts(presentingAccount: $presentingAccount)
-                .tag(Tabs.contact)
-                .tabItem {
-                    Label("CONTACTS_TAB_TITLE", systemImage: "person.fill")
-                }
-            if FeatureFlags.disableFirebase {
-                MockUpload(presentingAccount: $presentingAccount)
-                    .tag(Tabs.mockUpload)
-                    .tabItem {
-                        Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
-                    }
-            }
-        }
+        StrokeCogMapView(presentingAccount: $presentingAccount)
             .sheet(isPresented: $presentingAccount) {
                 AccountSheet()
             }

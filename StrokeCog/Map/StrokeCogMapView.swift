@@ -7,10 +7,14 @@
 //
 
 import MapboxMaps
+import SpeziAccount
 import SwiftUI
 
 struct StrokeCogMapView: View {
     @AppStorage(StorageKeys.trackingPreference) private var trackingOn = true
+    
+    @State private var presentedContext: EventContext?
+    @Binding private var presentingAccount: Bool
     
     @State private var showingSurveyAlert = false
     @State private var alertMessage = ""
@@ -18,15 +22,22 @@ struct StrokeCogMapView: View {
     @State private var optionsPanelOpen = true
     
     var body: some View {
-        ZStack {
-            MapManagerViewWrapper()
-            VStack {
-                Spacer()
-                GroupBox {
-                    optionsPanelButton
-                    if self.optionsPanelOpen {
-                        OptionsPanel()
+        NavigationStack {
+            ZStack {
+                MapManagerViewWrapper()
+                VStack {
+                    Spacer()
+                    GroupBox {
+                        optionsPanelButton
+                        if self.optionsPanelOpen {
+                            OptionsPanel()
+                        }
                     }
+                }
+            }
+            .toolbar {
+                if AccountButton.shouldDisplay {
+                    AccountButton(isPresented: $presentingAccount)
                 }
             }
         }
@@ -46,10 +57,20 @@ struct StrokeCogMapView: View {
             }
         }
     }
+    
+    init(presentingAccount: Binding<Bool>) {
+        self._presentingAccount = presentingAccount
+    }
 }
 
 struct StrokeCogMapView_Previews: PreviewProvider {
     static var previews: some View {
-        StrokeCogMapView()
+        StrokeCogMapView(presentingAccount: .constant(false))
+            .previewWith(standard: StrokeCogStandard()) {
+                StrokeCogScheduler()
+                AccountConfiguration {
+                    MockUserIdPasswordAccountService()
+                }
+            }
     }
 }
