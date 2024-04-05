@@ -93,17 +93,6 @@
         }
       }
     },
-    "CONTACTS_TAB_TITLE" : {
-      "comment" : "MARK: - Contacts",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contacts"
-          }
-        }
-      }
-    },
     "CONTRIBUTIONS_LIST_DESCRIPTION" : {
       "localizations" : {
         "en" : {
@@ -319,11 +308,20 @@
         }
       }
     },
-    "Map" : {
-
+    "MAPVIEW_TITLE" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "StrokeCog"
+          }
+        }
+      }
     },
     "MOCK_WEB_SERVICE_TAB_TITLE" : {
       "comment" : "MARK: - Mock Upload Data Storage Provider",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -332,9 +330,6 @@
           }
         }
       }
-    },
-    "Next" : {
-
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
@@ -373,6 +368,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notifications"
+          }
+        }
+      }
+    },
+    "OPTIONS_ALERT_OK" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "OPTIONS_ALERT_SURVEY_NOT_AVAILABLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Survey Not Available"
+          }
+        }
+      }
+    },
+    "OPTIONS_PANEL_SURVEY_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take Daily Survey"
+          }
+        }
+      }
+    },
+    "OPTIONS_PANEL_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Options"
           }
         }
       }
@@ -419,11 +454,22 @@
     },
     "SCHEDULE_TAB_TITLE" : {
       "comment" : "MARK: - Schedule",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schedule"
+          }
+        }
+      }
+    },
+    "STUDYID_ACTION_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
           }
         }
       }
@@ -514,6 +560,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Social Support Questionnaire"
+          }
+        }
+      }
+    },
+    "TRACK_LOCATION_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Track My Location"
           }
         }
       }

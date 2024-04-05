@@ -30,7 +30,7 @@ struct StudyIDView: View {
                 },
                 actionView: {
                     OnboardingActionsView(
-                        "Next",
+                        "STUDYID_ACTION_BUTTON",
                         action: {
                             guard validation.validateSubviews() else {
                                 return
