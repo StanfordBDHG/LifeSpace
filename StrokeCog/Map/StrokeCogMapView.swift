@@ -20,6 +20,32 @@ struct StrokeCogMapView: View {
     var body: some View {
         ZStack {
             MapManagerViewWrapper()
+            
+            VStack {
+                Spacer()
+                
+                GroupBox {
+                    optionsPanelButton
+                    
+                    if self.optionsPanelOpen {
+                        OptionsPanel()
+                    }
+                }
+            }
+        }
+    }
+    
+    private var optionsPanelButton: some View {
+        Button {
+            withAnimation {
+                self.optionsPanelOpen.toggle()
+            }
+        } label: {
+            HStack {
+                Text("OPTIONS_PANEL_TITLE")
+                Spacer()
+                Image(systemName: self.optionsPanelOpen ? "chevron.down" : "chevron.up")
+            }
         }
     }
 }

@@ -377,6 +377,18 @@
         }
       }
     },
+    "OPTIONS_ALERT_OK" : {
+
+    },
+    "OPTIONS_ALERT_SURVEY_NOT_AVAILABLE" : {
+
+    },
+    "OPTIONS_PANEL_SURVEY_BUTTON" : {
+
+    },
+    "OPTIONS_PANEL_TITLE" : {
+
+    },
     "PROJECT_LICENSE_DESCRIPTION" : {
       "localizations" : {
         "en" : {
@@ -517,6 +529,9 @@
           }
         }
       }
+    },
+    "TRACK_LOCATION_BUTTON" : {
+
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {
