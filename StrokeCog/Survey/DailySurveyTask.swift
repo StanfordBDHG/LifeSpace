@@ -21,7 +21,7 @@ class DailySurveyTask: ORKOrderedTask {
             ORKTextChoice(text: "10 or more", value: 3 as NSNumber)
         ])
         let question1Step = ORKQuestionStep(
-            identifier: "Question1",
+            identifier: "SocialInteractionQuestion",
             title: "Social Interaction",
             question: "How many close friends or family did you see today face to face?",
             answer: answerFormat1
@@ -32,7 +32,7 @@ class DailySurveyTask: ORKOrderedTask {
         let answerFormat2 = ORKAnswerFormat.integerAnswerFormat(withUnit: nil)
         answerFormat2.minimum = 0
         let question2Step = ORKQuestionStep(
-            identifier: "Question2",
+            identifier: "LeavingTheHouseQuestion",
             title: "Leaving the House",
             question: "How many times today did you leave your house and engage meaningfully with others?",
             answer: answerFormat2
@@ -42,7 +42,7 @@ class DailySurveyTask: ORKOrderedTask {
         // Question 3: Happiness
         let answerFormat3 = ORKAnswerFormat.booleanAnswerFormat()
         let question3Step = ORKQuestionStep(
-            identifier: "Question3",
+            identifier: "EmotionalWellBeingQuestion",
             title: "Emotional Well-being",
             question: "I was happy",
             answer: answerFormat3
@@ -60,7 +60,7 @@ class DailySurveyTask: ORKOrderedTask {
             minimumValueDescription: "Not at all"
         )
         let question4Step = ORKQuestionStep(
-            identifier: "Question4",
+            identifier: "PhysicalWellBeingQuestion",
             title: "Physical Well-being",
             question: "I feel fatigued",
             answer: answerFormat4

@@ -34,14 +34,7 @@ struct OptionsPanel: View {
                 )
             }
             .sheet(isPresented: $showingSurvey) {
-                ORKOrderedTaskView(tasks: DailySurveyTask(identifier: "DailySurveyTask")) { result in
-                    guard case let .completed(taskResult) = result else {
-                        return
-                    }
-                    
-                    // TODO: Save result to Firestore
-                    self.showingSurvey.toggle()
-                }
+                DailySurveyTaskView(showingSurvey: $showingSurvey)
             }
         }
         

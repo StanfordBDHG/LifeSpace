@@ -136,6 +136,17 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             .setData(from: dataPoint)
     }
     
+    func add(response: DailySurveyResponse) async throws {
+        guard let details = await account.details else {
+            throw StrokeCogStandardError.userNotAuthenticatedYet
+        }
+        
+        try await userDocumentReference
+            .collection("surveys")
+            .document(UUID().uuidString)
+            .setData(from: response)
+    }
+    
     
     private func healthKitDocument(id uuid: UUID) async throws -> DocumentReference {
         try await userDocumentReference
