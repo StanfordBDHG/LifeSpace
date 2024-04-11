@@ -24,3 +24,21 @@ jobs:
     uses: StanfordBDHG/.github/.github/workflows/markdown-link-check.yml@v2
     permissions:
       contents: read
+  buildandtest:
+    name: Build and Test
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add Mapbox credentials
+        uses: extractions/netrc@v1
+        with:
+          machine: api.mapbox.com
+          username: mapbox
+          password: ${{ secrets.MAPBOX_TOKEN }}
+      - name: "Build and test Xcode project"
+        uses: sersoft-gmbh/xcodebuild-action@v3
+        with:
+          project: StrokeCog.xcodeproj
+          scheme: StrokeCog
+          destination: platform=iOS Simulator,name=iPhone 15 Pro
+          action: test
