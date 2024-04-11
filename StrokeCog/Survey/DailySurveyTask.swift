@@ -14,6 +14,7 @@ class DailySurveyTask: ORKOrderedTask {
         var steps = [ORKStep]()
         
         // Question 1: Close friends or family seen today
+        // swiftlint:disable legacy_objc_type
         let answerFormat1 = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: [
             ORKTextChoice(text: "0", value: 0 as NSNumber),
             ORKTextChoice(text: "1-4", value: 1 as NSNumber),
