@@ -12,20 +12,10 @@ import SwiftUI
 
 
 struct HomeView: View {
-    enum Tabs: String {
-        case schedule
-        case contact
-        case mockUpload
-        case map
-        case profile
-    }
-    
     static var accountEnabled: Bool {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
     }
 
-
-    @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.schedule
     @State private var presentingAccount = false
 
     
