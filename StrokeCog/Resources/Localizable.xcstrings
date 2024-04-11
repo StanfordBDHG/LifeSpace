@@ -372,26 +372,6 @@
         }
       }
     },
-    "OPTIONS_ALERT_OK" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OK"
-          }
-        }
-      }
-    },
-    "OPTIONS_ALERT_SURVEY_NOT_AVAILABLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Survey Not Available"
-          }
-        }
-      }
-    },
     "OPTIONS_PANEL_SURVEY_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -510,6 +490,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A study ID should be at least 4 characters long."
+          }
+        }
+      }
+    },
+    "SURVEY_NOT_AVAILABLE_MESSAGE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please return after 7pm to complete the survey!"
           }
         }
       }

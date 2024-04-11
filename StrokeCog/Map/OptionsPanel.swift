@@ -15,7 +15,6 @@ struct OptionsPanel: View {
     @Environment(LocationModule.self) private var locationModule
     
     @State private var showingSurveyAlert = false
-    @State private var alertMessage = ""
     @State private var showingSurvey = false
     
     var body: some View {
@@ -25,13 +24,6 @@ struct OptionsPanel: View {
             } label: {
                 Text("OPTIONS_PANEL_SURVEY_BUTTON")
                     .frame(maxWidth: .infinity)
-            }
-            .alert(isPresented: $showingSurveyAlert) {
-                Alert(
-                    title: Text("OPTIONS_ALERT_SURVEY_NOT_AVAILABLE"),
-                    message: Text(self.alertMessage),
-                    dismissButton: .default(Text("OPTIONS_ALERT_OK"))
-                )
             }
             .sheet(isPresented: $showingSurvey) {
                 DailySurveyTaskView(showingSurvey: $showingSurvey)
