@@ -42,4 +42,4 @@ jobs:
       - name: Build Xcode project
         run: xcodebuild -project StrokeCog.xcodeproj -scheme StrokeCog -sdk iphonesimulator -configuration Debug build
       - name: Run tests
-        run: xcodebuild test -project StrokeCog.xcodeproj -scheme StrokeCog -destination 'platform=iOS Simulator,name=iPhone 13,OS=16.0'
+        run: xcodebuild test -project StrokeCog.xcodeproj -scheme StrokeCog -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.2'
