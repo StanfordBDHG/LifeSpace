@@ -106,12 +106,6 @@ struct DailySurveyTaskView: View {
     }
 }
 
-struct SaveDetails: Identifiable {
-    let name: String
-    let error: String
-    let id = UUID()
-}
-
 #Preview {
     DailySurveyTaskView(showingSurvey: .constant(true))
 }

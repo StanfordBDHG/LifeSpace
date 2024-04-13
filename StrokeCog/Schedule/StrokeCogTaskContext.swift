@@ -8,7 +8,6 @@
 
 import Foundation
 import ModelsR4
-import SwiftUI
 
 
 /// The context attached to each task in the StrokeCog.
