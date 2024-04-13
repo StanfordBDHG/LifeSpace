@@ -93,36 +93,6 @@
         }
       }
     },
-    "CONTRIBUTIONS_LIST_DESCRIPTION" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The following list contains all Swift Package dependencies of the SpeziStrokeCog."
-          }
-        }
-      }
-    },
-    "CONTRIBUTIONS_LIST_FOOTER" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please refer to the individual repository links for packages without license labels."
-          }
-        }
-      }
-    },
-    "CONTRIBUTIONS_LIST_HEADER" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Packages"
-          }
-        }
-      }
-    },
     "Error" : {
 
     },
@@ -259,6 +229,7 @@
       }
     },
     "LICENSE_INFO_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -365,26 +336,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Options"
-          }
-        }
-      }
-    },
-    "PROJECT_LICENSE_DESCRIPTION" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This project is licensed under the MIT License."
-          }
-        }
-      }
-    },
-    "Repository Link" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Repository Link"
           }
         }
       }
