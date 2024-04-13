@@ -25,11 +25,6 @@ struct AccountSheet: View {
             ZStack {
                 if account.signedIn && !isInSetup {
                     AccountOverview(isEditing: $overviewIsEditing) {
-                        NavigationLink {
-                            ContributionsList()
-                        } label: {
-                            Text("LICENSE_INFO_TITLE")
-                        }
                     }
                         .onDisappear {
                             overviewIsEditing = false
