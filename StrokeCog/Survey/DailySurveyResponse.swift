@@ -10,7 +10,7 @@ import Foundation
 
 struct DailySurveyResponse: Codable {
     var socialInteractionQuestion: Int?
-    var leavingTheHouseQuestion: String?
+    var leavingTheHouseQuestion: Int?
     var emotionalWellBeingQuestion: Int?
     var physicalWellBeingQuestion: Int?
 }

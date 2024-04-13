@@ -308,29 +308,6 @@
         }
       }
     },
-    "MAPVIEW_TITLE" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "StrokeCog"
-          }
-        }
-      }
-    },
-    "MOCK_WEB_SERVICE_TAB_TITLE" : {
-      "comment" : "MARK: - Mock Upload Data Storage Provider",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mock Web Service"
-          }
-        }
-      }
-    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -368,26 +345,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notifications"
-          }
-        }
-      }
-    },
-    "OPTIONS_ALERT_OK" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OK"
-          }
-        }
-      }
-    },
-    "OPTIONS_ALERT_SURVEY_NOT_AVAILABLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Survey Not Available"
           }
         }
       }
@@ -514,6 +471,16 @@
         }
       }
     },
+    "SURVEY_NOT_AVAILABLE_MESSAGE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please return after 7pm to complete the survey!"
+          }
+        }
+      }
+    },
     "TASK_CONTEXT_ACTION_QUESTIONNAIRE" : {
       "localizations" : {
         "en" : {
@@ -534,32 +501,32 @@
         }
       }
     },
+    "TASK_DAILY_SURVEY_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take the daily survey."
+          }
+        }
+      }
+    },
+    "TASK_DAILY_SURVEY_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "StrokeCog Daily Survey"
+          }
+        }
+      }
+    },
     "TASK_LABEL %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Task: %@"
-          }
-        }
-      }
-    },
-    "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_DESCRIPTION" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please fill out the Social Support Questionnaire every day."
-          }
-        }
-      }
-    },
-    "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_TITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Social Support Questionnaire"
           }
         }
       }

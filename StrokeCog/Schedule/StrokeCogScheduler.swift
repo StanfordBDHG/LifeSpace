@@ -25,20 +25,19 @@ extension StrokeCogScheduler {
                 minute: Calendar.current.component(.minute, from: .now)
             )
         } else {
-            // For the normal app usage, we schedule the task for every day at 8:00 AM
-            dateComponents = DateComponents(hour: 8, minute: 0)
+            dateComponents = DateComponents(hour: 19, minute: 0)
         }
 
         return Task(
-            title: String(localized: "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_TITLE"),
-            description: String(localized: "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_DESCRIPTION"),
+            title: String(localized: "TASK_DAILY_SURVEY_TITLE"),
+            description: String(localized: "TASK_DAILY_SURVEY_DESCRIPTION"),
             schedule: Schedule(
                 start: Calendar.current.startOfDay(for: Date()),
                 repetition: .matching(dateComponents),
                 end: .numberOfEvents(365)
             ),
             notifications: true,
-            context: StrokeCogTaskContext.questionnaire(Bundle.main.questionnaire(withName: "SocialSupportQuestionnaire"))
+            context: StrokeCogTaskContext.test("TASK_DAILY_SURVEY_TITLE")
         )
     }
 

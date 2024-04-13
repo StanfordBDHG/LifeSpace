@@ -19,7 +19,6 @@ enum StrokeCogTaskContext: Codable, Identifiable {
     /// The task is used for UI testing.
     case test(String)
     
-    
     var id: FHIRPrimitive<FHIRString>? {
         switch self {
         case let .questionnaire(questionnaire):
