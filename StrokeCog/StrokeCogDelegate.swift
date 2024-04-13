@@ -79,7 +79,7 @@ class StrokeCogDelegate: SpeziAppDelegate {
                     HKQuantityType(.appleMoveTime),
                     HKCategoryType(.sleepAnalysis)
                 ],
-                deliverySetting: .manual()
+                deliverySetting: .background(.automatic)
             )
         }
     }
