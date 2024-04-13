@@ -8,6 +8,7 @@
 
 import Foundation
 import ModelsR4
+import SwiftUI
 
 
 /// The context attached to each task in the StrokeCog.
@@ -18,7 +19,6 @@ enum StrokeCogTaskContext: Codable, Identifiable {
     case questionnaire(Questionnaire)
     /// The task is used for UI testing.
     case test(String)
-    
     
     var id: FHIRPrimitive<FHIRString>? {
         switch self {

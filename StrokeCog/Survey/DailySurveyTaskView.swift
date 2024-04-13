@@ -13,21 +13,26 @@ import SwiftUI
 struct DailySurveyTaskView: View {
     @Environment(StrokeCogStandard.self) private var standard
     @Binding var showingSurvey: Bool
+    @State private var didError = false
+    @State private var errorMessage = ""
     
     
     var body: some View {
         if shouldShowSurvey {
-            ORKOrderedTaskView(tasks: DailySurveyTask(identifier: "DailySurveyTask")) { result in
-                guard case let .completed(taskResult) = result else {
-                    showingSurvey.toggle()
-                    return
-                }
-                
-                Task {
-                    await saveResponse(taskResult: taskResult)
-                    showingSurvey.toggle()
+            Group {
+                ORKOrderedTaskView(tasks: DailySurveyTask(identifier: "DailySurveyTask")) { result in
+                    guard case let .completed(taskResult) = result else {
+                        showingSurvey.toggle()
+                        return
+                    }
+                    
+                    Task {
+                        await saveResponse(taskResult: taskResult)
+                        showingSurvey.toggle()
+                    }
                 }
             }
+            .alert(errorMessage, isPresented: $didError) { }
         } else {
             surveyUnavailableView
         }
@@ -69,9 +74,12 @@ struct DailySurveyTaskView: View {
         }
         
         if let leavingTheHouseQuestion = taskResult.stepResult(forStepIdentifier: "LeavingTheHouseQuestion")?.results {
-            let answer = leavingTheHouseQuestion[0] as? ORKTextQuestionResult
-            let result = answer?.textAnswer
-            response.leavingTheHouseQuestion = result ?? ""
+            let answer = leavingTheHouseQuestion[0] as? ORKNumericQuestionResult
+            if let result = answer?.numericAnswer {
+                response.leavingTheHouseQuestion = Int(truncating: result)
+            } else {
+                response.leavingTheHouseQuestion = -1
+            }
         }
         
         if let emotionalWellBeingQuestion = taskResult.stepResult(forStepIdentifier: "EmotionalWellBeingQuestion")?.results {
@@ -92,9 +100,16 @@ struct DailySurveyTaskView: View {
         do {
             try await standard.add(response: response)
         } catch {
-            print("Error: \(error.localizedDescription)")
+            self.errorMessage = error.localizedDescription
+            self.didError.toggle()
         }
     }
+}
+
+struct SaveDetails: Identifiable {
+    let name: String
+    let error: String
+    let id = UUID()
 }
 
 #Preview {
