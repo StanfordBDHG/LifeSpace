@@ -74,7 +74,6 @@ class StrokeCogDelegate: SpeziAppDelegate {
                     HKQuantityType(.walkingSpeed),
                     HKQuantityType(.walkingAsymmetryPercentage),
                     HKQuantityType(.appleWalkingSteadiness),
-                    HKQuantityType(.stepCount),
                     HKQuantityType(.appleStandTime),
                     HKQuantityType(.appleMoveTime),
                     HKCategoryType(.sleepAnalysis)
