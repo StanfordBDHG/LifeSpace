@@ -45,7 +45,7 @@ struct HomeView: View {
 }
 
 #Preview {
-    return HomeView()
+    HomeView()
         .previewWith(standard: StrokeCogStandard()) {
             StrokeCogScheduler()
             AccountConfiguration {
