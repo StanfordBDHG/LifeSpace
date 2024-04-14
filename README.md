@@ -10,21 +10,19 @@ SPDX-License-Identifier: MIT
 
 # StrokeCog
 
-This repository contains the mobile application for the StrokeCog study at Stanford University.
+This repository contains the mobile application for the StrokeCog study, developed for the [Odden Research Lab](https://michelleodden.com) in the Department of Epidemiology and Population Health at the Stanford School of Medicine.
 
-The StrokeCog study was built using the [Spezi](https://github.com/StanfordSpezi/Spezi) ecosystem and builds on top of the [Stanford Spezi Template Application](https://github.com/StanfordSpezi/SpeziTemplateApplication).
+StrokeCog was built using the [Spezi](https://github.com/StanfordSpezi/Spezi) framework and digital health ecosystem developed by [Stanford Biodesign Digital Health](https://bdh.stanford.edu/).
 
+## Features
 
-## StrokeCog Features
+- Onboarding and consent process via [SpeziOnboarding](https://github.com/StanfordSpezi/SpeziOnboarding)
+- Passive location data collection
+- Maps via [Mapbox](https://www.mapbox.com/)
+- Health data collection via [SpeziHealthKit](https://github.com/stanfordspezi/spezihealthkit)
+- Daily surveys via [ResearchKit](https://www.apple.com/lae/researchkit/)
 
-- Location data collection
-- Health data collection
-- Daily surveys
+## Contributors
 
-
-## Contributing
-
-- Vishnu Ravi (vishnur@stanford.edu)
-- Sylvie Dobrota Lai (sylvied@stanford.edu)
-
-[Odden Research Lab at Stanford University](https://michelleodden.com)
+- [Vishnu Ravi](https://github.com/vishnuravi)
+- [Sylvie Dobrota Lai](https://github.com/sylvieddl)
