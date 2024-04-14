@@ -19,7 +19,7 @@ StrokeCog was built using the [Spezi](https://github.com/StanfordSpezi/Spezi) fr
 - Onboarding and consent process via [SpeziOnboarding](https://github.com/StanfordSpezi/SpeziOnboarding)
 - Passive location data collection
 - Maps via [Mapbox](https://www.mapbox.com/)
-- Health data collection via [SpeziHealthKit](https://github.com/stanfordspezi/spezihealthkit)
+- Health data collection via [SpeziHealthKit](https://github.com/stanfordspezi/spezihealthkit) including activity and gait metrics.
 - Daily surveys via [ResearchKit](https://www.apple.com/lae/researchkit/)
 
 ## Contributors
