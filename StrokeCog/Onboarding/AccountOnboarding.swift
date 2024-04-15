@@ -17,21 +17,23 @@ struct AccountOnboarding: View {
     
     
     var body: some View {
-        AccountSetup { _ in
-            Task {
-                // Placing the nextStep() call inside this task will ensure that the sheet dismiss animation is
-                // played till the end before we navigate to the next step.
-                onboardingNavigationPath.nextStep()
-            }
-        } header: {
+        VStack {
             AccountSetupHeader()
-        } continue: {
-            OnboardingActionsView(
-                "ACCOUNT_NEXT",
-                action: {
+                .padding()
+            AccountSetup { _ in
+                Task {
+                    // Placing the nextStep() call inside this task will ensure that the sheet dismiss animation is
+                    // played till the end before we navigate to the next step.
                     onboardingNavigationPath.nextStep()
                 }
-            )
+            } continue: {
+                OnboardingActionsView(
+                    "ACCOUNT_NEXT",
+                    action: {
+                        onboardingNavigationPath.nextStep()
+                    }
+                )
+            }
         }
     }
 }

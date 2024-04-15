@@ -35,10 +35,11 @@ struct AccountSheet: View {
                             }
                         }
                 } else {
-                    AccountSetup { _ in
-                        dismiss() // we just signed in, dismiss the account setup sheet
-                    } header: {
+                    VStack {
                         AccountSetupHeader()
+                        AccountSetup { _ in
+                            dismiss() // we just signed in, dismiss the account setup sheet
+                        }
                     }
                         .onAppear {
                             isInSetup = true

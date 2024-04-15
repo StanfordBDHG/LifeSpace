@@ -27,11 +27,11 @@ class StrokeCogDelegate: SpeziAppDelegate {
 
                 if FeatureFlags.useFirebaseEmulator {
                     FirebaseAccountConfiguration(
-                        authenticationMethods: [.emailAndPassword, .signInWithApple],
+                        authenticationMethods: [.signInWithApple],
                         emulatorSettings: (host: "localhost", port: 9099)
                     )
                 } else {
-                    FirebaseAccountConfiguration(authenticationMethods: [.emailAndPassword, .signInWithApple])
+                    FirebaseAccountConfiguration(authenticationMethods: [.signInWithApple])
                 }
                 firestore
                 if FeatureFlags.useFirebaseEmulator {

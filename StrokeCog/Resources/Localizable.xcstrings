@@ -16,7 +16,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You may login to your existing account. Or create a new one if you don't have one already."
+            "value" : "Apple will not receive any of the data collected in the study."
           }
         }
       }
@@ -36,7 +36,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sign Up or Log In to the StrokeCog Study with either your email or Sign In With Apple."
+            "value" : "Sign Up or Log In to the StrokeCog Study using Sign In With Apple."
           }
         }
       }
