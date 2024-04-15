@@ -7,7 +7,6 @@
 //
 
 import SpeziAccount
-import SpeziMockWebService
 import SwiftUI
 
 
@@ -41,17 +40,14 @@ struct HomeView: View {
     return HomeView()
         .previewWith(standard: StrokeCogStandard()) {
             StrokeCogScheduler()
-            MockWebService()
             AccountConfiguration(building: details, active: MockUserIdPasswordAccountService())
         }
 }
 
 #Preview {
-    CommandLine.arguments.append("--disableFirebase") // make sure the MockWebService is displayed
-    return HomeView()
+    HomeView()
         .previewWith(standard: StrokeCogStandard()) {
             StrokeCogScheduler()
-            MockWebService()
             AccountConfiguration {
                 MockUserIdPasswordAccountService()
             }
