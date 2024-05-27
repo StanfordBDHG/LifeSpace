@@ -28,3 +28,20 @@ You have the right to refuse to answer particular questions.
 
 Your decision whether or not to participate in this study will not affect your participation in the StrokeCog study. 
 
+*WITHDRAWAL FROM STUDY:*
+If you first agree to participate and then you change your mind, you are free to withdraw your consent and discontinue your participation at any time.  
+If you decide to withdraw your consent to participate in this study, you should notify the LifeSpace study team (lifespace@stanford.edu) or Michelle Odden (650-721-0230, modden@stanford.edu).
+
+If you decide to withdraw from the study, you can delete the LifeSpace App from your phone. 
+
+The Protocol Director may also withdraw you from the study without your consent for one or more of the following reasons: 
+
+•    Failure to follow the instructions of the Protocol Director and study staff.
+•    Unanticipated circumstances.
+
+*CONTACT INFORMATION:*
+Questions, Concerns, or Complaints: If you have any questions, concerns or complaints about this research study, its procedures, risks and benefits, you should ask the Protocol Director, Michelle Odden, (650) 721-0230. You should also contact her at any time if you feel you have been hurt by being a part of this study.
+
+Independent Contact: If you are not satisfied with how this study is being conducted, or if you have any concerns, complaints, or general questions about the research or your rights as a participant, please contact the Stanford Institutional Review Board (IRB) to speak to someone independent of the research team at 650-723-5244 or toll free at 1-866-680-2906.  You can also write to the Stanford IRB, Stanford University, 1705 El Camino Real, Palo Alto, CA 94306.
+
+A copy of this form is saved in your profile in the LifeSpace App – please print or save this locally to your iPhone. If you agree to participate in this research, please sign here.
