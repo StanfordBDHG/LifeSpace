@@ -36,7 +36,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sign Up or Log In to the StrokeCog Study using Sign In With Apple."
+            "value" : "Sign Up or Log In to the LifeSpace Study using Sign In With Apple."
           }
         }
       }
@@ -121,7 +121,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The StrokeCog study app will collect activity data from your phone and/or watch while you are enrolled in the study."
+            "value" : "The LifeSpace app will collect activity data from your phone and/or watch while you are enrolled in the study."
           }
         }
       }
@@ -264,7 +264,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "StrokeCog Location"
+            "value" : "LifeSpace Location"
           }
         }
       }
@@ -304,7 +304,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "StrokeCog Notifications"
+            "value" : "LifeSpace Notifications"
           }
         }
       }
@@ -393,7 +393,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Welcome to the StrokeCog study. Please enter your study ID below."
+            "value" : "Welcome to the LifeSpace study. Please enter your study ID below."
           }
         }
       }
@@ -473,7 +473,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "StrokeCog Daily Survey"
+            "value" : "LifeSpace Daily Survey"
           }
         }
       }
@@ -573,7 +573,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The StrokeCog Study investigates the relationship between life space and cognitive decline after a stroke."
+            "value" : "The LifeSpace study investigates the relationship between life space and cognitive decline after a stroke."
           }
         }
       }
@@ -584,7 +584,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "StrokeCog Study"
+            "value" : "LifeSpace Study"
           }
         }
       }
