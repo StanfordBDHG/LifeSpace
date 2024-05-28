@@ -12,6 +12,7 @@ import SwiftUI
 
 struct StrokeCogMapView: View {
     @AppStorage(StorageKeys.trackingPreference) private var trackingOn = true
+    @Environment(LocationModule.self) private var locationModule
     
     @State private var presentedContext: EventContext?
     @Binding private var presentingAccount: Bool
@@ -36,8 +37,19 @@ struct StrokeCogMapView: View {
                 }
             }
             .toolbar {
-                if AccountButton.shouldDisplay {
-                    AccountButton(isPresented: $presentingAccount)
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if AccountButton.shouldDisplay {
+                        AccountButton(isPresented: $presentingAccount)
+                    }
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        Task {
+                            await locationModule.fetchLocations()
+                        }
+                    }) {
+                        Image(systemName: "arrow.clockwise")
+                    }
                 }
             }
         }
