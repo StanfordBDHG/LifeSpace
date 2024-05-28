@@ -7,6 +7,7 @@
 import CoreLocation
 import Firebase
 import Foundation
+import OSLog
 import Spezi
 
 public class LocationModule: NSObject, CLLocationManagerDelegate, Module, DefaultInitializable, EnvironmentAccessible {
@@ -15,6 +16,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     private(set) var manager = CLLocationManager()
     public var allLocations = [CLLocationCoordinate2D]()
     public var onLocationsUpdated: (([CLLocationCoordinate2D]) -> Void)?
+    private let logger = Logger(subsystem: "StrokeCog", category: "Standard")
 
     private var previousLocation: CLLocationCoordinate2D?
     private var previousDate: Date?
@@ -56,27 +58,32 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
             self.manager.allowsBackgroundLocationUpdates = true
             self.manager.pausesLocationUpdatesAutomatically = false
             self.manager.showsBackgroundLocationIndicator = false
-            print("[LIFESPACE] Starting tracking...")
+            logger.info("Starting tracking...")
         } else {
-            print("[LIFESPACE] Cannot start tracking - location services are not enabled.")
+            logger.error("Cannot start tracking - location services are not enabled.")
         }
     }
 
     public func stopTracking() {
         self.manager.stopUpdatingLocation()
         self.manager.stopMonitoringSignificantLocationChanges()
-        print("[LIFESPACE] Stopping tracking...")
+        logger.info("Stopping tracking...")
     }
 
     public func requestAuthorizationLocation() {
         self.manager.requestWhenInUseAuthorization()
         self.manager.requestAlwaysAuthorization()
     }
-
-    /// Get all the points for a particular date from the database
-    /// - Parameter date: the date for which to fetch all points
-    func fetchPoints(date: Date = Date()) {
-        // TODO: Fetch from Firestore
+    
+    public func fetchLocations() async {
+        do {
+            if let locations = try await standard?.fetchLocations() {
+                self.allLocations = locations
+                self.onLocationsUpdated?(self.allLocations)
+            }
+        } catch {
+            logger.error("Error fetching locations: \(error.localizedDescription)")
+        }
     }
 
     /// Adds a new point to the map and saves the location to the database,
@@ -96,7 +103,9 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
             // Reset all points when day changes
             if Date().startOfDay != previousDate.startOfDay {
                 add = true
-                fetchPoints()
+                Task {
+                    await fetchLocations()
+                }
             }
         }
 
@@ -111,7 +120,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
                 do {
                     try await standard?.add(location: point)
                 } catch {
-                    print(error.localizedDescription)
+                    logger.error("Error adding location: \(error.localizedDescription)")
                 }
             }
         }

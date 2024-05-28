@@ -12,6 +12,7 @@ import SwiftUI
 
 struct StrokeCogMapView: View {
     @AppStorage(StorageKeys.trackingPreference) private var trackingOn = true
+    @Environment(LocationModule.self) private var locationModule
     
     @State private var presentedContext: EventContext?
     @Binding private var presentingAccount: Bool
@@ -20,6 +21,7 @@ struct StrokeCogMapView: View {
     @State private var alertMessage = ""
     @State private var showingSurvey = false
     @State private var optionsPanelOpen = true
+    @State private var isRefreshing = false
     
     var body: some View {
         NavigationStack {
@@ -34,10 +36,23 @@ struct StrokeCogMapView: View {
                         }
                     }
                 }
+                if isRefreshing {
+                    RefreshIcon()
+                }
             }
             .toolbar {
-                if AccountButton.shouldDisplay {
-                    AccountButton(isPresented: $presentingAccount)
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if AccountButton.shouldDisplay {
+                        AccountButton(isPresented: $presentingAccount)
+                    }
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        refreshMap()
+                    }) {
+                        Image(systemName: "arrow.clockwise")
+                            .accessibilityLabel("Refresh map")
+                    }
                 }
             }
         }
@@ -60,6 +75,14 @@ struct StrokeCogMapView: View {
     
     init(presentingAccount: Binding<Bool>) {
         self._presentingAccount = presentingAccount
+    }
+    
+    private func refreshMap() {
+        Task {
+            isRefreshing = true
+            await locationModule.fetchLocations()
+            isRefreshing = false
+        }
     }
 }
 

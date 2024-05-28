@@ -115,6 +115,39 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             .setData(from: dataPoint)
     }
     
+    func fetchLocations(on date: Date = Date()) async throws -> [CLLocationCoordinate2D] {
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: date)
+        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)
+        
+        var locations = [CLLocationCoordinate2D]()
+        
+        do {
+            let snapshot = try await userDocumentReference
+                .collection("location_data")
+                .whereField("currentDate", isGreaterThanOrEqualTo: startOfDay)
+                .whereField("currentDate", isLessThan: endOfDay ?? Date())
+                .getDocuments()
+            
+            for document in snapshot.documents {
+                if let longitude = document.data()["longitude"] as? CLLocationDegrees,
+                   let latitude = document.data()["latitude"] as? CLLocationDegrees {
+                    let coordinate = CLLocationCoordinate2D(
+                        latitude: latitude,
+                        longitude: longitude
+                    )
+                    locations.append(coordinate)
+                }
+            }
+        } catch {
+            self.logger.error("Error fetching location data: \(String(describing: error))")
+            throw error
+        }
+        
+        return locations
+    }
+
+    
     func add(response: DailySurveyResponse) async throws {
         guard let details = await account.details else {
             throw StrokeCogStandardError.userNotAuthenticatedYet
