@@ -43,6 +43,7 @@ struct DailySurveyTaskView: View {
             Image(systemName: "clock.fill")
                 .resizable()
                 .frame(width: 50, height: 50)
+                .accessibilityLabel("Survey not available.")
             
             Text("SURVEY_NOT_AVAILABLE_MESSAGE")
                 .font(.largeTitle)

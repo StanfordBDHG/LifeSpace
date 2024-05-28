@@ -198,13 +198,15 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         formatter.dateFormat = "yyyy-MM-dd_HHmmss"
         let dateString = formatter.string(from: Date())
         
+        let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) ?? "unknownStudyID"
+        
         guard !FeatureFlags.disableFirebase else {
             guard let basePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
                 logger.error("Could not create path for writing consent form to user document directory.")
                 return
             }
             
-            let filePath = basePath.appending(path: "consentForm_\(dateString).pdf")
+            let filePath = basePath.appending(path: "consentForm_\(studyID)_\(dateString).pdf")
             consent.write(to: filePath)
             
             return
@@ -218,7 +220,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await userBucketReference.child("consent/\(dateString).pdf").putDataAsync(consentData, metadata: metadata)
+            _ = try await userBucketReference.child("consent/\(studyID)_\(dateString).pdf").putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }
