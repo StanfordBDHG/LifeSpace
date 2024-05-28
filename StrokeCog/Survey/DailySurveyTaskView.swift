@@ -40,16 +40,20 @@ struct DailySurveyTaskView: View {
     
     private var surveyUnavailableView: some View {
         VStack {
+            Image(systemName: "clock.fill")
+                .resizable()
+                .frame(width: 50, height: 50)
+            
             Text("SURVEY_NOT_AVAILABLE_MESSAGE")
+                .font(.largeTitle)
                 .padding()
                 .multilineTextAlignment(.center)
             
-            Button {
+            Button("CLOSE") {
                 self.showingSurvey.toggle()
-            } label: {
-                Text("CLOSE")
-                    .frame(maxWidth: .infinity)
             }
+            .buttonStyle(.borderedProminent)
+            .padding(.top, 20)
         }
     }
     
