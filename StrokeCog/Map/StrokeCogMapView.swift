@@ -24,7 +24,6 @@ struct StrokeCogMapView: View {
     @State private var isRefreshing = false
     
     var body: some View {
-        // swiftlint:disable closure_body_length accessibility_label_for_image
         NavigationStack {
             ZStack {
                 MapManagerViewWrapper()
@@ -52,17 +51,10 @@ struct StrokeCogMapView: View {
                         refreshMap()
                     }) {
                         Image(systemName: "arrow.clockwise")
+                            .accessibilityLabel("Refresh map")
                     }
                 }
             }
-        }
-    }
-    
-    private func refreshMap() {
-        Task {
-            isRefreshing = true
-            await locationModule.fetchLocations()
-            isRefreshing = false
         }
     }
     
@@ -83,6 +75,14 @@ struct StrokeCogMapView: View {
     
     init(presentingAccount: Binding<Bool>) {
         self._presentingAccount = presentingAccount
+    }
+    
+    private func refreshMap() {
+        Task {
+            isRefreshing = true
+            await locationModule.fetchLocations()
+            isRefreshing = false
+        }
     }
 }
 
