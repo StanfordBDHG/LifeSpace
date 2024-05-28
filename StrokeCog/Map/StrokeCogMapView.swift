@@ -10,9 +10,11 @@ import MapboxMaps
 import SpeziAccount
 import SwiftUI
 
+
 struct StrokeCogMapView: View {
     @AppStorage(StorageKeys.trackingPreference) private var trackingOn = true
     @Environment(LocationModule.self) private var locationModule
+    @Environment(\.scenePhase) var scenePhase
     
     @State private var presentedContext: EventContext?
     @Binding private var presentingAccount: Bool
@@ -54,6 +56,11 @@ struct StrokeCogMapView: View {
                             .accessibilityLabel("Refresh map")
                     }
                 }
+            }
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                refreshMap()
             }
         }
     }

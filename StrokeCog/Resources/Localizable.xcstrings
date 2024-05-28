@@ -428,6 +428,9 @@
         }
       }
     },
+    "Survey not available." : {
+
+    },
     "SURVEY_NOT_AVAILABLE_MESSAGE" : {
       "localizations" : {
         "en" : {

@@ -123,7 +123,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     func fetchLocations(on date: Date = Date()) async throws -> [CLLocationCoordinate2D] {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: date)
-        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)
+        let endOfDay = Date(timeInterval: 24 * 60 * 60, since: startOfDay)
         
         var locations = [CLLocationCoordinate2D]()
         
@@ -131,7 +131,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             let snapshot = try await userDocumentReference
                 .collection("location_data")
                 .whereField("currentDate", isGreaterThanOrEqualTo: startOfDay)
-                .whereField("currentDate", isLessThan: endOfDay ?? Date())
+                .whereField("currentDate", isLessThan: endOfDay)
                 .getDocuments()
             
             for document in snapshot.documents {

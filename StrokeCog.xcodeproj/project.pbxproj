@@ -61,9 +61,9 @@
 		63497B702BBF6ECE001F8419 /* LocationDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63497B6F2BBF6ECE001F8419 /* LocationDataPoint.swift */; };
 		63497B732BBF855E001F8419 /* OptionsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63497B722BBF855E001F8419 /* OptionsPanel.swift */; };
 		63A28D312C0580310025A1E0 /* RefreshIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A28D302C0580310025A1E0 /* RefreshIcon.swift */; };
+		63A28D332C062E2E0025A1E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63A28D322C062E2E0025A1E0 /* GoogleService-Info.plist */; };
 		63BBF8162BB8993B006890CE /* StudyIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BBF8152BB8993B006890CE /* StudyIDView.swift */; };
 		63BBF8192BB89CF7006890CE /* studyIDs.csv in Resources */ = {isa = PBXBuildFile; fileRef = 63BBF8182BB89CF7006890CE /* studyIDs.csv */; };
-		63E8D2352C043FCC000C7ADF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63E8D2342C043FCC000C7ADF /* GoogleService-Info.plist */; };
 		63EA5F7B2BC04F8400A48590 /* DailySurveyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA5F7A2BC04F8400A48590 /* DailySurveyTask.swift */; };
 		63EA5F892BC78ADD00A48590 /* DailySurveyTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA5F882BC78ADD00A48590 /* DailySurveyTaskView.swift */; };
 		63EA5F8C2BC78F8400A48590 /* DailySurveyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA5F8B2BC78F8400A48590 /* DailySurveyResponse.swift */; };
@@ -138,9 +138,9 @@
 		63497B6F2BBF6ECE001F8419 /* LocationDataPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataPoint.swift; sourceTree = "<group>"; };
 		63497B722BBF855E001F8419 /* OptionsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsPanel.swift; sourceTree = "<group>"; };
 		63A28D302C0580310025A1E0 /* RefreshIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshIcon.swift; sourceTree = "<group>"; };
+		63A28D322C062E2E0025A1E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		63BBF8152BB8993B006890CE /* StudyIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyIDView.swift; sourceTree = "<group>"; };
 		63BBF8182BB89CF7006890CE /* studyIDs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = studyIDs.csv; sourceTree = "<group>"; };
-		63E8D2342C043FCC000C7ADF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		63EA5F7A2BC04F8400A48590 /* DailySurveyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySurveyTask.swift; sourceTree = "<group>"; };
 		63EA5F882BC78ADD00A48590 /* DailySurveyTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySurveyTaskView.swift; sourceTree = "<group>"; };
 		63EA5F8B2BC78F8400A48590 /* DailySurveyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySurveyResponse.swift; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 		2FC9759D2978E30800BA99FE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				63E8D2342C043FCC000C7ADF /* GoogleService-Info.plist */,
+				63A28D322C062E2E0025A1E0 /* GoogleService-Info.plist */,
 				2FAEC07F297F583900C11C42 /* StrokeCog.entitlements */,
 				653A258928339462005D4D48 /* Info.plist */,
 				2F1AC9DE2B4E840E00C24973 /* StrokeCog.docc */,
@@ -558,12 +558,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				63BBF8192BB89CF7006890CE /* studyIDs.csv in Resources */,
-				63E8D2352C043FCC000C7ADF /* GoogleService-Info.plist in Resources */,
 				2FC3439229EE634B002D773C /* ConsentDocument.md in Resources */,
 				2FC3439129EE6349002D773C /* AppIcon.png in Resources */,
 				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
 				2FC3439029EE6346002D773C /* SocialSupportQuestionnaire.json in Resources */,
 				2FA0BFED2ACC977500E0EF83 /* Localizable.xcstrings in Resources */,
+				63A28D332C062E2E0025A1E0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,6 +766,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "StrokeCog/Supporting Files/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = LifeSpace;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "The StrokeCog uses the step count to demonstrate Spezi's integration with HealthKit.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The StrokeCog uses the step count to demonstrate Spezi's integration with HealthKit.";
@@ -784,8 +785,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.odden.strokecog;
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.odden.lifespace-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -969,6 +970,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "StrokeCog/Supporting Files/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = LifeSpace;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "The StrokeCog uses the step count to demonstrate Spezi's integration with HealthKit.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The StrokeCog uses the step count to demonstrate Spezi's integration with HealthKit.";
@@ -987,8 +989,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.odden.strokecog;
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.odden.lifespace-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1008,15 +1010,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "StrokeCog/Supporting Files/StrokeCog.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = B2Q3T3P8HP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "StrokeCog/Supporting Files/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = LifeSpace;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "The StrokeCog uses the step count to demonstrate Spezi's integration with HealthKit.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The StrokeCog uses the step count to demonstrate Spezi's integration with HealthKit.";
@@ -1035,11 +1036,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.odden.strokecog;
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.odden.lifespace-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "StrokeCog Distribution Profile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1230,8 +1230,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziQuestionnaire.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				kind = exactVersion;
+				version = 1.1.0;
 			};
 		};
 		2FE5DC8829EDD972004B9AB4 /* XCRemoteSwiftPackageReference "SpeziStorage" */ = {
