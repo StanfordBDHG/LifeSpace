@@ -64,6 +64,8 @@ struct DailySurveyTaskView: View {
     private func saveResponse(taskResult: ORKTaskResult) async {
         var response = DailySurveyResponse()
         
+        response.surveyName = "dailySurveyTask"
+        
         if let socialInteractionQuestion = taskResult.stepResult(forStepIdentifier: "SocialInteractionQuestion")?.results {
             let answer = socialInteractionQuestion[0] as? ORKScaleQuestionResult
             if let result = answer?.scaleAnswer {

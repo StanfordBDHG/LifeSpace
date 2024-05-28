@@ -9,10 +9,10 @@ import Foundation
 
 
 struct DailySurveyResponse: Codable {
-    var surveyName: String
-    var studyID: String
-    var updatedBy: String
-    var timestamp: Date
+    var surveyName: String?
+    var studyID: String?
+    var updatedBy: String?
+    var timestamp: Date?
     var socialInteractionQuestion: Int?
     var leavingTheHouseQuestion: Int?
     var emotionalWellBeingQuestion: Int?

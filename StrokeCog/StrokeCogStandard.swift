@@ -25,6 +25,7 @@ import SwiftUI
 actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, OnboardingConstraint, AccountStorageConstraint {
     enum StrokeCogStandardError: Error {
         case userNotAuthenticatedYet
+        case invalidStudyID
     }
 
     private static var userCollection: CollectionReference {
@@ -96,10 +97,12 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     }
     
     func add(location: CLLocationCoordinate2D) async throws {
-        guard let details = await account.details,
-              let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID)
-        else {
+        guard let details = await account.details else {
             throw StrokeCogStandardError.userNotAuthenticatedYet
+        }
+        
+        guard let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) else {
+            throw StrokeCogStandardError.invalidStudyID
         }
         
         let dataPoint = LocationDataPoint(
@@ -154,6 +157,16 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         guard let details = await account.details else {
             throw StrokeCogStandardError.userNotAuthenticatedYet
         }
+        
+        guard let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) else {
+            throw StrokeCogStandardError.invalidStudyID
+        }
+        
+        var response = response
+        
+        response.timestamp = Date()
+        response.studyID = studyID
+        response.updatedBy = details.accountId
         
         try await userDocumentReference
             .collection("surveys")

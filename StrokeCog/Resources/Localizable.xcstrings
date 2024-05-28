@@ -340,6 +340,12 @@
         }
       }
     },
+    "Refresh map" : {
+
+    },
+    "Refreshing map" : {
+
+    },
     "RETRY_BUTTON_LABEL" : {
       "localizations" : {
         "en" : {
