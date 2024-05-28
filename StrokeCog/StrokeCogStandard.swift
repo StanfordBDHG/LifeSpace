@@ -96,7 +96,9 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     }
     
     func add(location: CLLocationCoordinate2D) async throws {
-        guard let details = await account.details else {
+        guard let details = await account.details,
+              let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID)
+        else {
             throw StrokeCogStandardError.userNotAuthenticatedYet
         }
         
@@ -105,7 +107,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             time: Date().timeIntervalSince1970,
             latitude: location.latitude,
             longitude: location.longitude,
-            studyID: details.userId,
+            studyID: studyID,
             updatedBy: details.accountId
         )
         
