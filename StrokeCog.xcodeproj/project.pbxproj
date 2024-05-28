@@ -60,6 +60,7 @@
 		6347EB742BBBF442008E0C4A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6347EB732BBBF442008E0C4A /* Constants.swift */; };
 		63497B702BBF6ECE001F8419 /* LocationDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63497B6F2BBF6ECE001F8419 /* LocationDataPoint.swift */; };
 		63497B732BBF855E001F8419 /* OptionsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63497B722BBF855E001F8419 /* OptionsPanel.swift */; };
+		63A28D312C0580310025A1E0 /* RefreshIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A28D302C0580310025A1E0 /* RefreshIcon.swift */; };
 		63BBF8162BB8993B006890CE /* StudyIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BBF8152BB8993B006890CE /* StudyIDView.swift */; };
 		63BBF8192BB89CF7006890CE /* studyIDs.csv in Resources */ = {isa = PBXBuildFile; fileRef = 63BBF8182BB89CF7006890CE /* studyIDs.csv */; };
 		63E8D2352C043FCC000C7ADF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63E8D2342C043FCC000C7ADF /* GoogleService-Info.plist */; };
@@ -136,6 +137,7 @@
 		6347EB732BBBF442008E0C4A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		63497B6F2BBF6ECE001F8419 /* LocationDataPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataPoint.swift; sourceTree = "<group>"; };
 		63497B722BBF855E001F8419 /* OptionsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsPanel.swift; sourceTree = "<group>"; };
+		63A28D302C0580310025A1E0 /* RefreshIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshIcon.swift; sourceTree = "<group>"; };
 		63BBF8152BB8993B006890CE /* StudyIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyIDView.swift; sourceTree = "<group>"; };
 		63BBF8182BB89CF7006890CE /* studyIDs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = studyIDs.csv; sourceTree = "<group>"; };
 		63E8D2342C043FCC000C7ADF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				6347EB632BBBA895008E0C4A /* StrokeCogMapView.swift */,
 				63F4C3982BBCCC300033D985 /* MapboxView.swift */,
 				63497B722BBF855E001F8419 /* OptionsPanel.swift */,
+				63A28D302C0580310025A1E0 /* RefreshIcon.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				63497B732BBF855E001F8419 /* OptionsPanel.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				2FE5DC4E29EDD7FA004B9AB4 /* ScheduleView.swift in Sources */,
+				63A28D312C0580310025A1E0 /* RefreshIcon.swift in Sources */,
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
 				2F1AC9DF2B4E840E00C24973 /* StrokeCog.docc in Sources */,

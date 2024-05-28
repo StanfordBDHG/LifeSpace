@@ -21,8 +21,10 @@ struct StrokeCogMapView: View {
     @State private var alertMessage = ""
     @State private var showingSurvey = false
     @State private var optionsPanelOpen = true
+    @State private var isRefreshing = false
     
     var body: some View {
+        // swiftlint:disable closure_body_length accessibility_label_for_image
         NavigationStack {
             ZStack {
                 MapManagerViewWrapper()
@@ -35,6 +37,9 @@ struct StrokeCogMapView: View {
                         }
                     }
                 }
+                if isRefreshing {
+                    RefreshIcon()
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -44,14 +49,20 @@ struct StrokeCogMapView: View {
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-                        Task {
-                            await locationModule.fetchLocations()
-                        }
+                        refreshMap()
                     }) {
                         Image(systemName: "arrow.clockwise")
                     }
                 }
             }
+        }
+    }
+    
+    private func refreshMap() {
+        Task {
+            isRefreshing = true
+            await locationModule.fetchLocations()
+            isRefreshing = false
         }
     }
     
