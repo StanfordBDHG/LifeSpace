@@ -37,6 +37,7 @@ struct StudyIDView: View {
                             }
                             
                             if verify(id: studyID) {
+                                UserDefaults.standard.set(studyID, forKey: StorageKeys.studyID)
                                 onboardingNavigationPath.nextStep()
                             } else {
                                 showInvalidIDAlert = true

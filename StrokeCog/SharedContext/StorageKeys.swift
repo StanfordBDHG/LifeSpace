@@ -13,6 +13,8 @@ enum StorageKeys {
     static let onboardingFlowComplete = "onboardingFlow.complete"
     /// A `Step` flag indicating the current step in the onboarding process.
     static let onboardingFlowStep = "onboardingFlow.step"
+    /// The user's study ID
+    static let studyID = "studyID"
     
     
     // MARK: - Home

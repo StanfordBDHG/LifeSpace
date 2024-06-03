@@ -40,16 +40,21 @@ struct DailySurveyTaskView: View {
     
     private var surveyUnavailableView: some View {
         VStack {
+            Image(systemName: "clock.fill")
+                .resizable()
+                .frame(width: 50, height: 50)
+                .accessibilityLabel("Survey not available.")
+            
             Text("SURVEY_NOT_AVAILABLE_MESSAGE")
+                .font(.largeTitle)
                 .padding()
                 .multilineTextAlignment(.center)
             
-            Button {
+            Button("CLOSE") {
                 self.showingSurvey.toggle()
-            } label: {
-                Text("CLOSE")
-                    .frame(maxWidth: .infinity)
             }
+            .buttonStyle(.borderedProminent)
+            .padding(.top, 20)
         }
     }
     
@@ -63,6 +68,8 @@ struct DailySurveyTaskView: View {
     
     private func saveResponse(taskResult: ORKTaskResult) async {
         var response = DailySurveyResponse()
+        
+        response.surveyName = "dailySurveyTask"
         
         if let socialInteractionQuestion = taskResult.stepResult(forStepIdentifier: "SocialInteractionQuestion")?.results {
             let answer = socialInteractionQuestion[0] as? ORKScaleQuestionResult

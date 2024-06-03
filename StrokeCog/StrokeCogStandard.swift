@@ -25,6 +25,7 @@ import SwiftUI
 actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, OnboardingConstraint, AccountStorageConstraint {
     enum StrokeCogStandardError: Error {
         case userNotAuthenticatedYet
+        case invalidStudyID
     }
 
     private static var userCollection: CollectionReference {
@@ -100,12 +101,16 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             throw StrokeCogStandardError.userNotAuthenticatedYet
         }
         
+        guard let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) else {
+            throw StrokeCogStandardError.invalidStudyID
+        }
+        
         let dataPoint = LocationDataPoint(
             currentDate: Date(),
             time: Date().timeIntervalSince1970,
             latitude: location.latitude,
             longitude: location.longitude,
-            studyID: details.userId,
+            studyID: studyID,
             updatedBy: details.accountId
         )
         
@@ -118,7 +123,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     func fetchLocations(on date: Date = Date()) async throws -> [CLLocationCoordinate2D] {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: date)
-        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)
+        let endOfDay = Date(timeInterval: 24 * 60 * 60, since: startOfDay)
         
         var locations = [CLLocationCoordinate2D]()
         
@@ -126,7 +131,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             let snapshot = try await userDocumentReference
                 .collection("location_data")
                 .whereField("currentDate", isGreaterThanOrEqualTo: startOfDay)
-                .whereField("currentDate", isLessThan: endOfDay ?? Date())
+                .whereField("currentDate", isLessThan: endOfDay)
                 .getDocuments()
             
             for document in snapshot.documents {
@@ -152,6 +157,16 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         guard let details = await account.details else {
             throw StrokeCogStandardError.userNotAuthenticatedYet
         }
+        
+        guard let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) else {
+            throw StrokeCogStandardError.invalidStudyID
+        }
+        
+        var response = response
+        
+        response.timestamp = Date()
+        response.studyID = studyID
+        response.updatedBy = details.accountId
         
         try await userDocumentReference
             .collection("surveys")
@@ -183,13 +198,15 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         formatter.dateFormat = "yyyy-MM-dd_HHmmss"
         let dateString = formatter.string(from: Date())
         
+        let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) ?? "unknownStudyID"
+        
         guard !FeatureFlags.disableFirebase else {
             guard let basePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
                 logger.error("Could not create path for writing consent form to user document directory.")
                 return
             }
             
-            let filePath = basePath.appending(path: "consentForm_\(dateString).pdf")
+            let filePath = basePath.appending(path: "consentForm_\(studyID)_\(dateString).pdf")
             consent.write(to: filePath)
             
             return
@@ -203,7 +220,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await userBucketReference.child("consent/\(dateString).pdf").putDataAsync(consentData, metadata: metadata)
+            _ = try await userBucketReference.child("consent/\(studyID)_\(dateString).pdf").putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }
