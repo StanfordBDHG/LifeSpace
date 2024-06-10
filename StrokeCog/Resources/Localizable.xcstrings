@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -69,6 +72,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Completed Task: %@"
+          }
+        }
+      }
+    },
+    "CONSENT_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Review Consent Forms"
+          }
+        }
+      }
+    },
+    "CONSENT_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please review and sign the study consent forms."
+          }
+        }
+      }
+    },
+    "CONSENT_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Study Consent"
           }
         }
       }
@@ -357,9 +390,6 @@
         }
       }
     },
-    "Show Consent" : {
-
-    },
     "STUDYID_ACTION_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -569,7 +599,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "LifeSpace Study"
+            "value" : "LifeSpace"
           }
         }
       }

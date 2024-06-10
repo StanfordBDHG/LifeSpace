@@ -194,10 +194,6 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     ///
     /// - Parameter consent: The consent form's data to be stored as a `PDFDocument`.
     func store(consent: PDFDocument) async {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd_HHmmss"
-        let dateString = formatter.string(from: Date())
-        
         let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) ?? "unknownStudyID"
         
         guard !FeatureFlags.disableFirebase else {
@@ -206,7 +202,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
                 return
             }
             
-            let filePath = basePath.appending(path: "consentForm_\(studyID)_\(dateString).pdf")
+            let filePath = basePath.appending(path: "consentForm_\(studyID)_consent.pdf")
             consent.write(to: filePath)
             
             return
@@ -220,30 +216,38 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await userBucketReference.child("consent/\(studyID)_\(dateString).pdf").putDataAsync(consentData, metadata: metadata)
+            _ = try await userBucketReference.child("consent/\(studyID)_consent.pdf").putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }
     }
     
-    func store(consentData: Data, filename: String) async {
-        var docURL = (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)).first
-        docURL = docURL?.appendingPathComponent(filename)
+    /// Stores the given consent form in the user's document directory and in the consent bucket in Firebase
+    ///
+    /// - Parameter consentData: The consent form's data to be stored.
+    /// - Parameter name: The name of the consent document.
+    func store(consentData: Data, name: String) async {
+        /// Adds the study ID to the file name
+        let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) ?? "unknownStudyID"
+        let filename = "\(studyID)_\(name).pdf"
+        
+        guard let docURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            logger.error("Could not create path for writing consent form to user document directory.")
+            return
+        }
+        
+        let url = docURL.appendingPathComponent(filename)
         
         do {
-            guard let url = docURL else {
-                return
-            }
-            
             try consentData.write(to: url)
             
             let metadata = StorageMetadata()
+            metadata.contentType = "application/pdf"
             _ = try await userBucketReference.child("consent/\(filename)").putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }
     }
-
 
     func create(_ identifier: AdditionalRecordId, _ details: SignupDetails) async throws {
         guard let accountStorage else {

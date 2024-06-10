@@ -6,24 +6,46 @@
 // SPDX-License-Identifier: MIT
 //
 
+import OSLog
 import ResearchKit
 import ResearchKitSwiftUI
 import SpeziOnboarding
 import SwiftUI
 
 
-// swiftlint:disable closure_body_length
 struct Consent: View {
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
     @Environment(StrokeCogStandard.self) private var standard
+    
+    private let logger = Logger(subsystem: "StrokeCog", category: "Standard")
+    
     @State private var isConsentSheetPresented = false
-
+    
     var body: some View {
-        Button(action: {
-            isConsentSheetPresented = true
-        }) {
-            Text("Show Consent")
-        }
+        OnboardingView(
+            contentView: {
+                VStack {
+                    OnboardingTitleView(
+                        title: "CONSENT_TITLE",
+                        subtitle: ""
+                    )
+                    Spacer()
+                    Image(systemName: "doc")
+                        .font(.system(size: 150))
+                        .foregroundColor(.accentColor)
+                        .accessibilityHidden(true)
+                    Text("CONSENT_DESCRIPTION")
+                        .multilineTextAlignment(.center)
+                        .padding(.vertical, 16)
+                    Spacer()
+                }
+            },
+            actionView: {
+                OnboardingActionsView("CONSENT_BUTTON") {
+                    isConsentSheetPresented = true
+                }
+            }
+        )
         .sheet(isPresented: $isConsentSheetPresented) {
             ORKOrderedTaskView(tasks: consentTask) { result in
                 guard case let .completed(taskResult) = result else {
@@ -31,38 +53,34 @@ struct Consent: View {
                     return // user cancelled or task failed
                 }
                 
-                if let signatureResult = taskResult
-                    .stepResult(forStepIdentifier: "ConsentReviewStep")?.results?.first as? ORKConsentSignatureResult {
-                    let consentDocument = LifeSpaceConsent()
-                    signatureResult.apply(to: consentDocument)
-                    
-                    consentDocument.makePDF { data, _ -> Void in
-                        guard let data else {
-                            return
-                        }
-                        
-                        Task {
-                            await standard.store(consentData: data, filename: "consent.pdf")
-                        }
-                    }
+                guard let signatureResult = taskResult
+                    .stepResult(forStepIdentifier: "ConsentReviewStep")?.results?.first as? ORKConsentSignatureResult,
+                      let hipaaSignatureResult = taskResult
+                    .stepResult(forStepIdentifier: "HIPAAAuthorizationReviewStep")?.results?.first as? ORKConsentSignatureResult,
+                      signatureResult.consented,
+                      hipaaSignatureResult.consented else {
+                    // user did not consent
+                    self.isConsentSheetPresented = false
+                    return
                 }
                 
-                if let hipaaSignatureResult = taskResult
-                    .stepResult(forStepIdentifier: "HIPAAAuthorizationReviewStep")?.results?.first as? ORKConsentSignatureResult {
-                    let consentDocument = HIPAAAuthorization()
-                    hipaaSignatureResult.apply(to: consentDocument)
+                let consentDocument = LifeSpaceConsent()
+                signatureResult.apply(to: consentDocument)
+                
+                let hipaaConsentDocument = HIPAAAuthorization()
+                hipaaSignatureResult.apply(to: hipaaConsentDocument)
+                
+                do {
+                    let consentPDFData = try await consentDocument.makePDF()
+                    await standard.store(consentData: consentPDFData, name: "consent")
                     
-                    consentDocument.makePDF { data, _ -> Void in
-                        guard let data else {
-                            return
-                        }
-                        
-                        Task {
-                            await standard.store(consentData: data, filename: "hipaaAuthorization.pdf")
-                        }
-                    }
+                    let hipaaPDFData = try await hipaaConsentDocument.makePDF()
+                    await standard.store(consentData: hipaaPDFData, name: "hipaaAuthorization")
+                } catch {
+                    logger.error("Unable to generate PDF: \(error)")
                 }
-
+                
+                
                 self.isConsentSheetPresented = false
                 onboardingNavigationPath.nextStep()
             }
@@ -117,8 +135,8 @@ struct Consent: View {
     OnboardingStack {
         Consent()
     }
-        .previewWith(standard: StrokeCogStandard()) {
-            OnboardingDataSource()
-        }
+    .previewWith(standard: StrokeCogStandard()) {
+        OnboardingDataSource()
+    }
 }
 #endif
