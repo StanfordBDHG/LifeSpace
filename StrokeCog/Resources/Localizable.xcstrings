@@ -133,6 +133,9 @@
         }
       }
     },
+    "CONTINUE" : {
+
+    },
     "Error" : {
 
     },
@@ -349,6 +352,9 @@
         }
       }
     },
+    "OK" : {
+
+    },
     "OPTIONS_PANEL_SURVEY_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -369,6 +375,9 @@
         }
       }
     },
+    "Please note that you are about to take yesterday's survey." : {
+
+    },
     "Refresh map" : {
 
     },
@@ -384,6 +393,9 @@
           }
         }
       }
+    },
+    "Saving survey..." : {
+
     },
     "SCHEDULE_LIST_TITLE" : {
       "localizations" : {
@@ -456,6 +468,9 @@
           }
         }
       }
+    },
+    "Survey already taken." : {
+
     },
     "Survey not available." : {
 
@@ -620,6 +635,12 @@
           }
         }
       }
+    },
+    "Yesterday's survey." : {
+
+    },
+    "You've already taken the latest available survey." : {
+
     }
   },
   "version" : "1.0"

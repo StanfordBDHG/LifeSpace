@@ -10,6 +10,7 @@ import Foundation
 
 struct DailySurveyResponse: Codable {
     var surveyName: String?
+    var surveyDate: String?
     var studyID: String?
     var updatedBy: String?
     var timestamp: Date?
