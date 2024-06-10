@@ -74,6 +74,7 @@
       }
     },
     "CONSENT_LOADING_ERROR" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -366,6 +367,9 @@
           }
         }
       }
+    },
+    "Show Consent" : {
+
     },
     "STUDYID_ACTION_BUTTON" : {
       "localizations" : {
