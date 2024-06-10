@@ -36,7 +36,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sign Up or Log In to the LifeSpace Study using Sign In With Apple."
+            "value" : "Sign Up or Log In to the  LifeSpace Study using Sign In With Apple."
           }
         }
       }
@@ -73,12 +73,52 @@
         }
       }
     },
-    "CONSENT_LOADING_ERROR" : {
+    "CONSENT_BUTTON" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please include a markdown based document named \"ConsentDocument\" in your module Bundle."
+            "value" : "Review Consent Forms"
+          }
+        }
+      }
+    },
+    "CONSENT_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please review and sign the study consent forms to join the LifeSpace study."
+          }
+        }
+      }
+    },
+    "CONSENT_PROGRESS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving consent forms..."
+          }
+        }
+      }
+    },
+    "CONSENT_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LifeSpace Study Consent Forms"
+          }
+        }
+      }
+    },
+    "CONSENT_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consent"
           }
         }
       }
@@ -228,17 +268,6 @@
         }
       }
     },
-    "LICENSE_INFO_TITLE" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "License Information"
-          }
-        }
-      }
-    },
     "LOCATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -254,7 +283,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The app will track your location while you are in the study."
+            "value" : "To participate in the study, please allow LifeSpace to access your location."
           }
         }
       }
@@ -264,7 +293,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "LifeSpace Location"
+            "value" : "To participate in the study, please allow LifeSpace to access your location."
           }
         }
       }
@@ -274,7 +303,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Location"
+            "value" : "Location Access"
           }
         }
       }
@@ -423,7 +452,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A study ID should be at least 4 characters long."
+            "value" : "A study ID should be at least 6 characters long."
           }
         }
       }
@@ -476,7 +505,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "LifeSpace Daily Survey"
+            "value" : "StrokeCog LifeSpace Daily Survey"
           }
         }
       }
@@ -576,7 +605,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The LifeSpace study investigates the relationship between life space and cognitive decline after a stroke."
+            "value" : "The LifeSpace study investigates how physical activity and the environment affect brain health after stroke. This study will use a Stanford-developed iPhone app to map the places you visit over a two-week period."
           }
         }
       }
@@ -587,7 +616,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "LifeSpace Study"
+            "value" : "LifeSpace"
           }
         }
       }

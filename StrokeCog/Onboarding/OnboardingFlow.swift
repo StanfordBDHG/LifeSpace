@@ -43,9 +43,7 @@ struct OnboardingFlow: View {
                 AccountOnboarding()
             }
             
-            #if !(targetEnvironment(simulator) && (arch(i386) || arch(x86_64)))
-                Consent()
-            #endif
+            Consent()
             
             if HKHealthStore.isHealthDataAvailable() && !healthKitAuthorization {
                 HealthKitPermissions()

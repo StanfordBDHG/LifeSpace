@@ -71,7 +71,7 @@ struct StudyIDView: View {
     private var validationRule: ValidationRule {
         ValidationRule(
             rule: { studyID in
-                studyID.count >= 4
+                studyID.count >= 6
             },
             message: "STUDYID_VALIDATION_MESSAGE"
         )
