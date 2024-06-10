@@ -225,6 +225,24 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             logger.error("Could not store consent form: \(error)")
         }
     }
+    
+    func store(consentData: Data, filename: String) async {
+        var docURL = (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)).first
+        docURL = docURL?.appendingPathComponent(filename)
+        
+        do {
+            guard let url = docURL else {
+                return
+            }
+            
+            try consentData.write(to: url)
+            
+            let metadata = StorageMetadata()
+            _ = try await userBucketReference.child("consent/\(filename)").putDataAsync(consentData, metadata: metadata)
+        } catch {
+            logger.error("Could not store consent form: \(error)")
+        }
+    }
 
 
     func create(_ identifier: AdditionalRecordId, _ details: SignupDetails) async throws {

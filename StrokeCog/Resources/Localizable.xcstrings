@@ -36,7 +36,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sign Up or Log In to the StrokeCog LifeSpace Study using Sign In With Apple."
+            "value" : "Sign Up or Log In to the  LifeSpace Study using Sign In With Apple."
           }
         }
       }
@@ -69,17 +69,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Completed Task: %@"
-          }
-        }
-      }
-    },
-    "CONSENT_LOADING_ERROR" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please include a markdown based document named \"ConsentDocument\" in your module Bundle."
           }
         }
       }
@@ -386,7 +375,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Welcome to the StrokeCog LifeSpace study. Please enter your study ID below."
+            "value" : "Welcome to the LifeSpace study. Please enter your study ID below."
           }
         }
       }
@@ -569,7 +558,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The StrokeCog LifeSpace study investigates how physical activity and the environment affect brain health after stroke. This study will use a Stanford-developed iPhone app to map the places you visit over a two-week period."
+            "value" : "The LifeSpace study investigates how physical activity and the environment affect brain health after stroke. This study will use a Stanford-developed iPhone app to map the places you visit over a two-week period."
           }
         }
       }
@@ -580,7 +569,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "StrokeCog LifeSpace Study"
+            "value" : "LifeSpace Study"
           }
         }
       }

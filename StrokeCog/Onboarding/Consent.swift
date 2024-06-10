@@ -12,8 +12,10 @@ import SpeziOnboarding
 import SwiftUI
 
 
+// swiftlint:disable closure_body_length
 struct Consent: View {
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
+    @Environment(StrokeCogStandard.self) private var standard
     @State private var isConsentSheetPresented = false
 
     var body: some View {
@@ -28,11 +30,44 @@ struct Consent: View {
                     self.isConsentSheetPresented = false
                     return // user cancelled or task failed
                 }
+                
+                if let signatureResult = taskResult
+                    .stepResult(forStepIdentifier: "ConsentReviewStep")?.results?.first as? ORKConsentSignatureResult {
+                    let consentDocument = LifeSpaceConsent()
+                    signatureResult.apply(to: consentDocument)
+                    
+                    consentDocument.makePDF { data, _ -> Void in
+                        guard let data else {
+                            return
+                        }
+                        
+                        Task {
+                            await standard.store(consentData: data, filename: "consent.pdf")
+                        }
+                    }
+                }
+                
+                if let hipaaSignatureResult = taskResult
+                    .stepResult(forStepIdentifier: "HIPAAAuthorizationReviewStep")?.results?.first as? ORKConsentSignatureResult {
+                    let consentDocument = HIPAAAuthorization()
+                    hipaaSignatureResult.apply(to: consentDocument)
+                    
+                    consentDocument.makePDF { data, _ -> Void in
+                        guard let data else {
+                            return
+                        }
+                        
+                        Task {
+                            await standard.store(consentData: data, filename: "hipaaAuthorization.pdf")
+                        }
+                    }
+                }
 
                 self.isConsentSheetPresented = false
                 onboardingNavigationPath.nextStep()
             }
             .ignoresSafeArea(edges: .all)
+            .interactiveDismissDisabled(true)
         }
         .onAppear {
             isConsentSheetPresented = true
@@ -43,7 +78,7 @@ struct Consent: View {
         let consentInstructionStep = ORKInstructionStep(identifier: "ConsentInstructionStep")
         consentInstructionStep.title = "Study Consent"
         consentInstructionStep.detailText = """
-        In the next two steps you will be asked to review two consent forms the LifeSpace study. 
+        In the next two steps you will be asked to review and sign two consent forms for the LifeSpace study.
         
         Please read the forms carefully and sign if you agree to the terms.
         """
@@ -68,7 +103,7 @@ struct Consent: View {
             in: hipaaAuthorizationDocument
         )
         reviewHIPAAAuthorizationStep.text = "Review Consent Form"
-        reviewHIPAAAuthorizationStep.reasonForConsent = "Consent to join the LifeSpace Study."
+        reviewHIPAAAuthorizationStep.reasonForConsent = "Consent to share your health information for research purposes."
         
         let steps = [consentInstructionStep, reviewConsentStep, reviewHIPAAAuthorizationStep]
         

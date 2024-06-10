@@ -7,14 +7,25 @@
 
 import ResearchKit
 
-// swiftlint:disable line_length function_body_length
+// swiftlint:disable line_length function_body_length unavailable_function
 class LifeSpaceConsent: ORKConsentDocument {
     override init() {
         super.init()
 
-        let consentTitle = "LifeSpace Consent"
-        title = NSLocalizedString(consentTitle, comment: "")
+        title = "LifeSpace Consent"
         sections = []
+        
+        // MARK: SECTION 0 - Questions
+        let questionsSection = ORKConsentSection(type: .custom)
+        questionsSection.title = "For questions about the study, contact:"
+        questionsSection.formalTitle = "For questions about the study, contact:"
+        let questionsText = """
+        Michelle C. Odden, PhD, 1701 Page Mill Rd., Palo Alto, CA 94304, (650) 721-0230, modden@stanford.edu
+        """
+        questionsSection.summary = questionsText
+        questionsSection.content = questionsText
+        
+        sections?.append(questionsSection)
 
         // MARK: SECTION 1 - Description
         let descriptionSection = ORKConsentSection(type: .custom)
@@ -74,7 +85,7 @@ class LifeSpaceConsent: ORKConsentDocument {
         // MARK: SECTION 5 - PARTICIPANT'S RIGHTS
         let participantsRightsSection = ORKConsentSection(type: .custom)
         participantsRightsSection.title = "Participant's Rights"
-        let participantsRightsText =  """
+        let participantsRightsText = """
         If you have read this form and have decided to participate in this project, please understand your participation is voluntary and you have the right to withdraw your consent or discontinue participation at any time without penalty or loss of benefits to which you are otherwise entitled.
         
         The results of this research study may be presented at scientific or professional meetings or published in scientific journals.  However, your identity will not be disclosed.
@@ -110,7 +121,7 @@ class LifeSpaceConsent: ORKConsentDocument {
         // MARK: SECTION 10 - CONTACT INFORMATION
         let contactSection = ORKConsentSection(type: .onlyInDocument)
         contactSection.title = "Contact Information"
-        let contactSectionText =  """
+        let contactSectionText = """
         Questions, Concerns, or Complaints: If you have any questions, concerns or complaints about this research study, its procedures, risks and benefits, you should ask the Protocol Director, Michelle Odden, (650) 721-0230. You should also contact her at any time if you feel you have been hurt by being a part of this study.
 
         Independent Contact: If you are not satisfied with how this study is being conducted, or if you have any concerns, complaints, or general questions about the research or your rights as a participant, please contact the Stanford Institutional Review Board (IRB) to speak to someone independent of the research team at 650-723-5244 or toll free at 1-866-680-2906.  You can also write to the Stanford IRB, Stanford University, 1705 El Camino Real, Palo Alto, CA 94306.
@@ -146,4 +157,3 @@ class LifeSpaceConsent: ORKConsentDocument {
         fatalError("init(coder:) has not been implemented")
     }
 }
-

@@ -8,13 +8,12 @@
 import ResearchKit
 
 
-// swiftlint:disable line_length function_body_length
+// swiftlint:disable line_length function_body_length unavailable_function
 class HIPAAAuthorization: ORKConsentDocument {
     override init() {
         super.init()
         
-        let consentTitle = "Authorization To Use Your Health Information For Research Purposes"
-        title = NSLocalizedString(consentTitle, comment: "")
+        title = "Authorization To Use Your Health Information For Research Purposes"
         sections = []
         
         let summarySection = ORKConsentSection(type: .custom)
@@ -129,4 +128,3 @@ class HIPAAAuthorization: ORKConsentDocument {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
