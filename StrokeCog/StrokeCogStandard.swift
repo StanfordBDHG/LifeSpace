@@ -27,15 +27,15 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         case userNotAuthenticatedYet
         case invalidStudyID
     }
-
+    
     private static var userCollection: CollectionReference {
         Firestore.firestore().collection("users")
     }
-
+    
     @Dependency var accountStorage: FirestoreAccountStorage?
-
+    
     @AccountReference var account: Account
-
+    
     private let logger = Logger(subsystem: "StrokeCog", category: "Standard")
     
     
@@ -44,7 +44,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             guard let details = await account.details else {
                 throw StrokeCogStandardError.userNotAuthenticatedYet
             }
-
+            
             return Self.userCollection.document(details.accountId)
         }
     }
@@ -54,19 +54,19 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             guard let details = await account.details else {
                 throw StrokeCogStandardError.userNotAuthenticatedYet
             }
-
+            
             return Storage.storage().reference().child("users/\(details.accountId)")
         }
     }
-
-
+    
+    
     init() {
         if !FeatureFlags.disableFirebase {
             _accountStorage = Dependency(wrappedValue: FirestoreAccountStorage(storeIn: StrokeCogStandard.userCollection))
         }
     }
-
-
+    
+    
     func add(sample: HKSample) async {
         do {
             try await healthKitDocument(id: sample.id).setData(from: sample.resource)
@@ -85,7 +85,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     func add(response: ModelsR4.QuestionnaireResponse) async {
         let id = response.identifier?.value?.value?.string ?? UUID().uuidString
-    
+        
         do {
             try await userDocumentReference
                 .collection("QuestionnaireResponse") // Add all HealthKit sources in a /QuestionnaireResponse collection.
@@ -151,7 +151,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         
         return locations
     }
-
+    
     
     func add(response: DailySurveyResponse) async throws {
         guard let details = await account.details else {
@@ -172,6 +172,24 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             .collection("surveys")
             .document(UUID().uuidString)
             .setData(from: response)
+        
+        // Update the user document with the latest survey date
+        try await userDocumentReference.setData([
+            "latestSurveyDate": response.surveyDate ?? ""
+        ], merge: true)
+    }
+    
+    func getLatestSurveyDate() async -> String {
+        let document = try? await userDocumentReference.getDocument()
+        
+        if let data = document?.data(), let surveyDate = data["latestSurveyDate"] as? String {
+            // Update the latest survey date in UserDefaults
+            UserDefaults.standard.set(surveyDate, forKey: StorageKeys.lastSurveyDate)
+            
+            return surveyDate
+        } else {
+            return ""
+        }
     }
     
     
@@ -180,7 +198,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             .collection("HealthKit") // Add all HealthKit sources in a /HealthKit collection.
             .document(uuid.uuidString) // Set the document identifier to the UUID of the document.
     }
-
+    
     func deletedAccount() async throws {
         // delete all user associated data
         do {
@@ -248,35 +266,46 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             logger.error("Could not store consent form: \(error)")
         }
     }
-
+    
+    /// Update the user document with the user's study ID
+    func setStudyID(_ studyID: String) async {
+        do {
+            try await userDocumentReference.setData([
+                "studyID": studyID
+            ], merge: true)
+        } catch {
+            logger.error("Unable to set Study ID: \(error)")
+        }
+    }
+    
     func create(_ identifier: AdditionalRecordId, _ details: SignupDetails) async throws {
         guard let accountStorage else {
             preconditionFailure("Account Storage was requested although not enabled in current configuration.")
         }
         try await accountStorage.create(identifier, details)
     }
-
+    
     func load(_ identifier: AdditionalRecordId, _ keys: [any AccountKey.Type]) async throws -> PartialAccountDetails {
         guard let accountStorage else {
             preconditionFailure("Account Storage was requested although not enabled in current configuration.")
         }
         return try await accountStorage.load(identifier, keys)
     }
-
+    
     func modify(_ identifier: AdditionalRecordId, _ modifications: AccountModifications) async throws {
         guard let accountStorage else {
             preconditionFailure("Account Storage was requested although not enabled in current configuration.")
         }
         try await accountStorage.modify(identifier, modifications)
     }
-
+    
     func clear(_ identifier: AdditionalRecordId) async {
         guard let accountStorage else {
             preconditionFailure("Account Storage was requested although not enabled in current configuration.")
         }
         await accountStorage.clear(identifier)
     }
-
+    
     func delete(_ identifier: AdditionalRecordId) async throws {
         guard let accountStorage else {
             preconditionFailure("Account Storage was requested although not enabled in current configuration.")

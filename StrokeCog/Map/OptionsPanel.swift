@@ -13,6 +13,8 @@ import SwiftUI
 struct OptionsPanel: View {
     @AppStorage(StorageKeys.trackingPreference) private var trackingOn = true
     @Environment(LocationModule.self) private var locationModule
+    @Environment(\.scenePhase) var scenePhase
+    @Environment(StrokeCogStandard.self) private var standard
     
     @State private var showingSurveyAlert = false
     @State private var showingSurvey = false
@@ -27,6 +29,13 @@ struct OptionsPanel: View {
             }
             .sheet(isPresented: $showingSurvey) {
                 DailySurveyTaskView(showingSurvey: $showingSurvey)
+            }
+            .onChange(of: scenePhase) { _, newPhase in
+                if newPhase == .active {
+                    Task {
+                        await standard.getLatestSurveyDate()
+                    }
+                }
             }
         }
         

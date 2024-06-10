@@ -30,7 +30,7 @@ struct RefreshIcon: View {
                 .onDisappear {
                     rotationAngle = 0
                 }
-                .accessibilityLabel("Refreshing map")
+                .accessibilityLabel("REFRESHING_MAP")
         }
     }
 }

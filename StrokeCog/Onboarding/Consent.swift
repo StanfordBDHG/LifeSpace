@@ -52,6 +52,7 @@ struct Consent: View {
                 self.savingConsentForms = true
                 
                 guard case let .completed(taskResult) = result else {
+                    self.savingConsentForms = false
                     self.isConsentSheetPresented = false
                     return // user cancelled or task failed
                 }

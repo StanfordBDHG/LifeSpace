@@ -53,7 +53,7 @@ struct DailySurveyTaskView: View {
     
     private var savingSurveyView: some View {
         VStack {
-            Text("Saving survey...")
+            Text("SAVING_SURVEY")
             ProgressView()
         }
         .padding()
@@ -66,9 +66,9 @@ struct DailySurveyTaskView: View {
             Image(systemName: "exclamationmark.triangle.fill")
                 .resizable()
                 .frame(width: 50, height: 50)
-                .accessibilityLabel("Survey already taken.")
+                .accessibilityLabel("SURVEY_TAKEN_NOTICE")
             
-            Text("You've already taken the latest available survey.")
+            Text("SURVEY_TAKEN_NOTICE")
                 .font(.largeTitle)
                 .padding()
                 .multilineTextAlignment(.center)
@@ -86,9 +86,9 @@ struct DailySurveyTaskView: View {
             Image(systemName: "exclamationmark.triangle.fill")
                 .resizable()
                 .frame(width: 50, height: 50)
-                .accessibilityLabel("Yesterday's survey.")
+                .accessibilityLabel("PREVIOUS_DAY_SURVEY_LABEL")
             
-            Text("Please note that you are about to take yesterday's survey.")
+            Text("PREVIOUS_DAY_SURVEY_NOTICE")
                 .font(.largeTitle)
                 .padding()
                 .multilineTextAlignment(.center)
@@ -106,7 +106,7 @@ struct DailySurveyTaskView: View {
             Image(systemName: "clock.fill")
                 .resizable()
                 .frame(width: 50, height: 50)
-                .accessibilityLabel("Survey not available.")
+                .accessibilityLabel("SURVEY_NOT_AVAILABLE_MESSAGE")
             
             Text("SURVEY_NOT_AVAILABLE_MESSAGE")
                 .font(.largeTitle)
@@ -178,7 +178,6 @@ struct DailySurveyTaskView: View {
         response.surveyDate = surveyDateString
         
         // swiftlint:disable legacy_objc_type
-        /// Each answer is coded as a number, with -1 representing a question that was skipped.
         if let socialInteractionQuestion = taskResult.stepResult(forStepIdentifier: "SocialInteractionQuestion"),
            let result = socialInteractionQuestion.firstResult as? ORKChoiceQuestionResult,
            let answer = result.choiceAnswers?.first as? NSNumber {

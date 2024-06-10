@@ -134,10 +134,24 @@
       }
     },
     "CONTINUE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CONTINUE"
+          }
+        }
+      }
     },
-    "Error" : {
-
+    "ERROR" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ERROR"
+          }
+        }
+      }
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {
@@ -353,7 +367,14 @@
       }
     },
     "OK" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
     },
     "OPTIONS_PANEL_SURVEY_BUTTON" : {
       "localizations" : {
@@ -375,14 +396,28 @@
         }
       }
     },
-    "Please note that you are about to take yesterday's survey." : {
+    "PREVIOUS_DAY_SURVEY_LABEL" : {
 
     },
-    "Refresh map" : {
-
+    "PREVIOUS_DAY_SURVEY_NOTICE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please note that you are answering yesterday's survey."
+          }
+        }
+      }
     },
-    "Refreshing map" : {
-
+    "REFRESHING_MAP" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refreshing map..."
+          }
+        }
+      }
     },
     "RETRY_BUTTON_LABEL" : {
       "localizations" : {
@@ -394,8 +429,15 @@
         }
       }
     },
-    "Saving survey..." : {
-
+    "SAVING_SURVEY" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving survey..."
+          }
+        }
+      }
     },
     "SCHEDULE_LIST_TITLE" : {
       "localizations" : {
@@ -469,18 +511,22 @@
         }
       }
     },
-    "Survey already taken." : {
-
-    },
-    "Survey not available." : {
-
-    },
     "SURVEY_NOT_AVAILABLE_MESSAGE" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Please return after 7pm to complete the survey!"
+          }
+        }
+      }
+    },
+    "SURVEY_TAKEN_NOTICE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have already taken the latest survey."
           }
         }
       }
@@ -635,12 +681,6 @@
           }
         }
       }
-    },
-    "Yesterday's survey." : {
-
-    },
-    "You've already taken the latest available survey." : {
-
     }
   },
   "version" : "1.0"
