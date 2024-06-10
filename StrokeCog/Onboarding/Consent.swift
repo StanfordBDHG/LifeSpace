@@ -135,12 +135,19 @@ struct Consent: View {
             return
         }
         
+        // Start by updating the Study ID
+        if let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) {
+            await standard.setStudyID(studyID)
+        }
+        
+        // Apply signatures to the consent documents
         let consentDocument = LifeSpaceConsent()
         signatureResult.apply(to: consentDocument)
         
         let hipaaConsentDocument = HIPAAAuthorization()
         hipaaSignatureResult.apply(to: hipaaConsentDocument)
         
+        // Create and upload PDFs for each document
         do {
             let consentPDFData = try await consentDocument.makePDF()
             await standard.store(consentData: consentPDFData, name: "consent")
