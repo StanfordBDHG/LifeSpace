@@ -10,7 +10,7 @@ import SpeziAccount
 import SwiftUI
 
 
-struct HomeView: View {    
+struct HomeView: View {
     static var accountEnabled: Bool {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
     }
