@@ -22,4 +22,6 @@ enum StorageKeys {
     static let homeTabSelection = "home.tabselection"
     
     static let trackingPreference = "tracking.preference"
+    
+    static let lastSurveyDate = "lastSurveyDate"
 }

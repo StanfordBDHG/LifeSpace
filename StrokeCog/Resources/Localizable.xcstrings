@@ -133,8 +133,25 @@
         }
       }
     },
-    "Error" : {
-
+    "CONTINUE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CONTINUE"
+          }
+        }
+      }
+    },
+    "ERROR" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ERROR"
+          }
+        }
+      }
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {
@@ -349,6 +366,16 @@
         }
       }
     },
+    "OK" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
     "OPTIONS_PANEL_SURVEY_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -369,11 +396,28 @@
         }
       }
     },
-    "Refresh map" : {
+    "PREVIOUS_DAY_SURVEY_LABEL" : {
 
     },
-    "Refreshing map" : {
-
+    "PREVIOUS_DAY_SURVEY_NOTICE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please note that you are answering yesterday's survey."
+          }
+        }
+      }
+    },
+    "REFRESHING_MAP" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refreshing map..."
+          }
+        }
+      }
     },
     "RETRY_BUTTON_LABEL" : {
       "localizations" : {
@@ -381,6 +425,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Try Again"
+          }
+        }
+      }
+    },
+    "SAVING_SURVEY" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving survey..."
           }
         }
       }
@@ -457,15 +511,22 @@
         }
       }
     },
-    "Survey not available." : {
-
-    },
     "SURVEY_NOT_AVAILABLE_MESSAGE" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Please return after 7pm to complete the survey!"
+          }
+        }
+      }
+    },
+    "SURVEY_TAKEN_NOTICE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have already taken the latest survey."
           }
         }
       }

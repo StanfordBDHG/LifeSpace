@@ -60,7 +60,7 @@ struct StudyIDView: View {
         .validate(input: studyID, rules: [validationRule])
         .receiveValidation(in: $validation)
         .alert(
-            "Error",
+            "ERROR",
             isPresented: $showInvalidIDAlert
         ) {
             Text("INVALID_STUDYID_MESSAGE")

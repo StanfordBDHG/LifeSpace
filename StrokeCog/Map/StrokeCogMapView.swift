@@ -53,7 +53,7 @@ struct StrokeCogMapView: View {
                         refreshMap()
                     }) {
                         Image(systemName: "arrow.clockwise")
-                            .accessibilityLabel("Refresh map")
+                            .accessibilityLabel("REFRESHING_MAP")
                     }
                 }
             }
