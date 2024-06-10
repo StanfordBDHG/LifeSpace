@@ -20,6 +20,7 @@ struct Consent: View {
     private let logger = Logger(subsystem: "StrokeCog", category: "Standard")
     
     @State private var isConsentSheetPresented = false
+    @State private var savingConsentForms = false
     
     var body: some View {
         OnboardingView(
@@ -27,7 +28,7 @@ struct Consent: View {
                 VStack {
                     OnboardingTitleView(
                         title: "CONSENT_TITLE",
-                        subtitle: ""
+                        subtitle: "CONSENT_SUBTITLE"
                     )
                     Spacer()
                     Image(systemName: "doc")
@@ -48,41 +49,23 @@ struct Consent: View {
         )
         .sheet(isPresented: $isConsentSheetPresented) {
             ORKOrderedTaskView(tasks: consentTask) { result in
+                self.savingConsentForms = true
+                
                 guard case let .completed(taskResult) = result else {
                     self.isConsentSheetPresented = false
                     return // user cancelled or task failed
                 }
                 
-                guard let signatureResult = taskResult
-                    .stepResult(forStepIdentifier: "ConsentReviewStep")?.results?.first as? ORKConsentSignatureResult,
-                      let hipaaSignatureResult = taskResult
-                    .stepResult(forStepIdentifier: "HIPAAAuthorizationReviewStep")?.results?.first as? ORKConsentSignatureResult,
-                      signatureResult.consented,
-                      hipaaSignatureResult.consented else {
-                    // user did not consent
-                    self.isConsentSheetPresented = false
-                    return
-                }
+                await saveConsentForms(taskResult)
                 
-                let consentDocument = LifeSpaceConsent()
-                signatureResult.apply(to: consentDocument)
-                
-                let hipaaConsentDocument = HIPAAAuthorization()
-                hipaaSignatureResult.apply(to: hipaaConsentDocument)
-                
-                do {
-                    let consentPDFData = try await consentDocument.makePDF()
-                    await standard.store(consentData: consentPDFData, name: "consent")
-                    
-                    let hipaaPDFData = try await hipaaConsentDocument.makePDF()
-                    await standard.store(consentData: hipaaPDFData, name: "hipaaAuthorization")
-                } catch {
-                    logger.error("Unable to generate PDF: \(error)")
-                }
-                
-                
+                self.savingConsentForms = false
                 self.isConsentSheetPresented = false
                 onboardingNavigationPath.nextStep()
+            }
+            .overlay {
+                if savingConsentForms {
+                    savingProgressView
+                }
             }
             .ignoresSafeArea(edges: .all)
             .interactiveDismissDisabled(true)
@@ -90,6 +73,16 @@ struct Consent: View {
         .onAppear {
             isConsentSheetPresented = true
         }
+    }
+    
+    var savingProgressView: some View {
+        VStack {
+            Text("CONSENT_PROGRESS")
+            ProgressView()
+        }
+        .padding()
+        .background(Color(UIColor.systemBackground))
+        .clipShape(.rect(cornerRadius: 10))
     }
     
     var consentTask: ORKOrderedTask {
@@ -126,6 +119,36 @@ struct Consent: View {
         let steps = [consentInstructionStep, reviewConsentStep, reviewHIPAAAuthorizationStep]
         
         return ORKOrderedTask(identifier: "ConsentTask", steps: steps)
+    }
+    
+    @MainActor
+    func saveConsentForms(_ taskResult: ORKTaskResult) async {
+        guard let signatureResult = taskResult
+            .stepResult(forStepIdentifier: "ConsentReviewStep")?.results?.first as? ORKConsentSignatureResult,
+              let hipaaSignatureResult = taskResult
+            .stepResult(forStepIdentifier: "HIPAAAuthorizationReviewStep")?.results?.first as? ORKConsentSignatureResult,
+              signatureResult.consented,
+              hipaaSignatureResult.consented else {
+            // user did not consent
+            self.isConsentSheetPresented = false
+            return
+        }
+        
+        let consentDocument = LifeSpaceConsent()
+        signatureResult.apply(to: consentDocument)
+        
+        let hipaaConsentDocument = HIPAAAuthorization()
+        hipaaSignatureResult.apply(to: hipaaConsentDocument)
+        
+        do {
+            let consentPDFData = try await consentDocument.makePDF()
+            await standard.store(consentData: consentPDFData, name: "consent")
+            
+            let hipaaPDFData = try await hipaaConsentDocument.makePDF()
+            await standard.store(consentData: hipaaPDFData, name: "hipaaAuthorization")
+        } catch {
+            logger.error("Unable to generate PDF: \(error)")
+        }
     }
 }
 

@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -91,7 +88,27 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please review and sign the study consent forms."
+            "value" : "Please review and sign the study consent forms to join the LifeSpace study."
+          }
+        }
+      }
+    },
+    "CONSENT_PROGRESS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving consent forms..."
+          }
+        }
+      }
+    },
+    "CONSENT_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LifeSpace Study Consent Forms"
           }
         }
       }
@@ -101,7 +118,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Study Consent"
+            "value" : "Consent"
           }
         }
       }
@@ -276,7 +293,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "LifeSpace Location"
+            "value" : "To participate in the study, please allow LifeSpace to access your location."
           }
         }
       }
@@ -286,7 +303,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Location"
+            "value" : "Location Access"
           }
         }
       }
