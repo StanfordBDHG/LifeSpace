@@ -29,7 +29,8 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     }
     
     private static var userCollection: CollectionReference {
-        Firestore.firestore().collection("com.odden.lifespace-dev").document("study").collection("ls_users")
+        let bundleIdentifier = Bundle.main.bundleIdentifier ?? "edu.stanford.lifespace"
+        return Firestore.firestore().collection(bundleIdentifier).document("study").collection("ls_users")
     }
     
     @Dependency var accountStorage: FirestoreAccountStorage?
@@ -55,7 +56,8 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
                 throw StrokeCogStandardError.userNotAuthenticatedYet
             }
             
-            return Storage.storage().reference().child("com.odden.lifespace-dev/study/ls_users/\(details.accountId)")
+            let bundleIdentifier = Bundle.main.bundleIdentifier ?? "edu.stanford.lifespace"
+            return Storage.storage().reference().child("\(bundleIdentifier)/study/ls_users/\(details.accountId)")
         }
     }
     
