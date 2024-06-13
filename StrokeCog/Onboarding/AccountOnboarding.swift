@@ -24,12 +24,6 @@ struct AccountOnboarding: View {
                     Task {
                         // Placing the nextStep() call inside this task will ensure that the sheet dismiss animation is
                         // played till the end before we navigate to the next step.
-                        
-                        // Now that the user is logged in, we will update the user document
-                        if let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) {
-                            await standard.setStudyID(studyID)
-                        }
-                        
                         onboardingNavigationPath.nextStep()
                     }
                 },

@@ -29,7 +29,8 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     }
     
     private static var userCollection: CollectionReference {
-        Firestore.firestore().collection("users")
+        let bundleIdentifier = Bundle.main.bundleIdentifier ?? "edu.stanford.lifespace"
+        return Firestore.firestore().collection(bundleIdentifier).document("study").collection("ls_users")
     }
     
     @Dependency var accountStorage: FirestoreAccountStorage?
@@ -55,7 +56,8 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
                 throw StrokeCogStandardError.userNotAuthenticatedYet
             }
             
-            return Storage.storage().reference().child("users/\(details.accountId)")
+            let bundleIdentifier = Bundle.main.bundleIdentifier ?? "edu.stanford.lifespace"
+            return Storage.storage().reference().child("\(bundleIdentifier)/study/ls_users/\(details.accountId)")
         }
     }
     
@@ -115,7 +117,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         )
         
         try await userDocumentReference
-            .collection("location_data")
+            .collection("ls_location_data")
             .document(UUID().uuidString)
             .setData(from: dataPoint)
     }
@@ -129,7 +131,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         
         do {
             let snapshot = try await userDocumentReference
-                .collection("location_data")
+                .collection("ls_location_data")
                 .whereField("currentDate", isGreaterThanOrEqualTo: startOfDay)
                 .whereField("currentDate", isLessThan: endOfDay)
                 .getDocuments()
@@ -169,7 +171,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         response.updatedBy = details.accountId
         
         try await userDocumentReference
-            .collection("surveys")
+            .collection("ls_surveys")
             .document(UUID().uuidString)
             .setData(from: response)
         
@@ -195,7 +197,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     private func healthKitDocument(id uuid: UUID) async throws -> DocumentReference {
         try await userDocumentReference
-            .collection("HealthKit") // Add all HealthKit sources in a /HealthKit collection.
+            .collection("ls_healthkit") // Add all HealthKit sources in a /HealthKit collection.
             .document(uuid.uuidString) // Set the document identifier to the UUID of the document.
     }
     
@@ -261,7 +263,7 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await userBucketReference.child("consent/\(filename)").putDataAsync(consentData, metadata: metadata)
+            _ = try await userBucketReference.child("ls_consent/\(filename)").putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }
