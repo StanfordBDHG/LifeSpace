@@ -10,6 +10,7 @@ import OSLog
 import ResearchKit
 import ResearchKitSwiftUI
 import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 
@@ -75,34 +76,16 @@ struct Consent: View {
             if !existingConsent {
                 isConsentSheetPresented = true
             }
-            
-            
         }
-        .overlay {
-            if checkingConsentForms {
-                checkingProgressView
+        .processingOverlay(
+            isProcessing: checkingConsentForms,
+            overlay: {
+                VStack {
+                    Text("CONSENT_EXISTING_PROGRESS")
+                    ProgressView()
+                }
             }
-        }
-    }
-
-    var checkingProgressView: some View {
-        VStack {
-            Text("CONSENT_EXISTING_PROGRESS")
-            ProgressView()
-        }
-        .padding()
-        .background(Color(UIColor.systemBackground))
-        .clipShape(.rect(cornerRadius: 10))
-    }
-    
-    var savingProgressView: some View {
-        VStack {
-            Text("CONSENT_PROGRESS")
-            ProgressView()
-        }
-        .padding()
-        .background(Color(UIColor.systemBackground))
-        .clipShape(.rect(cornerRadius: 10))
+        )
     }
     
     var consentTaskView: some View {
@@ -121,11 +104,15 @@ struct Consent: View {
             self.isConsentSheetPresented = false
             onboardingNavigationPath.nextStep()
         }
-        .overlay {
-            if savingConsentForms {
-                savingProgressView
+        .processingOverlay(
+            isProcessing: checkingConsentForms,
+            overlay: {
+                VStack {
+                    Text("CONSENT_PROGRESS")
+                    ProgressView()
+                }
             }
-        }
+        )
         .ignoresSafeArea(edges: .all)
         .interactiveDismissDisabled(true)
     }
