@@ -269,6 +269,16 @@ actor StrokeCogStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         }
     }
     
+    func isConsentFormUploaded(name: String) async -> Bool {
+        do {
+            let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) ?? "unknownStudyID"
+            _ = try await userBucketReference.child("ls_consent/\(studyID)_\(name).pdf").getMetadata()
+            return true
+        } catch {
+            return false
+        }
+    }
+    
     /// Update the user document with the user's study ID
     func setStudyID(_ studyID: String) async {
         do {

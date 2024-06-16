@@ -93,6 +93,26 @@
         }
       }
     },
+    "CONSENT_EXISTING_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have already signed the LifeSpace consent forms and can tap \"Next\" below to continue."
+          }
+        }
+      }
+    },
+    "CONSENT_EXISTING_PROGRESS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking for existing consent forms..."
+          }
+        }
+      }
+    },
     "CONSENT_PROGRESS" : {
       "localizations" : {
         "en" : {
@@ -321,6 +341,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Location Access"
+          }
+        }
+      }
+    },
+    "NEXT_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
           }
         }
       }
