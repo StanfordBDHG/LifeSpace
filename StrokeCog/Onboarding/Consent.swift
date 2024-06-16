@@ -10,6 +10,7 @@ import OSLog
 import ResearchKit
 import ResearchKitSwiftUI
 import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 
@@ -21,6 +22,8 @@ struct Consent: View {
     
     @State private var isConsentSheetPresented = false
     @State private var savingConsentForms = false
+    @State private var checkingConsentForms = false
+    @State private var existingConsent = false
     
     var body: some View {
         OnboardingView(
@@ -35,55 +38,83 @@ struct Consent: View {
                         .font(.system(size: 150))
                         .foregroundColor(.accentColor)
                         .accessibilityHidden(true)
-                    Text("CONSENT_DESCRIPTION")
-                        .multilineTextAlignment(.center)
-                        .padding(.vertical, 16)
+                    
+                    if existingConsent {
+                        Text("CONSENT_EXISTING_DESCRIPTION")
+                            .multilineTextAlignment(.center)
+                            .padding(.vertical, 16)
+                    } else {
+                        Text("CONSENT_DESCRIPTION")
+                            .multilineTextAlignment(.center)
+                            .padding(.vertical, 16)
+                    }
                     Spacer()
                 }
             },
             actionView: {
-                OnboardingActionsView("CONSENT_BUTTON") {
-                    isConsentSheetPresented = true
+                if existingConsent {
+                    OnboardingActionsView("NEXT_BUTTON") {
+                        onboardingNavigationPath.nextStep()
+                    }
+                } else {
+                    OnboardingActionsView("CONSENT_BUTTON") {
+                        isConsentSheetPresented = true
+                    }
                 }
             }
         )
         .sheet(isPresented: $isConsentSheetPresented) {
-            ORKOrderedTaskView(tasks: consentTask) { result in
-                self.savingConsentForms = true
-                
-                guard case let .completed(taskResult) = result else {
-                    self.savingConsentForms = false
-                    self.isConsentSheetPresented = false
-                    return // user cancelled or task failed
-                }
-                
-                await saveConsentForms(taskResult)
-                
-                self.savingConsentForms = false
-                self.isConsentSheetPresented = false
-                onboardingNavigationPath.nextStep()
-            }
-            .overlay {
-                if savingConsentForms {
-                    savingProgressView
-                }
-            }
-            .ignoresSafeArea(edges: .all)
-            .interactiveDismissDisabled(true)
+            consentTaskView
         }
-        .onAppear {
-            isConsentSheetPresented = true
+        .task {
+            // Check if the user has already signed the consent forms
+            self.checkingConsentForms = true
+            await checkExistingConsent()
+            self.checkingConsentForms = false
+            
+            // If consent forms haven't been signed, launch the consent task
+            if !existingConsent {
+                isConsentSheetPresented = true
+            }
         }
+        .processingOverlay(
+            isProcessing: checkingConsentForms,
+            overlay: {
+                VStack {
+                    Text("CONSENT_EXISTING_PROGRESS")
+                    ProgressView()
+                }
+            }
+        )
     }
     
-    var savingProgressView: some View {
-        VStack {
-            Text("CONSENT_PROGRESS")
-            ProgressView()
+    var consentTaskView: some View {
+        ORKOrderedTaskView(tasks: consentTask) { result in
+            self.savingConsentForms = true
+            
+            guard case let .completed(taskResult) = result else {
+                self.savingConsentForms = false
+                self.isConsentSheetPresented = false
+                return // user cancelled or task failed
+            }
+            
+            await saveConsentForms(taskResult)
+            
+            self.savingConsentForms = false
+            self.isConsentSheetPresented = false
+            onboardingNavigationPath.nextStep()
         }
-        .padding()
-        .background(Color(UIColor.systemBackground))
-        .clipShape(.rect(cornerRadius: 10))
+        .processingOverlay(
+            isProcessing: checkingConsentForms,
+            overlay: {
+                VStack {
+                    Text("CONSENT_PROGRESS")
+                    ProgressView()
+                }
+            }
+        )
+        .ignoresSafeArea(edges: .all)
+        .interactiveDismissDisabled(true)
     }
     
     var consentTask: ORKOrderedTask {
@@ -120,6 +151,14 @@ struct Consent: View {
         let steps = [consentInstructionStep, reviewConsentStep, reviewHIPAAAuthorizationStep]
         
         return ORKOrderedTask(identifier: "ConsentTask", steps: steps)
+    }
+    
+    @MainActor
+    func checkExistingConsent() async {
+        let existingIRBConsent = await standard.isConsentFormUploaded(name: "consent")
+        let existingHIPAAAuthorization = await standard.isConsentFormUploaded(name: "hipaaAuthorization")
+        
+        self.existingConsent = existingIRBConsent && existingHIPAAAuthorization
     }
     
     @MainActor
