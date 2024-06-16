@@ -43,10 +43,10 @@ struct LocationPermissions: View {
         .onReceive(locationModule.$authorizationStatus) { status in
             switch status {
             case .authorizedAlways:
-                isFirstRequest = false
                 onboardingNavigationPath.nextStep()
             case .authorizedWhenInUse:
                 if isFirstRequest {
+                    isFirstRequest = false
                     currentStep = .changeToAlwaysAllow
                 } else {
                     currentStep = .changeLocationSettings
