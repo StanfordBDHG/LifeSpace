@@ -104,7 +104,14 @@
       }
     },
     "CONSENT_EXISTING_PROGRESS" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking for existing consent forms..."
+          }
+        }
+      }
     },
     "CONSENT_PROGRESS" : {
       "localizations" : {

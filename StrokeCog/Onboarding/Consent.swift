@@ -69,12 +69,14 @@ struct Consent: View {
             // Check if the user has already signed the consent forms
             self.checkingConsentForms = true
             await checkExistingConsent()
+            self.checkingConsentForms = false
+            
+            // If consent forms haven't been signed, launch the consent task
             if !existingConsent {
                 isConsentSheetPresented = true
-            } else {
-                onboardingNavigationPath.nextStep()
             }
-            self.checkingConsentForms = false
+            
+            
         }
         .overlay {
             if checkingConsentForms {
