@@ -305,22 +305,52 @@
         }
       }
     },
+    "LOCATION_ALLOW_WHILE_USING_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please tap the button below and select \"Allow While Using App\" on the window that appears."
+          }
+        }
+      }
+    },
+    "LOCATION_CHANGE_LOCATION_SETTINGS_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please tap the button below to go to your location settings, tap \"Location\" and select \"Always\" ."
+          }
+        }
+      }
+    },
+    "LOCATION_CHANGE_TO_ALWAYS_ALLOW_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please tap the button below and select \"Change to Always Allow\" on the window that appears."
+          }
+        }
+      }
+    },
+    "LOCATION_NO_POPUP_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Window Not Appearing"
+          }
+        }
+      }
+    },
     "LOCATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Allow Sharing Location"
-          }
-        }
-      }
-    },
-    "LOCATION_PERMISSIONS_DESCRIPTION" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "To participate in the study, please allow LifeSpace to access your location."
+            "value" : "Open Location Sharing Window"
           }
         }
       }
@@ -330,7 +360,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "To participate in the study, please allow LifeSpace to access your location."
+            "value" : "To participate in the study, please allow LifeSpace to access your location. Please read the instructions below to continue."
           }
         }
       }

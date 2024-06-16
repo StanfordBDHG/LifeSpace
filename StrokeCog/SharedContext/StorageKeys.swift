@@ -24,4 +24,6 @@ enum StorageKeys {
     static let trackingPreference = "tracking.preference"
     
     static let lastSurveyDate = "lastSurveyDate"
+    
+    static let isFirstLocationRequest = "isFirstLocationRequest"
 }

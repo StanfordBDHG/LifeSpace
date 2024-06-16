@@ -21,7 +21,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     private var previousLocation: CLLocationCoordinate2D?
     private var previousDate: Date?
 
-    @Published var authorizationStatus: CLAuthorizationStatus = CLLocationManager().authorizationStatus
+    @Published var authorizationStatus = CLLocationManager().authorizationStatus
     @Published var canShowRequestMessage = true
 
     private var lastKnownLocation: CLLocationCoordinate2D? {
@@ -69,12 +69,13 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         self.manager.stopMonitoringSignificantLocationChanges()
         logger.info("Stopping tracking...")
     }
+    
 
     public func requestAuthorizationLocation() {
         self.manager.requestWhenInUseAuthorization()
         self.manager.requestAlwaysAuthorization()
     }
-    
+
     public func fetchLocations() async {
         do {
             if let locations = try await standard?.fetchLocations() {
@@ -124,10 +125,6 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
                 }
             }
         }
-    }
-
-    public func userAuthorizeAlways() -> Bool {
-        self.manager.authorizationStatus == .authorizedAlways
     }
 
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
