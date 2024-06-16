@@ -285,6 +285,36 @@
         }
       }
     },
+    "LOCATION_ALLOW_WHILE_USING_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please tap the button below and select \"Allow While Using App\" on the window that appears."
+          }
+        }
+      }
+    },
+    "LOCATION_CHANGE_LOCATION_SETTINGS_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please go to your location settings and select \"Always\"."
+          }
+        }
+      }
+    },
+    "LOCATION_CHANGE_TO_ALWAYS_ALLOW_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please tap the button below and select \"Change to Always Allow\" on the window that appears."
+          }
+        }
+      }
+    },
     "LOCATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -296,6 +326,7 @@
       }
     },
     "LOCATION_PERMISSIONS_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

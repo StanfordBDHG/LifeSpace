@@ -69,12 +69,13 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         self.manager.stopMonitoringSignificantLocationChanges()
         logger.info("Stopping tracking...")
     }
+    
 
     public func requestAuthorizationLocation() {
         self.manager.requestWhenInUseAuthorization()
         self.manager.requestAlwaysAuthorization()
     }
-    
+
     public func fetchLocations() async {
         do {
             if let locations = try await standard?.fetchLocations() {
