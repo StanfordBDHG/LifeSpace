@@ -17,39 +17,48 @@ struct LocationPermissions: View {
     @Environment(LocationModule.self) private var locationModule
     
     @State private var locationProcessing = false
-    @State private var currentStep: LocationPermissionsStep = .allowWhileUsingStep
+    @State private var currentStep: LocationPermissionsStep = .allowWhileUsing
+    
+    @AppStorage(StorageKeys.isFirstLocationRequest) var isFirstRequest = true
     
     private let logger = Logger(subsystem: "StrokeCog", category: "Onboarding")
     
     enum LocationPermissionsStep {
-        case allowWhileUsingStep
-        case changeToAlwaysAllowStep
-        case changeLocationSettingsStep
+        case allowWhileUsing
+        case changeToAlwaysAllow
+        case changeLocationSettings
     }
     
     var body: some View {
         VStack(spacing: 10) {
             switch currentStep {
-            case .allowWhileUsingStep:
+            case .allowWhileUsing:
                 allowWhileUsingStep
-            case .changeToAlwaysAllowStep:
+            case .changeToAlwaysAllow:
                 changeToAlwaysAllowStep
-            case .changeLocationSettingsStep:
+            case .changeLocationSettings:
                 changeLocationSettingsStep
             }
         }
         .onReceive(locationModule.$authorizationStatus) { status in
             switch status {
             case .authorizedAlways:
+                isFirstRequest = false
                 onboardingNavigationPath.nextStep()
             case .authorizedWhenInUse:
-                currentStep = .changeToAlwaysAllowStep
+                if isFirstRequest {
+                    currentStep = .changeToAlwaysAllow
+                } else {
+                    currentStep = .changeLocationSettings
+                }
             case .denied, .restricted:
-                currentStep = .changeLocationSettingsStep
+                isFirstRequest = false
+                currentStep = .changeLocationSettings
             case .notDetermined:
-                currentStep = .allowWhileUsingStep
+                isFirstRequest = true
+                currentStep = .allowWhileUsing
             @unknown default:
-                currentStep = .allowWhileUsingStep
+                currentStep = .changeLocationSettings
             }
         }
     }
@@ -63,13 +72,14 @@ struct LocationPermissions: View {
                         subtitle: "LOCATION_PERMISSIONS_SUBTITLE"
                     )
                     Spacer()
-                    Image(systemName: "mappin.and.ellipse")
-                        .font(.system(size: 50))
+                    Image(systemName: "map.circle.fill")
+                        .font(.system(size: 150))
                         .foregroundColor(.accentColor)
                         .accessibilityHidden(true)
                     Text("LOCATION_ALLOW_WHILE_USING_DESCRIPTION")
                         .multilineTextAlignment(.center)
                         .padding(.vertical, 16)
+                    Spacer()
                 }
             },
             actionView: {
@@ -92,13 +102,14 @@ struct LocationPermissions: View {
                         subtitle: "LOCATION_PERMISSIONS_SUBTITLE"
                     )
                     Spacer()
-                    Image(systemName: "mappin.and.ellipse")
-                        .font(.system(size: 50))
+                    Image(systemName: "map.circle.fill")
+                        .font(.system(size: 150))
                         .foregroundColor(.accentColor)
                         .accessibilityHidden(true)
                     Text("LOCATION_CHANGE_TO_ALWAYS_ALLOW_DESCRIPTION")
                         .multilineTextAlignment(.center)
                         .padding(.vertical, 16)
+                    Spacer()
                 }
             },
             actionView: {
@@ -121,29 +132,36 @@ struct LocationPermissions: View {
                         subtitle: "LOCATION_PERMISSIONS_SUBTITLE"
                     )
                     Spacer()
-                    Image(systemName: "mappin.and.ellipse")
-                        .font(.system(size: 50))
+                    Image(systemName: "map.circle.fill")
+                        .font(.system(size: 150))
                         .foregroundColor(.accentColor)
                         .accessibilityHidden(true)
                     Text("LOCATION_CHANGE_LOCATION_SETTINGS_DESCRIPTION")
                         .multilineTextAlignment(.center)
                         .padding(.vertical, 16)
+                    Spacer()
                 }
             },
             actionView: {
                 OnboardingActionsView(
                     "LOCATION_PERMISSIONS_BUTTON",
                     action: {
-                        guard let settingsUrl = await URL(string: UIApplication.openSettingsURLString) else {
-                            return
-                        }
-                        if await UIApplication.shared.canOpenURL(settingsUrl) {
-                            await UIApplication.shared.open(settingsUrl)
-                        }
+                        await openLocationSettings()
                     }
                 )
             }
         )
+    }
+    
+    @MainActor
+    func openLocationSettings() {
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl)
+        }
     }
 }
 
