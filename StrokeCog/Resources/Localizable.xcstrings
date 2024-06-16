@@ -320,7 +320,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please go to your location settings and select \"Always\"."
+            "value" : "Please tap the button below to go to your location settings, tap \"Location\" and select \"Always\" ."
           }
         }
       }
@@ -335,23 +335,22 @@
         }
       }
     },
+    "LOCATION_NO_POPUP_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Window Not Appearing"
+          }
+        }
+      }
+    },
     "LOCATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Allow Sharing Location"
-          }
-        }
-      }
-    },
-    "LOCATION_PERMISSIONS_DESCRIPTION" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "To participate in the study, please allow LifeSpace to access your location."
+            "value" : "Open Location Sharing Window"
           }
         }
       }
@@ -361,7 +360,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "To participate in the study, please allow LifeSpace to access your location."
+            "value" : "To participate in the study, please allow LifeSpace to access your location. Please read the instructions below to continue."
           }
         }
       }

@@ -84,9 +84,13 @@ struct LocationPermissions: View {
             },
             actionView: {
                 OnboardingActionsView(
-                    "LOCATION_PERMISSIONS_BUTTON",
-                    action: {
+                    primaryText: "LOCATION_PERMISSIONS_BUTTON",
+                    primaryAction: {
                         locationModule.requestAuthorizationLocation()
+                    },
+                    secondaryText: "LOCATION_NO_POPUP_BUTTON",
+                    secondaryAction: {
+                        currentStep = .changeLocationSettings
                     }
                 )
             }
@@ -114,9 +118,13 @@ struct LocationPermissions: View {
             },
             actionView: {
                 OnboardingActionsView(
-                    "LOCATION_PERMISSIONS_BUTTON",
-                    action: {
+                    primaryText: "LOCATION_PERMISSIONS_BUTTON",
+                    primaryAction: {
                         locationModule.requestAuthorizationLocation()
+                    },
+                    secondaryText: "LOCATION_NO_POPUP_BUTTON",
+                    secondaryAction: {
+                        currentStep = .changeLocationSettings
                     }
                 )
             }
