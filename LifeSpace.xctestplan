@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "6C9DABEF-5835-4523-A115-B83B0C6E3BBC",
+      "id" : "1A99C70F-FA4D-4379-B58F-4DC597AD61BB",
       "name" : "Default",
       "options" : {
 
@@ -12,16 +12,16 @@
     "codeCoverage" : {
       "targets" : [
         {
-          "containerPath" : "container:StrokeCog.xcodeproj",
+          "containerPath" : "container:LifeSpace.xcodeproj",
           "identifier" : "653A254C283387FE005D4D48",
-          "name" : "StrokeCog"
+          "name" : "LifeSpace"
         }
       ]
     },
     "targetForVariableExpansion" : {
-      "containerPath" : "container:StrokeCog.xcodeproj",
+      "containerPath" : "container:LifeSpace.xcodeproj",
       "identifier" : "653A254C283387FE005D4D48",
-      "name" : "StrokeCog"
+      "name" : "LifeSpace"
     }
   },
   "testTargets" : [

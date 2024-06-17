@@ -112,7 +112,6 @@
 		2F65B44D2A3B8B0600A36932 /* NotificationPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissions.swift; sourceTree = "<group>"; };
 		2FA0BFEC2ACC977500E0EF83 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2FAEC07F297F583900C11C42 /* LifeSpace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LifeSpace.entitlements; sourceTree = "<group>"; };
-		2FC94CD4298B0A1D009C8209 /* LifeSpace.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = LifeSpace.xctestplan; sourceTree = "<group>"; };
 		2FC975A72978F11A00BA99FE /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		2FE5DC2529EDD38A004B9AB4 /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		2FE5DC2C29EDD78E004B9AB4 /* ConsentDocument.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ConsentDocument.md; sourceTree = "<group>"; };
@@ -145,6 +144,7 @@
 		63A8DB282C1FE81200939757 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
 		63BBF8152BB8993B006890CE /* StudyIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyIDView.swift; sourceTree = "<group>"; };
 		63BBF8182BB89CF7006890CE /* studyIDs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = studyIDs.csv; sourceTree = "<group>"; };
+		63CC66972C204CC5001DCFDF /* LifeSpace.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = LifeSpace.xctestplan; sourceTree = "<group>"; };
 		63EA5F7A2BC04F8400A48590 /* DailySurveyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySurveyTask.swift; sourceTree = "<group>"; };
 		63EA5F882BC78ADD00A48590 /* DailySurveyTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySurveyTaskView.swift; sourceTree = "<group>"; };
 		63EA5F8B2BC78F8400A48590 /* DailySurveyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySurveyResponse.swift; sourceTree = "<group>"; };
@@ -334,7 +334,7 @@
 		653A2544283387FE005D4D48 = {
 			isa = PBXGroup;
 			children = (
-				2FC94CD4298B0A1D009C8209 /* LifeSpace.xctestplan */,
+				63CC66972C204CC5001DCFDF /* LifeSpace.xctestplan */,
 				653A254F283387FE005D4D48 /* LifeSpace */,
 				653A256028338800005D4D48 /* LifeSpaceTests */,
 				653A256A28338800005D4D48 /* LifeSpaceUITests */,
