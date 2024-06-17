@@ -11,8 +11,13 @@ import SpeziScheduler
 import SwiftUI
 
 
-// swiftlint:disable type_contents_order
 struct LocationPermissions: View {
+    enum LocationPermissionsStep {
+        case allowWhileUsing
+        case changeToAlwaysAllow
+        case changeLocationSettings
+    }
+    
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
     @Environment(LocationModule.self) private var locationModule
     
@@ -22,12 +27,6 @@ struct LocationPermissions: View {
     @AppStorage(StorageKeys.isFirstLocationRequest) var isFirstRequest = true
     
     private let logger = Logger(subsystem: "LifeSpace", category: "Onboarding")
-    
-    enum LocationPermissionsStep {
-        case allowWhileUsing
-        case changeToAlwaysAllow
-        case changeLocationSettings
-    }
     
     var body: some View {
         VStack(spacing: 10) {
