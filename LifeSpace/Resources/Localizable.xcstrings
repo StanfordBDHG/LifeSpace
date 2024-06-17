@@ -1,0 +1,747 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "ACCOUNT_NEXT" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
+          }
+        }
+      }
+    },
+    "ACCOUNT_SETUP_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple will not receive any of the data collected in the study."
+          }
+        }
+      }
+    },
+    "ACCOUNT_SIGNED_IN_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are already logged in with the account shown below. Continue or change your account by logging out."
+          }
+        }
+      }
+    },
+    "ACCOUNT_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign Up or Log In to the  LifeSpace Study using Sign In With Apple."
+          }
+        }
+      }
+    },
+    "ACCOUNT_TITLE" : {
+      "comment" : "MARK: Account",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your Account"
+          }
+        }
+      }
+    },
+    "CLOSE" : {
+      "comment" : "MARK: General",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
+    },
+    "COMPLETED_TASK_LABEL %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completed Task: %@"
+          }
+        }
+      }
+    },
+    "CONSENT_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Review Consent Forms"
+          }
+        }
+      }
+    },
+    "CONSENT_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please review and sign the study consent forms to join the LifeSpace study."
+          }
+        }
+      }
+    },
+    "CONSENT_EXISTING_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have already signed the LifeSpace consent forms and can tap \"Next\" below to continue."
+          }
+        }
+      }
+    },
+    "CONSENT_EXISTING_PROGRESS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking for existing consent forms..."
+          }
+        }
+      }
+    },
+    "CONSENT_PROGRESS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving consent forms..."
+          }
+        }
+      }
+    },
+    "CONSENT_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LifeSpace Study Consent Forms"
+          }
+        }
+      }
+    },
+    "CONSENT_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consent"
+          }
+        }
+      }
+    },
+    "CONTACTS_NAVIGATION_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contacts"
+          }
+        }
+      }
+    },
+    "CONTINUE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CONTINUE"
+          }
+        }
+      }
+    },
+    "ERROR" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ERROR"
+          }
+        }
+      }
+    },
+    "HEALTHKIT_PERMISSIONS_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grant Access"
+          }
+        }
+      }
+    },
+    "HEALTHKIT_PERMISSIONS_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The data will be used to understand how your activity is related to your condition."
+          }
+        }
+      }
+    },
+    "HEALTHKIT_PERMISSIONS_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The LifeSpace app will collect activity data from your phone and/or watch while you are enrolled in the study."
+          }
+        }
+      }
+    },
+    "HEALTHKIT_PERMISSIONS_TITLE" : {
+      "comment" : "MARK: HealthKit",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HealthKit Access"
+          }
+        }
+      }
+    },
+    "INTERESTING_MODULES_AREA1_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please make sure your keep your phone switched on and your Apple Watch on all day during the study."
+          }
+        }
+      }
+    },
+    "INTERESTING_MODULES_AREA1_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note"
+          }
+        }
+      }
+    },
+    "INTERESTING_MODULES_AREA2_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please note that the app may reduce your phone's battery more quickly than expected."
+          }
+        }
+      }
+    },
+    "INTERESTING_MODULES_AREA2_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note"
+          }
+        }
+      }
+    },
+    "INTERESTING_MODULES_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
+          }
+        }
+      }
+    },
+    "INTERESTING_MODULES_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please read the following information carefully."
+          }
+        }
+      }
+    },
+    "INTERESTING_MODULES_TITLE" : {
+      "comment" : "MARK: Interesting Modules",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Information"
+          }
+        }
+      }
+    },
+    "INVALID_STUDYID_MESSAGE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You entered an invalid Study ID."
+          }
+        }
+      }
+    },
+    "LELAND_STANFORD_BIO" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amasa Leland Stanford (March 9, 1824 – June 21, 1893) was an American industrialist and politician. [...] He and his wife Jane were also the founders of Stanford University, which they named after their late son.\n[https://en.wikipedia.org/wiki/Leland_Stanford]"
+          }
+        }
+      }
+    },
+    "LOCATION_ALLOW_WHILE_USING_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please tap the button below and select \"Allow While Using App\" on the window that appears."
+          }
+        }
+      }
+    },
+    "LOCATION_CHANGE_LOCATION_SETTINGS_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please tap the button below to go to your location settings, tap \"Location\" and select \"Always\" ."
+          }
+        }
+      }
+    },
+    "LOCATION_CHANGE_TO_ALWAYS_ALLOW_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please tap the button below and select \"Change to Always Allow\" on the window that appears."
+          }
+        }
+      }
+    },
+    "LOCATION_NO_POPUP_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Window Not Appearing"
+          }
+        }
+      }
+    },
+    "LOCATION_PERMISSIONS_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Location Sharing Window"
+          }
+        }
+      }
+    },
+    "LOCATION_PERMISSIONS_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To participate in the study, please allow LifeSpace to access your location. Please read the instructions below to continue."
+          }
+        }
+      }
+    },
+    "LOCATION_PERMISSIONS_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location Access"
+          }
+        }
+      }
+    },
+    "NEXT_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
+          }
+        }
+      }
+    },
+    "NOTIFICATION_PERMISSIONS_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow Notifications"
+          }
+        }
+      }
+    },
+    "NOTIFICATION_PERMISSIONS_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You will receive a notification when it is time to complete each day's survey."
+          }
+        }
+      }
+    },
+    "NOTIFICATION_PERMISSIONS_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LifeSpace Notifications"
+          }
+        }
+      }
+    },
+    "NOTIFICATION_PERMISSIONS_TITLE" : {
+      "comment" : "MARK: Notifications",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "OPTIONS_PANEL_SURVEY_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take Daily Survey"
+          }
+        }
+      }
+    },
+    "OPTIONS_PANEL_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Options"
+          }
+        }
+      }
+    },
+    "PREVIOUS_DAY_SURVEY_LABEL" : {
+
+    },
+    "PREVIOUS_DAY_SURVEY_NOTICE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please note that you are answering yesterday's survey."
+          }
+        }
+      }
+    },
+    "REFRESHING_MAP" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refreshing map..."
+          }
+        }
+      }
+    },
+    "RETRY_BUTTON_LABEL" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try Again"
+          }
+        }
+      }
+    },
+    "SAVING_SURVEY" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving survey..."
+          }
+        }
+      }
+    },
+    "SCHEDULE_LIST_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schedule"
+          }
+        }
+      }
+    },
+    "SCHEDULE_TAB_TITLE" : {
+      "comment" : "MARK: - Schedule",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schedule"
+          }
+        }
+      }
+    },
+    "STUDYID_ACTION_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
+          }
+        }
+      }
+    },
+    "STUDYID_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to the LifeSpace study. Please enter your study ID below."
+          }
+        }
+      }
+    },
+    "STUDYID_TEXT_FIELD_LABEL" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap here and enter your Study ID"
+          }
+        }
+      }
+    },
+    "STUDYID_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Study ID"
+          }
+        }
+      }
+    },
+    "STUDYID_VALIDATION_MESSAGE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A study ID should be at least 6 characters long."
+          }
+        }
+      }
+    },
+    "SURVEY_NOT_AVAILABLE_MESSAGE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please return after 7pm to complete the survey!"
+          }
+        }
+      }
+    },
+    "SURVEY_TAKEN_NOTICE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have already taken the latest survey."
+          }
+        }
+      }
+    },
+    "TASK_CONTEXT_ACTION_QUESTIONNAIRE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start Questionnaire"
+          }
+        }
+      }
+    },
+    "TASK_CONTEXT_ACTION_TEST" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start Test"
+          }
+        }
+      }
+    },
+    "TASK_DAILY_SURVEY_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take the daily survey."
+          }
+        }
+      }
+    },
+    "TASK_DAILY_SURVEY_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LifeSpace Daily Survey"
+          }
+        }
+      }
+    },
+    "TASK_LABEL %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Task: %@"
+          }
+        }
+      }
+    },
+    "TRACK_LOCATION_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Track My Location"
+          }
+        }
+      }
+    },
+    "WELCOME_AREA1_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your location data will be collected during the study period."
+          }
+        }
+      }
+    },
+    "WELCOME_AREA1_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location Data"
+          }
+        }
+      }
+    },
+    "WELCOME_AREA2_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your activity data will be collected during the study period."
+          }
+        }
+      }
+    },
+    "WELCOME_AREA2_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activity Data"
+          }
+        }
+      }
+    },
+    "WELCOME_AREA3_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You will be asked to complete daily surveys during the study."
+          }
+        }
+      }
+    },
+    "WELCOME_AREA3_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily Surveys"
+          }
+        }
+      }
+    },
+    "WELCOME_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
+          }
+        }
+      }
+    },
+    "WELCOME_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The LifeSpace study investigates how physical activity and the environment affect brain health after stroke. This study will use a Stanford-developed iPhone app to map the places you visit over a two-week period."
+          }
+        }
+      }
+    },
+    "WELCOME_TITLE" : {
+      "comment" : "MARK: Welcome",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LifeSpace"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

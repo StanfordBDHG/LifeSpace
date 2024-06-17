@@ -1,5 +1,5 @@
 #
-# This source file is part of the StrokeCog based on the Stanford Spezi Template Application project
+# This source file is part of LifeSpace based on the Stanford Spezi Template Application project
 #
 # SPDX-FileCopyrightText: 2023 Stanford University
 #
@@ -40,6 +40,6 @@ jobs:
         with:
           xcode-version: '15.3'
       - name: Build Xcode project
-        run: xcodebuild -project StrokeCog.xcodeproj -scheme StrokeCog -sdk iphonesimulator -configuration Debug build
+        run: xcodebuild -project LifeSpace.xcodeproj -scheme LifeSpace -sdk iphonesimulator -configuration Debug build
       - name: Run tests
-        run: xcodebuild test -project StrokeCog.xcodeproj -scheme StrokeCog -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.2'
+        run: xcodebuild test -project LifeSpace.xcodeproj -scheme LifeSpace -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.2'
