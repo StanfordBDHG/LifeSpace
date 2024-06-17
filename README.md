@@ -1,6 +1,6 @@
 <!--
 
-This source file is part of the StrokeCog based on the Stanford Spezi Template Application project
+This source file is part of LifeSpace based on the Stanford Spezi Template Application project
 
 SPDX-FileCopyrightText: 2023 Stanford University
 
@@ -8,11 +8,11 @@ SPDX-License-Identifier: MIT
 
 -->
 
-# StrokeCog
+# LifeSpace
 
-This repository contains the mobile application for the StrokeCog study, developed for the [Odden Research Lab](https://michelleodden.com) in the Department of Epidemiology and Population Health at the Stanford School of Medicine.
+This repository contains the LifeSpace mobile application, developed for the [Odden Research Lab](https://michelleodden.com) in the Department of Epidemiology and Population Health at the Stanford School of Medicine.
 
-StrokeCog was built using the [Spezi](https://github.com/StanfordSpezi/Spezi) framework and digital health ecosystem developed by [Stanford Biodesign Digital Health](https://bdh.stanford.edu/).
+LifeSpace was built using the [Spezi](https://github.com/StanfordSpezi/Spezi) framework and digital health ecosystem developed by [Stanford Biodesign Digital Health](https://bdh.stanford.edu/).
 
 ## Features
 
@@ -24,5 +24,7 @@ StrokeCog was built using the [Spezi](https://github.com/StanfordSpezi/Spezi) fr
 
 ## Contributors
 
-- [Vishnu Ravi](https://github.com/vishnuravi)
-- [Sylvie Dobrota Lai](https://github.com/sylvieddl)
+- [Vishnu Ravi, MD](https://github.com/vishnuravi)
+- [Annabel Tan, MPH](https://github.com/annabelxtan)
+- [Sylvie Dobrota Lai, MS](https://github.com/sylvieddl)
+- [Michelle Odden, PhD](https://michelleodden.com/)
