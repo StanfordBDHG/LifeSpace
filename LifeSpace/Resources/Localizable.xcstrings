@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@" : {
+
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -162,6 +165,9 @@
           }
         }
       }
+    },
+    "Documents" : {
+
     },
     "ERROR" : {
       "localizations" : {
@@ -521,6 +527,9 @@
         }
       }
     },
+    "Study ID" : {
+
+    },
     "STUDYID_ACTION_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -650,6 +659,12 @@
           }
         }
       }
+    },
+    "View Consent Document" : {
+
+    },
+    "View HIPAA Authorization" : {
+
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {

@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import PDFKit
 import SpeziAccount
 import SwiftUI
 
@@ -19,12 +20,26 @@ struct AccountSheet: View {
     @State var isInSetup = false
     @State var overviewIsEditing = false
     
-    
+    //swiftlint:disable closure_body_length
     var body: some View {
         NavigationStack {
             ZStack {
                 if account.signedIn && !isInSetup {
-                    AccountOverview(isEditing: $overviewIsEditing) {
+                    AccountOverview(isEditing: $overviewIsEditing
+                    ) {
+                        List {
+                            Section(header: Text("Study ID")) {
+                                Text("\(getStudyID())")
+                            }
+                            Section(header: Text("Documents")) {
+                                NavigationLink(destination: PDFViewWrapper(url: getDocumentURL(for: "consent"))) {
+                                    Text("View Consent Document")
+                                }
+                                NavigationLink(destination: PDFViewWrapper(url: getDocumentURL(for: "hipaaAuthorization"))) {
+                                    Text("View HIPAA Authorization")
+                                }
+                            }
+                        }
                     }
                         .onDisappear {
                             overviewIsEditing = false
@@ -61,8 +76,36 @@ struct AccountSheet: View {
             }
         }
     }
+    
+    func getStudyID() -> String {
+        UserDefaults.standard.string(forKey: StorageKeys.studyID) ?? "unknownStudyID"
+    }
+    
+    func getDocumentURL(for fileName: String) -> URL {
+        let studyID = getStudyID()
+        let filename = "\(studyID)_\(fileName).pdf"
+        
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = documentsURL.appendingPathComponent(filename)
+        
+        return fileURL
+    }
 }
 
+
+struct PDFViewWrapper: UIViewRepresentable {
+    let url: URL
+    
+    func makeUIView(context: Context) -> PDFView {
+        let pdfView = PDFView()
+        pdfView.document = PDFDocument(url: url)
+        pdfView.autoScales = true
+        return pdfView
+    }
+    
+    func updateUIView(_ uiView: PDFView, context: Context) {}
+}
 
 #if DEBUG
 #Preview("AccountSheet") {
