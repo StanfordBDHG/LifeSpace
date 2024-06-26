@@ -61,6 +61,10 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         }
     }
     
+    var studyID: String {
+        UserDefaults.standard.string(forKey: StorageKeys.studyID) ?? "unknownStudyID"
+    }
+    
     
     init() {
         if !FeatureFlags.disableFirebase {
@@ -214,8 +218,6 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     ///
     /// - Parameter consent: The consent form's data to be stored as a `PDFDocument`.
     func store(consent: PDFDocument) async {
-        let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) ?? "unknownStudyID"
-        
         guard !FeatureFlags.disableFirebase else {
             guard let basePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
                 logger.error("Could not create path for writing consent form to user document directory.")
@@ -248,7 +250,6 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     /// - Parameter name: The name of the consent document.
     func store(consentData: Data, name: String) async {
         /// Adds the study ID to the file name
-        let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) ?? "unknownStudyID"
         let filename = "\(studyID)_\(name).pdf"
         
         guard let docURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
@@ -271,8 +272,15 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     func isConsentFormUploaded(name: String) async -> Bool {
         do {
-            let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) ?? "unknownStudyID"
-            _ = try await userBucketReference.child("ls_consent/\(studyID)_\(name).pdf").getMetadata()
+            let maxSize: Int64 = 10 * 1024 * 1024
+            let data = try await userBucketReference.child("ls_consent/\(studyID)_\(name).pdf").data(maxSize: maxSize)
+            
+            if let docURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                let filename = "\(studyID)_\(name).pdf"
+                let url = docURL.appendingPathComponent(filename)
+                try? data.write(to: url)
+            }
+            
             return true
         } catch {
             return false

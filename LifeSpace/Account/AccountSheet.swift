@@ -20,26 +20,14 @@ struct AccountSheet: View {
     @State var isInSetup = false
     @State var overviewIsEditing = false
     
-    //swiftlint:disable closure_body_length
+    @AppStorage(StorageKeys.studyID) var studyID = "unknownStudyID"
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 if account.signedIn && !isInSetup {
-                    AccountOverview(isEditing: $overviewIsEditing
-                    ) {
-                        List {
-                            Section(header: Text("Study ID")) {
-                                Text("\(getStudyID())")
-                            }
-                            Section(header: Text("Documents")) {
-                                NavigationLink(destination: PDFViewWrapper(url: getDocumentURL(for: "consent"))) {
-                                    Text("View Consent Document")
-                                }
-                                NavigationLink(destination: PDFViewWrapper(url: getDocumentURL(for: "hipaaAuthorization"))) {
-                                    Text("View HIPAA Authorization")
-                                }
-                            }
-                        }
+                    AccountOverview(isEditing: $overviewIsEditing) {
+                        optionsList
                     }
                         .onDisappear {
                             overviewIsEditing = false
@@ -68,6 +56,34 @@ struct AccountSheet: View {
             }
         }
     }
+    
+    var optionsList: some View {
+        List {
+            Section(header: Text("STUDYID_SECTION")) {
+                Text(studyID)
+            }
+            Section(header: Text("DOCUMENTS_SECTION")) {
+                NavigationLink(destination: {
+                    if let url = getDocumentURL(for: "consent") {
+                        ConsentPDFViewer(url: url)
+                    } else {
+                        Text("Document not found.")
+                    }
+                }) {
+                    Text("VIEW_CONSENT_DOCUMENT")
+                }
+                NavigationLink(destination: {
+                    if let url = getDocumentURL(for: "hipaaAuthorization") {
+                        ConsentPDFViewer(url: url)
+                    } else {
+                        Text("Document not found.")
+                    }
+                }) {
+                    Text("VIEW_HIPAA_AUTHORIZATION")
+                }
+            }
+        }
+    }
 
     var closeButton: some ToolbarContent {
         ToolbarItem(placement: .cancellationAction) {
@@ -76,36 +92,18 @@ struct AccountSheet: View {
             }
         }
     }
+
     
-    func getStudyID() -> String {
-        UserDefaults.standard.string(forKey: StorageKeys.studyID) ?? "unknownStudyID"
-    }
-    
-    func getDocumentURL(for fileName: String) -> URL {
-        let studyID = getStudyID()
-        let filename = "\(studyID)_\(fileName).pdf"
+    func getDocumentURL(for fileName: String) -> URL? {
+        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return nil
+        }
         
-        let fileManager = FileManager.default
-        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileURL = documentsURL.appendingPathComponent(filename)
-        
-        return fileURL
+        let filenameWithStudyID = "\(studyID)_\(fileName).pdf"
+        return documentsURL.appendingPathComponent(filenameWithStudyID)
     }
 }
 
-
-struct PDFViewWrapper: UIViewRepresentable {
-    let url: URL
-    
-    func makeUIView(context: Context) -> PDFView {
-        let pdfView = PDFView()
-        pdfView.document = PDFDocument(url: url)
-        pdfView.autoScales = true
-        return pdfView
-    }
-    
-    func updateUIView(_ uiView: PDFView, context: Context) {}
-}
 
 #if DEBUG
 #Preview("AccountSheet") {

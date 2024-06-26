@@ -61,6 +61,7 @@
 		63497B732BBF855E001F8419 /* OptionsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63497B722BBF855E001F8419 /* OptionsPanel.swift */; };
 		634FFF672C169F40005E8217 /* LifeSpaceConsent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634FFF662C169F40005E8217 /* LifeSpaceConsent.swift */; };
 		634FFF6D2C16B81A005E8217 /* HIPAAAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634FFF6C2C16B81A005E8217 /* HIPAAAuthorization.swift */; };
+		639B69DB2C2BCD6A00C0FF4A /* ConsentPDFVIewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639B69DA2C2BCD6A00C0FF4A /* ConsentPDFVIewer.swift */; };
 		63A28D312C0580310025A1E0 /* RefreshIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A28D302C0580310025A1E0 /* RefreshIcon.swift */; };
 		63A28D332C062E2E0025A1E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63A28D322C062E2E0025A1E0 /* GoogleService-Info.plist */; };
 		63A8DB292C1FE81200939757 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A8DB282C1FE81200939757 /* AppIcon.png */; };
@@ -139,6 +140,7 @@
 		63497B722BBF855E001F8419 /* OptionsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsPanel.swift; sourceTree = "<group>"; };
 		634FFF662C169F40005E8217 /* LifeSpaceConsent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeSpaceConsent.swift; sourceTree = "<group>"; };
 		634FFF6C2C16B81A005E8217 /* HIPAAAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIPAAAuthorization.swift; sourceTree = "<group>"; };
+		639B69DA2C2BCD6A00C0FF4A /* ConsentPDFVIewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentPDFVIewer.swift; sourceTree = "<group>"; };
 		63A28D302C0580310025A1E0 /* RefreshIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshIcon.swift; sourceTree = "<group>"; };
 		63A28D322C062E2E0025A1E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		63A8DB282C1FE81200939757 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 				A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */,
 				A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */,
 				A9DFE8A82ABE551400428242 /* AccountButton.swift */,
+				639B69DA2C2BCD6A00C0FF4A /* ConsentPDFVIewer.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
 				63EA5F8C2BC78F8400A48590 /* DailySurveyResponse.swift in Sources */,
+				639B69DB2C2BCD6A00C0FF4A /* ConsentPDFVIewer.swift in Sources */,
 				2FE5DC4529EDD7F2004B9AB4 /* Binding+Negate.swift in Sources */,
 				63497B732BBF855E001F8419 /* OptionsPanel.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
@@ -770,7 +774,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = B2Q3T3P8HP;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "LifeSpace/Supporting Files/Info.plist";
@@ -974,7 +978,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = B2Q3T3P8HP;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "LifeSpace/Supporting Files/Info.plist";
@@ -1021,7 +1025,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = B2Q3T3P8HP;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "LifeSpace/Supporting Files/Info.plist";

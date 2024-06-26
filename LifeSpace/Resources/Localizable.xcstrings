@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%@" : {
-
-    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -166,7 +163,10 @@
         }
       }
     },
-    "Documents" : {
+    "Document not found." : {
+
+    },
+    "DOCUMENTS_SECTION" : {
 
     },
     "ERROR" : {
@@ -527,15 +527,22 @@
         }
       }
     },
-    "Study ID" : {
-
-    },
     "STUDYID_ACTION_BUTTON" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next"
+          }
+        }
+      }
+    },
+    "STUDYID_SECTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Study ID"
           }
         }
       }
@@ -660,11 +667,25 @@
         }
       }
     },
-    "View Consent Document" : {
-
+    "VIEW_CONSENT_DOCUMENT" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Consent Document"
+          }
+        }
+      }
     },
-    "View HIPAA Authorization" : {
-
+    "VIEW_HIPAA_AUTHORIZATION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View HIPAA Authorization"
+          }
+        }
+      }
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {
