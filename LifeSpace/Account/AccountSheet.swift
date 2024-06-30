@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import PDFKit
 import SpeziAccount
 import SwiftUI
 
@@ -19,12 +20,14 @@ struct AccountSheet: View {
     @State var isInSetup = false
     @State var overviewIsEditing = false
     
+    @AppStorage(StorageKeys.studyID) var studyID = "unknownStudyID"
     
     var body: some View {
         NavigationStack {
             ZStack {
                 if account.signedIn && !isInSetup {
                     AccountOverview(isEditing: $overviewIsEditing) {
+                        optionsList
                     }
                         .onDisappear {
                             overviewIsEditing = false
@@ -53,6 +56,44 @@ struct AccountSheet: View {
             }
         }
     }
+    
+    var optionsList: some View {
+        List {
+            Section(header: Text("STUDYID_SECTION")) {
+                Text(studyID)
+            }
+            Section(header: Text("DOCUMENTS_SECTION")) {
+                NavigationLink(destination: {
+                    if let url = getDocumentURL(for: "consent") {
+                        ConsentPDFViewer(url: url)
+                    } else {
+                        Text("DOCUMENT_NOT_FOUND_MESSAGE")
+                    }
+                }) {
+                    Text("VIEW_CONSENT_DOCUMENT")
+                }
+                NavigationLink(destination: {
+                    if let url = getDocumentURL(for: "hipaaAuthorization") {
+                        ConsentPDFViewer(url: url)
+                    } else {
+                        Text("DOCUMENT_NOT_FOUND_MESSAGE")
+                    }
+                }) {
+                    Text("VIEW_HIPAA_AUTHORIZATION")
+                }
+                NavigationLink(destination: EmptyView()) {
+                    Button(action: {
+                        if let url = URL(string: "https://michelleodden.com/cardinal-lifespace-privacy-policy/") {
+                            UIApplication.shared.open(url)
+                        }
+                    }) {
+                        Text("VIEW_PRIVACY_POLICY")
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                }
+            }
+        }
+    }
 
     var closeButton: some ToolbarContent {
         ToolbarItem(placement: .cancellationAction) {
@@ -60,6 +101,16 @@ struct AccountSheet: View {
                 dismiss()
             }
         }
+    }
+
+    
+    func getDocumentURL(for fileName: String) -> URL? {
+        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+        
+        let filenameWithStudyID = "\(studyID)_\(fileName).pdf"
+        return documentsURL.appendingPathComponent(filenameWithStudyID)
     }
 }
 

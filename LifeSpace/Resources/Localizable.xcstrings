@@ -163,6 +163,19 @@
         }
       }
     },
+    "DOCUMENT_NOT_FOUND_MESSAGE" : {
+
+    },
+    "DOCUMENTS_SECTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Documents"
+          }
+        }
+      }
+    },
     "ERROR" : {
       "localizations" : {
         "en" : {
@@ -457,7 +470,14 @@
       }
     },
     "PREVIOUS_DAY_SURVEY_LABEL" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yesterday's Survey"
+          }
+        }
+      }
     },
     "PREVIOUS_DAY_SURVEY_NOTICE" : {
       "localizations" : {
@@ -527,6 +547,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next"
+          }
+        }
+      }
+    },
+    "STUDYID_SECTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Study ID"
           }
         }
       }
@@ -647,6 +677,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Track My Location"
+          }
+        }
+      }
+    },
+    "VIEW_CONSENT_DOCUMENT" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Consent Document"
+          }
+        }
+      }
+    },
+    "VIEW_HIPAA_AUTHORIZATION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View HIPAA Authorization"
+          }
+        }
+      }
+    },
+    "VIEW_PRIVACY_POLICY" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Privacy Policy"
           }
         }
       }
