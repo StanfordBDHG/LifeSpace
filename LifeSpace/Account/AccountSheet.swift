@@ -67,7 +67,7 @@ struct AccountSheet: View {
                     if let url = getDocumentURL(for: "consent") {
                         ConsentPDFViewer(url: url)
                     } else {
-                        Text("Document not found.")
+                        Text("DOCUMENT_NOT_FOUND_MESSAGE")
                     }
                 }) {
                     Text("VIEW_CONSENT_DOCUMENT")
@@ -76,10 +76,20 @@ struct AccountSheet: View {
                     if let url = getDocumentURL(for: "hipaaAuthorization") {
                         ConsentPDFViewer(url: url)
                     } else {
-                        Text("Document not found.")
+                        Text("DOCUMENT_NOT_FOUND_MESSAGE")
                     }
                 }) {
                     Text("VIEW_HIPAA_AUTHORIZATION")
+                }
+                NavigationLink(destination: EmptyView()) {
+                    Button(action: {
+                        if let url = URL(string: "https://michelleodden.com/cardinal-lifespace-privacy-policy/") {
+                            UIApplication.shared.open(url)
+                        }
+                    }) {
+                        Text("VIEW_PRIVACY_POLICY")
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
         }
