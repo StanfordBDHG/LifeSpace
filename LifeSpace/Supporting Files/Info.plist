@@ -6,8 +6,6 @@
 	<true/>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
-	<key>MBXAccessToken</key>
-	<string>TOKEN</string>
 	<key>MGLMapboxMetricsEnabledSettingShownInApp</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>

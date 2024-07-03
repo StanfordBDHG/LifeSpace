@@ -43,6 +43,10 @@ firebase-debug.*.log*
 
 # Firebase
 .firebase/
+GoogleService-Info.plist
 
 # Swift Package List
 LifeSpace/package-list.json
+
+# Mapbox token
+.mapbox
