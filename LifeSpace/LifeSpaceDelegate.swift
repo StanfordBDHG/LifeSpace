@@ -31,9 +31,13 @@ class LifeSpaceDelegate: SpeziAppDelegate {
                         emulatorSettings: (host: "localhost", port: 9099)
                     )
                 } else {
-                    FirebaseAccountConfiguration(authenticationMethods: [.signInWithApple])
+                    FirebaseAccountConfiguration(
+                        authenticationMethods: [.signInWithApple]
+                    )
                 }
+                
                 firestore
+                
                 if FeatureFlags.useFirebaseEmulator {
                     FirebaseStorageConfiguration(emulatorSettings: (host: "localhost", port: 9199))
                 } else {
