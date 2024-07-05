@@ -164,7 +164,14 @@
       }
     },
     "DOCUMENT_NOT_FOUND_MESSAGE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Document not found."
+          }
+        }
+      }
     },
     "DOCUMENTS_SECTION" : {
       "localizations" : {
@@ -358,6 +365,16 @@
         }
       }
     },
+    "LOCATION_OVERLAY_ACTION_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn Location Tracking On"
+          }
+        }
+      }
+    },
     "LOCATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -384,6 +401,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Location Access"
+          }
+        }
+      }
+    },
+    "LOCATION_TRACKING_OFF" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location tracking is switched off."
           }
         }
       }
@@ -537,6 +564,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schedule"
+          }
+        }
+      }
+    },
+    "SETTINGS_SECTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
           }
         }
       }

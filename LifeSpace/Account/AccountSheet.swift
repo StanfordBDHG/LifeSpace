@@ -16,11 +16,14 @@ struct AccountSheet: View {
     
     @Environment(Account.self) private var account
     @Environment(\.accountRequired) var accountRequired
+    @Environment(LocationModule.self) private var locationModule
     
     @State var isInSetup = false
     @State var overviewIsEditing = false
     
     @AppStorage(StorageKeys.studyID) var studyID = "unknownStudyID"
+    @AppStorage(StorageKeys.trackingPreference) private var trackingOn = true
+    
     
     var body: some View {
         NavigationStack {
@@ -82,20 +85,38 @@ struct AccountSheet: View {
                     Text("VIEW_HIPAA_AUTHORIZATION")
                 }
                 NavigationLink(destination: EmptyView()) {
-                    Button(action: {
-                        if let url = URL(string: "https://michelleodden.com/cardinal-lifespace-privacy-policy/") {
-                            UIApplication.shared.open(url)
-                        }
-                    }) {
-                        Text("VIEW_PRIVACY_POLICY")
-                    }
-                    .buttonStyle(PlainButtonStyle())
+                    privacyPolicyButton
                 }
+            }
+            Section(header: Text("SETTINGS_SECTION")) {
+                locationTrackingToggle
             }
         }
     }
-
-    var closeButton: some ToolbarContent {
+    
+    private var privacyPolicyButton: some View {
+        Button(action: {
+            if let url = URL(string: "https://michelleodden.com/cardinal-lifespace-privacy-policy/") {
+                UIApplication.shared.open(url)
+            }
+        }) {
+            Text("VIEW_PRIVACY_POLICY")
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+    
+    private var locationTrackingToggle: some View {
+        Toggle("TRACK_LOCATION_BUTTON", isOn: $trackingOn)
+            .onChange(of: trackingOn) {
+                if trackingOn {
+                    locationModule.startTracking()
+                } else {
+                    locationModule.stopTracking()
+                }
+            }
+    }
+    
+    private var closeButton: some ToolbarContent {
         ToolbarItem(placement: .cancellationAction) {
             Button("CLOSE") {
                 dismiss()

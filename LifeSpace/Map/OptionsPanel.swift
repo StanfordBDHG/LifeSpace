@@ -20,12 +20,13 @@ struct OptionsPanel: View {
     @State private var showingSurvey = false
     
     var body: some View {
-        GroupBox {
+        Group {
             Button {
                 self.showingSurvey.toggle()
             } label: {
                 Text("OPTIONS_PANEL_SURVEY_BUTTON")
                     .frame(maxWidth: .infinity)
+                    .padding()
             }
             .sheet(isPresented: $showingSurvey) {
                 DailySurveyTaskView(showingSurvey: $showingSurvey)
@@ -37,18 +38,7 @@ struct OptionsPanel: View {
                     }
                 }
             }
-        }
-        
-        GroupBox {
-            Toggle("TRACK_LOCATION_BUTTON", isOn: $trackingOn)
-                .onChange(of: trackingOn) {
-                    if trackingOn {
-                        locationModule.startTracking()
-                    } else {
-                        locationModule.stopTracking()
-                    }
-                }
-        }
+        }.buttonStyle(.borderedProminent)
     }
 }
 

@@ -30,6 +30,9 @@ struct LifeSpaceMapView: View {
             ZStack {
                 MapManagerViewWrapper()
                 VStack {
+                    if !trackingOn {
+                        locationTrackingOverlay
+                    }
                     Spacer()
                     GroupBox {
                         optionsPanelButton
@@ -62,6 +65,24 @@ struct LifeSpaceMapView: View {
             if newPhase == .active {
                 refreshMap()
             }
+        }
+    }
+    
+    private var locationTrackingOverlay: some View {
+        VStack {
+            Spacer()
+            GroupBox {
+                Text("LOCATION_TRACKING_OFF")
+                Button(action: {
+                    locationModule.startTracking()
+                    trackingOn = true
+                }) {
+                    Text("LOCATION_OVERLAY_ACTION_BUTTON")
+                }
+            }
+                .buttonStyle(.borderedProminent)
+                .padding()
+            Spacer()
         }
     }
     
