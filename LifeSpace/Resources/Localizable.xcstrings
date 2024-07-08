@@ -358,6 +358,16 @@
         }
       }
     },
+    "LOCATION_NOT_TRACKED" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location tracking is off."
+          }
+        }
+      }
+    },
     "LOCATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -541,6 +551,16 @@
         }
       }
     },
+    "SETTINGS_SECTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
+    },
     "STUDYID_ACTION_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -677,6 +697,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Track My Location"
+          }
+        }
+      }
+    },
+    "TURN_TRACKING_ON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn Tracking On"
           }
         }
       }
