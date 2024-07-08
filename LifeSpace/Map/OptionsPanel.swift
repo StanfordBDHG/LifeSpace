@@ -38,17 +38,6 @@ struct OptionsPanel: View {
                 }
             }
         }
-        
-        GroupBox {
-            Toggle("TRACK_LOCATION_BUTTON", isOn: $trackingOn)
-                .onChange(of: trackingOn) {
-                    if trackingOn {
-                        locationModule.startTracking()
-                    } else {
-                        locationModule.stopTracking()
-                    }
-                }
-        }
     }
 }
 

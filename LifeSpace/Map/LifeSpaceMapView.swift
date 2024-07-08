@@ -29,11 +29,16 @@ struct LifeSpaceMapView: View {
         NavigationStack {
             ZStack {
                 MapManagerViewWrapper()
+                
+                if !trackingOn {
+                    locationTrackingOverlay
+                }
+                
                 VStack {
                     Spacer()
                     GroupBox {
                         optionsPanelButton
-                        if self.optionsPanelOpen {
+                        if optionsPanelOpen {
                             OptionsPanel()
                         }
                     }
@@ -62,6 +67,24 @@ struct LifeSpaceMapView: View {
             if newPhase == .active {
                 refreshMap()
             }
+        }
+    }
+    
+    private var locationTrackingOverlay: some View {
+        VStack {
+            Spacer()
+            GroupBox {
+                Text("LOCATION_NOT_TRACKED")
+                    .padding()
+                Button(action: {
+                    self.trackingOn = true
+                    self.locationModule.startTracking()
+                }) {
+                    Text("TURN_TRACKING_ON")
+                }
+                .buttonStyle(.borderedProminent)
+            }
+            Spacer()
         }
     }
     
