@@ -12,7 +12,7 @@ struct DailySurveyResponse: Codable {
     var surveyName: String?
     var surveyDate: String?
     var studyID: String?
-    var updatedBy: String?
+    var UpdatedBy: String? // swiftlint:disable:this identifier_name
     var timestamp: Date?
     var socialInteractionQuestion: Int?
     var leavingTheHouseQuestion: Int?

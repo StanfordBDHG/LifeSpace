@@ -74,8 +74,21 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     
     func add(sample: HKSample) async {
+        guard let details = await account.details else {
+            logger.error("User is not logged in.")
+            return
+        }
+        
         do {
-            try await healthKitDocument(id: sample.id).setData(from: sample.resource)
+            let resource = try sample.resource
+            
+            let data = HealthKitDataPoint(
+                studyID: studyID,
+                UpdatedBy: details.accountId,
+                resource: resource
+            )
+            
+            try await healthKitDocument(id: sample.id).setData(from: data)
         } catch {
             logger.error("Could not store HealthKit sample: \(error)")
         }
@@ -117,7 +130,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             latitude: location.latitude,
             longitude: location.longitude,
             studyID: studyID,
-            updatedBy: details.accountId
+            UpdatedBy: details.accountId
         )
         
         try await userDocumentReference
@@ -172,7 +185,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         
         response.timestamp = Date()
         response.studyID = studyID
-        response.updatedBy = details.accountId
+        response.UpdatedBy = details.accountId
         
         try await userDocumentReference
             .collection("ls_surveys")
@@ -201,7 +214,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     private func healthKitDocument(id uuid: UUID) async throws -> DocumentReference {
         try await userDocumentReference
-            .collection("ls_healthkit") // Add all HealthKit sources in a /HealthKit collection.
+            .collection("ls_healthkit_new") // Add all HealthKit sources in a /HealthKit collection.
             .document(uuid.uuidString) // Set the document identifier to the UUID of the document.
     }
     
