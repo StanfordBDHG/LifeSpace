@@ -7,6 +7,7 @@
 //
 
 import CoreLocation
+import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 import HealthKitOnFHIR
@@ -42,22 +43,22 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     private var userDocumentReference: DocumentReference {
         get async throws {
-            guard let details = await account.details else {
+            guard let user = Auth.auth().currentUser else {
                 throw LifeSpaceStandardError.userNotAuthenticatedYet
             }
             
-            return Self.userCollection.document(details.accountId)
+            return Self.userCollection.document(user.uid)
         }
     }
     
     private var userBucketReference: StorageReference {
         get async throws {
-            guard let details = await account.details else {
+            guard let user = Auth.auth().currentUser else {
                 throw LifeSpaceStandardError.userNotAuthenticatedYet
             }
             
             let bundleIdentifier = Bundle.main.bundleIdentifier ?? "edu.stanford.lifespace"
-            return Storage.storage().reference().child("\(bundleIdentifier)/study/ls_users/\(details.accountId)")
+            return Storage.storage().reference().child("\(bundleIdentifier)/study/ls_users/\(user.uid)")
         }
     }
     
@@ -74,7 +75,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     
     func add(sample: HKSample) async {
-        guard let details = await account.details else {
+        guard let user = Auth.auth().currentUser else {
             logger.error("User is not logged in.")
             return
         }
@@ -84,7 +85,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             
             let data = HealthKitDataPoint(
                 studyID: studyID,
-                UpdatedBy: details.accountId,
+                UpdatedBy: user.uid,
                 resource: resource
             )
             
@@ -116,7 +117,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     }
     
     func add(location: CLLocationCoordinate2D) async throws {
-        guard let details = await account.details else {
+        guard let user = Auth.auth().currentUser else {
             throw LifeSpaceStandardError.userNotAuthenticatedYet
         }
         
@@ -130,7 +131,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             latitude: location.latitude,
             longitude: location.longitude,
             studyID: studyID,
-            UpdatedBy: details.accountId
+            UpdatedBy: user.uid
         )
         
         try await userDocumentReference
@@ -173,19 +174,15 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     
     func add(response: DailySurveyResponse) async throws {
-        guard let details = await account.details else {
+        guard let user = Auth.auth().currentUser else {
             throw LifeSpaceStandardError.userNotAuthenticatedYet
-        }
-        
-        guard let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) else {
-            throw LifeSpaceStandardError.invalidStudyID
         }
         
         var response = response
         
         response.timestamp = Date()
         response.studyID = studyID
-        response.UpdatedBy = details.accountId
+        response.UpdatedBy = user.uid
         
         try await userDocumentReference
             .collection("ls_surveys")
@@ -214,7 +211,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     private func healthKitDocument(id uuid: UUID) async throws -> DocumentReference {
         try await userDocumentReference
-            .collection("ls_healthkit_new") // Add all HealthKit sources in a /HealthKit collection.
+            .collection("ls_healthkit") // Add all HealthKit sources in a /HealthKit collection.
             .document(uuid.uuidString) // Set the document identifier to the UUID of the document.
     }
     
