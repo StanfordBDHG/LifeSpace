@@ -43,22 +43,22 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     private var userDocumentReference: DocumentReference {
         get async throws {
-            guard let user = Auth.auth().currentUser else {
+            guard let userId = Auth.auth().currentUser?.uid else {
                 throw LifeSpaceStandardError.userNotAuthenticatedYet
             }
             
-            return Self.userCollection.document(user.uid)
+            return Self.userCollection.document(userId)
         }
     }
     
     private var userBucketReference: StorageReference {
         get async throws {
-            guard let user = Auth.auth().currentUser else {
+            guard let userId = Auth.auth().currentUser?.uid else {
                 throw LifeSpaceStandardError.userNotAuthenticatedYet
             }
             
             let bundleIdentifier = Bundle.main.bundleIdentifier ?? "edu.stanford.lifespace"
-            return Storage.storage().reference().child("\(bundleIdentifier)/study/ls_users/\(user.uid)")
+            return Storage.storage().reference().child("\(bundleIdentifier)/study/ls_users/\(userId)")
         }
     }
     
@@ -75,7 +75,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     
     func add(sample: HKSample) async {
-        guard let user = Auth.auth().currentUser else {
+        guard let userId = Auth.auth().currentUser?.uid else {
             logger.error("User is not logged in.")
             return
         }
@@ -85,7 +85,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             
             let data = HealthKitDataPoint(
                 studyID: studyID,
-                UpdatedBy: user.uid,
+                UpdatedBy: userId,
                 resource: resource
             )
             
@@ -117,7 +117,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     }
     
     func add(location: CLLocationCoordinate2D) async throws {
-        guard let user = Auth.auth().currentUser else {
+        guard let userId = Auth.auth().currentUser?.uid else {
             throw LifeSpaceStandardError.userNotAuthenticatedYet
         }
         
@@ -131,7 +131,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             latitude: location.latitude,
             longitude: location.longitude,
             studyID: studyID,
-            UpdatedBy: user.uid
+            UpdatedBy: userId
         )
         
         try await userDocumentReference
@@ -174,7 +174,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     
     func add(response: DailySurveyResponse) async throws {
-        guard let user = Auth.auth().currentUser else {
+        guard let userId = Auth.auth().currentUser?.uid else {
             throw LifeSpaceStandardError.userNotAuthenticatedYet
         }
         
@@ -182,7 +182,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         
         response.timestamp = Date()
         response.studyID = studyID
-        response.UpdatedBy = user.uid
+        response.UpdatedBy = userId
         
         try await userDocumentReference
             .collection("ls_surveys")
