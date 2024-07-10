@@ -248,7 +248,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await userBucketReference.child("consent/\(studyID)_consent.pdf").putDataAsync(consentData, metadata: metadata)
+            _ = try await userBucketReference.child("ls_consent/\(studyID)_consent.pdf").putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }
