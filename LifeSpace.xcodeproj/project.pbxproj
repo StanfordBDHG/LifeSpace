@@ -65,6 +65,7 @@
 		63A28D312C0580310025A1E0 /* RefreshIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A28D302C0580310025A1E0 /* RefreshIcon.swift */; };
 		63A28D332C062E2E0025A1E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63A28D322C062E2E0025A1E0 /* GoogleService-Info.plist */; };
 		63A8DB292C1FE81200939757 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A8DB282C1FE81200939757 /* AppIcon.png */; };
+		63AB851F2C3DACA40011AEB6 /* HealthKitDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AB851E2C3DACA40011AEB6 /* HealthKitDataPoint.swift */; };
 		63BBF8162BB8993B006890CE /* StudyIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BBF8152BB8993B006890CE /* StudyIDView.swift */; };
 		63BBF8192BB89CF7006890CE /* studyIDs.csv in Resources */ = {isa = PBXBuildFile; fileRef = 63BBF8182BB89CF7006890CE /* studyIDs.csv */; };
 		63D86AD62C3B7F310096B9DB /* DocumentWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D86AD52C3B7F310096B9DB /* DocumentWebView.swift */; };
@@ -145,6 +146,7 @@
 		63A28D302C0580310025A1E0 /* RefreshIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshIcon.swift; sourceTree = "<group>"; };
 		63A28D322C062E2E0025A1E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		63A8DB282C1FE81200939757 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
+		63AB851E2C3DACA40011AEB6 /* HealthKitDataPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitDataPoint.swift; sourceTree = "<group>"; };
 		63BBF8152BB8993B006890CE /* StudyIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyIDView.swift; sourceTree = "<group>"; };
 		63BBF8182BB89CF7006890CE /* studyIDs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = studyIDs.csv; sourceTree = "<group>"; };
 		63CC66972C204CC5001DCFDF /* LifeSpace.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = LifeSpace.xctestplan; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				2FE5DC4229EDD7F2004B9AB4 /* Binding+Negate.swift */,
 				2FE5DC4329EDD7F2004B9AB4 /* Bundle+Image.swift */,
 				63F4C39E2BBCCDB70033D985 /* Date+Helpers.swift */,
+				63AB851E2C3DACA40011AEB6 /* HealthKitDataPoint.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
 				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
+				63AB851F2C3DACA40011AEB6 /* HealthKitDataPoint.swift in Sources */,
 				2FE5DC4F29EDD7FA004B9AB4 /* EventContext.swift in Sources */,
 				6347EB642BBBA895008E0C4A /* LifeSpaceMapView.swift in Sources */,
 				63F4C3992BBCCC300033D985 /* MapboxView.swift in Sources */,
@@ -796,7 +800,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LifeSpace/Supporting Files/LifeSpace.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -1000,7 +1004,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LifeSpace/Supporting Files/LifeSpace.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -1047,7 +1051,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LifeSpace/Supporting Files/LifeSpace.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;

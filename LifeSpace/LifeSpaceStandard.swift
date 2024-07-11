@@ -7,6 +7,7 @@
 //
 
 import CoreLocation
+import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 import HealthKitOnFHIR
@@ -42,22 +43,22 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     private var userDocumentReference: DocumentReference {
         get async throws {
-            guard let details = await account.details else {
+            guard let userId = Auth.auth().currentUser?.uid else {
                 throw LifeSpaceStandardError.userNotAuthenticatedYet
             }
             
-            return Self.userCollection.document(details.accountId)
+            return Self.userCollection.document(userId)
         }
     }
     
     private var userBucketReference: StorageReference {
         get async throws {
-            guard let details = await account.details else {
+            guard let userId = Auth.auth().currentUser?.uid else {
                 throw LifeSpaceStandardError.userNotAuthenticatedYet
             }
             
             let bundleIdentifier = Bundle.main.bundleIdentifier ?? "edu.stanford.lifespace"
-            return Storage.storage().reference().child("\(bundleIdentifier)/study/ls_users/\(details.accountId)")
+            return Storage.storage().reference().child("\(bundleIdentifier)/study/ls_users/\(userId)")
         }
     }
     
@@ -74,8 +75,27 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     
     func add(sample: HKSample) async {
+        guard let userId = Auth.auth().currentUser?.uid else {
+            logger.error("User is not logged in.")
+            return
+        }
+        
         do {
-            try await healthKitDocument(id: sample.id).setData(from: sample.resource)
+            let resource = try sample.resource
+            
+            let data = try JSONEncoder().encode(resource)
+            
+            /// Convert the FHIR resource into a dictionary so we can add fields necessary for the backend
+            guard var dataDict = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any] else {
+                logger.error("Cannot serialize data.")
+                return
+            }
+            
+            /// The `UpdatedBy` field is checked by the mHealth platform security rules
+            dataDict["UpdatedBy"] = userId
+            dataDict["studyID"] = studyID
+            
+            try await healthKitDocument(id: sample.id).setData(dataDict)
         } catch {
             logger.error("Could not store HealthKit sample: \(error)")
         }
@@ -103,7 +123,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     }
     
     func add(location: CLLocationCoordinate2D) async throws {
-        guard let details = await account.details else {
+        guard let userId = Auth.auth().currentUser?.uid else {
             throw LifeSpaceStandardError.userNotAuthenticatedYet
         }
         
@@ -117,7 +137,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             latitude: location.latitude,
             longitude: location.longitude,
             studyID: studyID,
-            updatedBy: details.accountId
+            UpdatedBy: userId
         )
         
         try await userDocumentReference
@@ -160,19 +180,15 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     
     func add(response: DailySurveyResponse) async throws {
-        guard let details = await account.details else {
+        guard let userId = Auth.auth().currentUser?.uid else {
             throw LifeSpaceStandardError.userNotAuthenticatedYet
-        }
-        
-        guard let studyID = UserDefaults.standard.string(forKey: StorageKeys.studyID) else {
-            throw LifeSpaceStandardError.invalidStudyID
         }
         
         var response = response
         
         response.timestamp = Date()
         response.studyID = studyID
-        response.updatedBy = details.accountId
+        response.UpdatedBy = userId
         
         try await userDocumentReference
             .collection("ls_surveys")
@@ -238,7 +254,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await userBucketReference.child("consent/\(studyID)_consent.pdf").putDataAsync(consentData, metadata: metadata)
+            _ = try await userBucketReference.child("ls_consent/\(studyID)_consent.pdf").putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }

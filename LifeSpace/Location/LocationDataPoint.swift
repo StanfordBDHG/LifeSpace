@@ -14,5 +14,5 @@ struct LocationDataPoint: Codable {
     var latitude: CLLocationDegrees
     var longitude: CLLocationDegrees
     var studyID: String = ""
-    var updatedBy: String = ""
+    var UpdatedBy: String = "" // swiftlint:disable:this identifier_name
 }
