@@ -20,11 +20,11 @@ struct DailySurveyTaskView: View {
     
     
     var body: some View {
-        if surveyAlreadyTaken {
+        if SurveyModule.surveyAlreadyTaken {
             surveyTakenView
-        } else if isPreviousDaySurvey && !acknowledgedPreviousDaySurvey {
+        } else if SurveyModule.isPreviousDaySurvey && !acknowledgedPreviousDaySurvey {
             previousDaySurveyView
-        } else if shouldShowSurvey {
+        } else if SurveyModule.shouldShowSurvey {
             Group {
                 ORKOrderedTaskView(tasks: DailySurveyTask(identifier: "DailySurveyTask")) { result in
                     guard case let .completed(taskResult) = result else {
@@ -63,6 +63,8 @@ struct DailySurveyTaskView: View {
 
     private var surveyTakenView: some View {
         VStack {
+            Spacer()
+            
             Image(systemName: "exclamationmark.triangle.fill")
                 .resizable()
                 .frame(width: 50, height: 50)
@@ -73,16 +75,22 @@ struct DailySurveyTaskView: View {
                 .padding()
                 .multilineTextAlignment(.center)
             
-            Button("OK") {
+            Button(action: {
                 self.showingSurvey = false
-            }
+            }, label: {
+                Text("OK")
+                    .padding()
+            })
             .buttonStyle(.borderedProminent)
-            .padding(.top, 20)
+            
+            Spacer()
         }
     }
     
     private var previousDaySurveyView: some View {
         VStack {
+            Spacer ()
+            
             Image(systemName: "exclamationmark.triangle.fill")
                 .resizable()
                 .frame(width: 50, height: 50)
@@ -93,16 +101,22 @@ struct DailySurveyTaskView: View {
                 .padding()
                 .multilineTextAlignment(.center)
             
-            Button("CONTINUE") {
+            Button(action: {
                 self.acknowledgedPreviousDaySurvey = true
-            }
+            }, label: {
+                Text("CONTINUE")
+                    .padding()
+            })
             .buttonStyle(.borderedProminent)
-            .padding(.top, 20)
+            
+            Spacer()
         }
     }
     
     private var surveyUnavailableView: some View {
         VStack {
+            Spacer()
+            
             Image(systemName: "clock.fill")
                 .resizable()
                 .frame(width: 50, height: 50)
@@ -113,53 +127,20 @@ struct DailySurveyTaskView: View {
                 .padding()
                 .multilineTextAlignment(.center)
             
-            Button("CLOSE") {
-                self.showingSurvey.toggle()
-            }
-            .buttonStyle(.borderedProminent)
-            .padding(.top, 20)
-        }
-    }
-    
-    private var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/yyyy"
-        return formatter
-    }
-    
-    private var currentHour: Int {
-        Calendar.current.component(.hour, from: Date())
-    }
-    
-    private var isPreviousDaySurvey: Bool {
-        /// If the user is taking the survey before 7am, they should be informed that they are taking the
-        /// previous day's survey
-        currentHour < 7
-    }
-    
-    private var surveyAlreadyTaken: Bool {
-        let lastSurveyDateString = UserDefaults.standard.string(forKey: StorageKeys.lastSurveyDate)
-        
-        // Determine the survey date based on the current time
-        let surveyDate: Date
-        if currentHour < 7 {
-            surveyDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())?.startOfDay ?? Date().startOfDay
-        } else {
-            surveyDate = Date().startOfDay
-        }
-        
-        // Format the survey date to a string
-        let surveyDateString = dateFormatter.string(from: surveyDate)
-        
-        // Compare the last survey date with the calculated survey date
-        return lastSurveyDateString == surveyDateString
-    }
+            Spacer()
 
-    
-    private var shouldShowSurvey: Bool {
-        /// The survey should only be shown if it between 7pm and 7am
-        currentHour < 7 || currentHour >= 19
+            Button(action: {
+                self.showingSurvey.toggle()
+            }, label: {
+                Text("CLOSE")
+                    .padding()
+            })
+            .buttonStyle(.borderedProminent)
+            
+            Spacer()
+        }
     }
+    
     
     private func saveResponse(taskResult: ORKTaskResult) async {
         var response = DailySurveyResponse()
@@ -169,12 +150,12 @@ struct DailySurveyTaskView: View {
         /// If the user is taking the survey before 7am, the `surveyDate` should reflect the previous day,
         /// otherwise it should reflect the current day.
         let surveyDate: Date
-        if currentHour < 7 {
+        if SurveyModule.currentHour < 7 {
             surveyDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())?.startOfDay ?? Date().startOfDay
         } else {
             surveyDate = Date().startOfDay
         }
-        let surveyDateString = dateFormatter.string(from: surveyDate)
+        let surveyDateString = SurveyModule.dateFormatter.string(from: surveyDate)
         response.surveyDate = surveyDateString
         
         // swiftlint:disable legacy_objc_type

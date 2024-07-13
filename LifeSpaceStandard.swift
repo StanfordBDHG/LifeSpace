@@ -82,14 +82,8 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         
         do {
             let resource = try sample.resource
-            
-            let data = try JSONEncoder().encode(resource)
-            
-            /// Convert the FHIR resource into a dictionary so we can add fields necessary for the backend
-            guard var dataDict = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any] else {
-                logger.error("Cannot serialize data.")
-                return
-            }
+            let encoder = FirebaseFirestore.Firestore.Encoder()
+            var dataDict = try encoder.encode(resource)
             
             /// The `UpdatedBy` field is checked by the mHealth platform security rules
             dataDict["UpdatedBy"] = userId
@@ -97,7 +91,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             
             try await healthKitDocument(id: sample.id).setData(dataDict)
         } catch {
-            logger.error("Could not store HealthKit sample: \(error)")
+            logger.error("Could not store HealthKit sample: \(error) Sample: \(sample.sampleType)")
         }
     }
     

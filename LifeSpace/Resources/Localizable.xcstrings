@@ -408,6 +408,9 @@
         }
       }
     },
+    "NO" : {
+
+    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -474,7 +477,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Options"
+            "value" : "After 7 PM"
           }
         }
       }
@@ -627,6 +630,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Please return after 7pm to complete the survey!"
+          }
+        }
+      }
+    },
+    "SURVEY_READY_QUESTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you ready to take your daily survey?"
           }
         }
       }
@@ -831,6 +844,9 @@
           }
         }
       }
+    },
+    "YES" : {
+
     }
   },
   "version" : "1.0"
