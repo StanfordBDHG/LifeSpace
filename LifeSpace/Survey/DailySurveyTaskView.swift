@@ -64,17 +64,17 @@ struct DailySurveyTaskView: View {
     private var surveyTakenView: some View {
         VStack {
             Spacer()
-            
+
             Image(systemName: "exclamationmark.triangle.fill")
                 .resizable()
                 .frame(width: 50, height: 50)
                 .accessibilityLabel("SURVEY_TAKEN_NOTICE")
-            
+
             Text("SURVEY_TAKEN_NOTICE")
                 .font(.largeTitle)
                 .padding()
                 .multilineTextAlignment(.center)
-            
+
             Button(action: {
                 self.showingSurvey = false
             }, label: {
@@ -82,25 +82,25 @@ struct DailySurveyTaskView: View {
                     .padding()
             })
             .buttonStyle(.borderedProminent)
-            
+
             Spacer()
         }
     }
     
     private var previousDaySurveyView: some View {
         VStack {
-            Spacer ()
-            
+            Spacer()
+
             Image(systemName: "exclamationmark.triangle.fill")
                 .resizable()
                 .frame(width: 50, height: 50)
                 .accessibilityLabel("PREVIOUS_DAY_SURVEY_LABEL")
-            
+
             Text("PREVIOUS_DAY_SURVEY_NOTICE")
                 .font(.largeTitle)
                 .padding()
                 .multilineTextAlignment(.center)
-            
+
             Button(action: {
                 self.acknowledgedPreviousDaySurvey = true
             }, label: {
@@ -108,7 +108,7 @@ struct DailySurveyTaskView: View {
                     .padding()
             })
             .buttonStyle(.borderedProminent)
-            
+
             Spacer()
         }
     }
@@ -126,7 +126,7 @@ struct DailySurveyTaskView: View {
                 .font(.largeTitle)
                 .padding()
                 .multilineTextAlignment(.center)
-            
+
             Spacer()
 
             Button(action: {

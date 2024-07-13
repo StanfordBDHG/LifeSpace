@@ -10,6 +10,17 @@ import ResearchKitSwiftUI
 import Spezi
 import SwiftUI
 
+
+struct ButtonGroupBoxStyle: GroupBoxStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.content
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(RoundedRectangle(cornerRadius: 8).fill(Color("AccentColor")))
+    }
+}
+
+
 struct OptionsPanel: View {
     @AppStorage(StorageKeys.trackingPreference) private var trackingOn = true
     @Environment(LocationModule.self) private var locationModule
@@ -75,12 +86,11 @@ struct OptionsPanel: View {
             })
             .padding()
             .buttonStyle(.bordered)
-
         }
     }
     
     private func launchSurvey() {
-        if SurveyModule.currentHour > 7 && !SurveyModule.surveyAlreadyTaken {
+        if SurveyModule.shouldShowSurvey && !SurveyModule.surveyAlreadyTaken {
             self.showingStartSurveyModal = true
         }
     }
@@ -88,13 +98,4 @@ struct OptionsPanel: View {
 
 #Preview {
     OptionsPanel()
-}
-
-struct ButtonGroupBoxStyle: GroupBoxStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.content
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(RoundedRectangle(cornerRadius: 8).fill(Color("AccentColor")))
-    }
 }
