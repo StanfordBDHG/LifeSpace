@@ -27,9 +27,9 @@ struct OptionsPanel: View {
     @Environment(\.scenePhase) var scenePhase
     @Environment(LifeSpaceStandard.self) private var standard
     
-    @State private var showingSurveyAlert = false
     @State private var showingSurvey = false
-    @State private var showingStartSurveyModal = false
+    @State private var showingSurveyConfirmation = false
+    @State private var shouldShowSurvey = false
     
     var body: some View {
         GroupBox {
@@ -42,33 +42,44 @@ struct OptionsPanel: View {
                     .frame(maxWidth: .infinity)
             }
             .sheet(isPresented: $showingSurvey) {
-                DailySurveyTaskView(showingSurvey: $showingSurvey)
-            }
-            .sheet(isPresented: $showingStartSurveyModal) {
-                startSurveyModal
-                    .presentationDetents([.medium, .large])
-                    .presentationDragIndicator(.hidden)
+                DailySurveyTaskView(
+                    showingSurvey: $showingSurvey
+                )
             }
             .onChange(of: scenePhase) { _, newPhase in
                 if newPhase == .active {
                     Task {
                         _ = await standard.getLatestSurveyDate()
-                        launchSurvey()
+                        
+                        if SurveyModule.shouldShowSurvey && !SurveyModule.surveyAlreadyTaken {
+                            self.showingSurveyConfirmation = true
+                        }
                     }
                 }
             }
-        }.groupBoxStyle(ButtonGroupBoxStyle())
+        }
+        .groupBoxStyle(ButtonGroupBoxStyle())
+        .sheet(isPresented: $showingSurveyConfirmation, onDismiss: {
+            if shouldShowSurvey {
+                self.showingSurvey.toggle()
+                self.shouldShowSurvey.toggle()
+            }
+        }) {
+            surveyConfirmationView
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.hidden)
+        }
     }
     
-    private var startSurveyModal: some View {
+    private var surveyConfirmationView: some View {
         VStack {
             Text("SURVEY_READY_QUESTION")
                 .font(.largeTitle)
                 .multilineTextAlignment(.center)
             
             Button(action: {
-                self.showingSurvey = true
-                self.showingStartSurveyModal = false
+                self.showingSurveyConfirmation.toggle()
+                self.shouldShowSurvey.toggle()
             }, label: {
                 Text("YES")
                     .padding()
@@ -78,7 +89,7 @@ struct OptionsPanel: View {
             .buttonStyle(.borderedProminent)
             
             Button(action: {
-                self.showingStartSurveyModal = false
+                self.showingSurveyConfirmation.toggle()
             }, label: {
                 Text("NO")
                     .padding()
@@ -86,12 +97,6 @@ struct OptionsPanel: View {
             })
             .padding()
             .buttonStyle(.bordered)
-        }
-    }
-    
-    private func launchSurvey() {
-        if SurveyModule.shouldShowSurvey && !SurveyModule.surveyAlreadyTaken {
-            self.showingStartSurveyModal = true
         }
     }
 }
