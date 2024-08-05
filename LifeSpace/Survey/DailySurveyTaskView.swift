@@ -20,7 +20,9 @@ struct DailySurveyTaskView: View {
     
     
     var body: some View {
-        if SurveyModule.surveyAlreadyTaken {
+        if !showingSurvey {
+            EmptyView()
+        } else if SurveyModule.surveyAlreadyTaken {
             surveyTakenView
         } else if SurveyModule.isPreviousDaySurvey && !acknowledgedPreviousDaySurvey {
             previousDaySurveyView
@@ -140,7 +142,6 @@ struct DailySurveyTaskView: View {
             Spacer()
         }
     }
-    
     
     private func saveResponse(taskResult: ORKTaskResult) async {
         var response = DailySurveyResponse()
