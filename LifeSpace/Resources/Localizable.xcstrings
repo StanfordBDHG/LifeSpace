@@ -398,6 +398,9 @@
         }
       }
     },
+    "LOG_OUT_ERROR" : {
+
+    },
     "NEXT_BUTTON" : {
       "localizations" : {
         "en" : {

@@ -5,6 +5,7 @@
 //  Created by Vishnu Ravi on 8/5/24.
 //
 
+import FirebaseAuth
 import SpeziAccount
 import SwiftUI
 
@@ -12,6 +13,8 @@ import SwiftUI
 struct WithdrawView: View {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @Environment(Account.self) var account
+    @State private var showingAlert = false
+    @State private var errorMessage = ""
     
     var body: some View {
         Form {
@@ -35,9 +38,19 @@ struct WithdrawView: View {
             }
         }
         .navigationTitle("WITHDRAW_VIEW_TITLE")
+        .alert("LOG_OUT_ERROR", isPresented: $showingAlert) {
+            Button("OK") { }
+        }
     }
     
     private func removeAccount() async {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            errorMessage = error.localizedDescription
+            self.showingAlert = true
+        }
+        
         await account.removeUserDetails()
         completedOnboardingFlow = false
     }
