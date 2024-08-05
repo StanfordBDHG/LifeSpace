@@ -845,6 +845,36 @@
         }
       }
     },
+    "WITHDRAW" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Withdraw From Study"
+          }
+        }
+      }
+    },
+    "WITHDRAW_VIEW_TEXT" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you first agree to participate and then you change your mind, you are free to withdraw your consent and discontinue your participation at any time. \nIf you decide to withdraw your consent to participate in this study, you should notify the LifeSpace study team (lifespace@stanford.edu) or Michelle Odden (650-721-0230, modden@stanford.edu).  Tapping the button below will reset your app to the state it was originally in prior to joining the study.\n\nIf you decide to withdraw from the study, you can delete the LifeSpace App from your phone. "
+          }
+        }
+      }
+    },
+    "WITHDRAW_VIEW_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Withdraw from Study"
+          }
+        }
+      }
+    },
     "YES" : {
 
     }

@@ -102,6 +102,7 @@ struct AccountSheet: View {
             }
             Section(header: Text("SETTINGS_SECTION")) {
                 locationTrackingToggle
+                withdrawButton
             }
         }
     }
@@ -151,6 +152,14 @@ struct AccountSheet: View {
                     locationModule.stopTracking()
                 }
             }
+    }
+    
+    private var withdrawButton: some View {
+        NavigationLink(destination: {
+            WithdrawView()
+        }) {
+            Text("WITHDRAW")
+        }
     }
     
     private var closeButton: some ToolbarContent {
