@@ -399,7 +399,14 @@
       }
     },
     "LOG_OUT_ERROR" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error logging out"
+          }
+        }
+      }
     },
     "NEXT_BUTTON" : {
       "localizations" : {
@@ -412,7 +419,14 @@
       }
     },
     "NO" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No"
+          }
+        }
+      }
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
@@ -879,7 +893,14 @@
       }
     },
     "YES" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
