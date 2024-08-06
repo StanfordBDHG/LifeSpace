@@ -11,6 +11,32 @@ import SpeziAccount
 import SwiftUI
 
 
+private struct AccountHeader: View {
+    @Environment(Account.self) var account
+    
+    var body: some View {
+        VStack {
+            profileImage
+            if let email = account.details?.email {
+                Text(email)
+                    .font(.title2)
+                    .fontWeight(.semibold)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .center)
+        .listRowBackground(Color.clear)
+        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+    }
+    
+    private var profileImage: some View {
+        Image(systemName: "person.crop.circle.fill")
+            .resizable()
+            .frame(width: 60, height: 60)
+            .foregroundColor(Color(.systemGray3))
+            .accessibilityHidden(true)
+    }
+}
+
 struct AccountSheet: View {
     @Environment(\.dismiss) var dismiss
     
@@ -28,17 +54,14 @@ struct AccountSheet: View {
         NavigationStack {
             ZStack {
                 if account.signedIn && !isInSetup {
-                    AccountOverview(isEditing: $overviewIsEditing) {
+                    Form {
+                        AccountHeader()
                         optionsList
                     }
-                        .onDisappear {
-                            overviewIsEditing = false
-                        }
-                        .toolbar {
-                            if !overviewIsEditing {
-                                closeButton
-                            }
-                        }
+                    .padding(.top, -20)
+                    .toolbar {
+                        closeButton
+                    }
                 } else {
                     VStack {
                         AccountSetupHeader()
@@ -46,17 +69,25 @@ struct AccountSheet: View {
                             dismiss() // we just signed in, dismiss the account setup sheet
                         }
                     }
-                        .onAppear {
-                            isInSetup = true
+                    .onAppear {
+                        isInSetup = true
+                    }
+                    .toolbar {
+                        if !accountRequired {
+                            closeButton
                         }
-                        .toolbar {
-                            if !accountRequired {
-                                closeButton
-                            }
-                        }
+                    }
                 }
             }
         }
+    }
+    
+    private var profileImage: some View {
+        Image(systemName: "person.crop.circle.fill")
+            .resizable()
+            .frame(width: 60, height: 60)
+            .foregroundColor(Color(.systemGray3))
+            .accessibilityHidden(true)
     }
     
     private var optionsList: some View {
@@ -70,7 +101,8 @@ struct AccountSheet: View {
                 privacyPolicyButton
             }
             Section(header: Text("SETTINGS_SECTION")) {
-               locationTrackingToggle
+                locationTrackingToggle
+                withdrawButton
             }
         }
     }
@@ -121,7 +153,15 @@ struct AccountSheet: View {
                 }
             }
     }
-
+    
+    private var withdrawButton: some View {
+        NavigationLink(destination: {
+            WithdrawView()
+        }) {
+            Text("WITHDRAW")
+        }
+    }
+    
     private var closeButton: some ToolbarContent {
         ToolbarItem(placement: .cancellationAction) {
             Button("CLOSE") {
@@ -129,7 +169,7 @@ struct AccountSheet: View {
             }
         }
     }
-
+    
     
     private func getDocumentURL(for fileName: String) -> URL? {
         guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
@@ -140,26 +180,3 @@ struct AccountSheet: View {
         return documentsURL.appendingPathComponent(filenameWithStudyID)
     }
 }
-
-
-#if DEBUG
-#Preview("AccountSheet") {
-    let details = AccountDetails.Builder()
-        .set(\.userId, value: "lelandstanford@stanford.edu")
-        .set(\.name, value: PersonNameComponents(givenName: "Leland", familyName: "Stanford"))
-    
-    return AccountSheet()
-        .previewWith {
-            AccountConfiguration(building: details, active: MockUserIdPasswordAccountService())
-        }
-}
-
-#Preview("AccountSheet SignIn") {
-    AccountSheet()
-        .previewWith {
-            AccountConfiguration {
-                MockUserIdPasswordAccountService()
-            }
-        }
-}
-#endif

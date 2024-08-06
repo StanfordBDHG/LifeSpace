@@ -54,6 +54,7 @@
 		2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */; };
 		2FF53D8B2A8725DE00042B76 /* SpeziMockWebService in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF53D8A2A8725DE00042B76 /* SpeziMockWebService */; };
 		2FF53D8D2A8729D600042B76 /* LifeSpaceStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF53D8C2A8729D600042B76 /* LifeSpaceStandard.swift */; };
+		630D3B572C616E9D006066E5 /* WithdrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D3B562C616E9D006066E5 /* WithdrawView.swift */; };
 		6326011A2C41EF6A0002CDF4 /* SurveyModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632601192C41EF6A0002CDF4 /* SurveyModule.swift */; };
 		6347EB642BBBA895008E0C4A /* LifeSpaceMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6347EB632BBBA895008E0C4A /* LifeSpaceMapView.swift */; };
 		6347EB6A2BBBF3AC008E0C4A /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 6347EB692BBBF3AC008E0C4A /* MapboxMaps */; };
@@ -137,6 +138,7 @@
 		2FE5DC5529EDD811004B9AB4 /* SocialSupportQuestionnaire.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SocialSupportQuestionnaire.json; sourceTree = "<group>"; };
 		2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountOnboarding.swift; sourceTree = "<group>"; };
 		2FF53D8C2A8729D600042B76 /* LifeSpaceStandard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeSpaceStandard.swift; sourceTree = "<group>"; };
+		630D3B562C616E9D006066E5 /* WithdrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawView.swift; sourceTree = "<group>"; };
 		632601192C41EF6A0002CDF4 /* SurveyModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyModule.swift; sourceTree = "<group>"; };
 		6347EB632BBBA895008E0C4A /* LifeSpaceMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeSpaceMapView.swift; sourceTree = "<group>"; };
 		6347EB732BBBF442008E0C4A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 				A9DFE8A82ABE551400428242 /* AccountButton.swift */,
 				639B69DA2C2BCD6A00C0FF4A /* ConsentPDFVIewer.swift */,
 				63D86AD52C3B7F310096B9DB /* DocumentWebView.swift */,
+				630D3B562C616E9D006066E5 /* WithdrawView.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				634FFF672C169F40005E8217 /* LifeSpaceConsent.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
+				630D3B572C616E9D006066E5 /* WithdrawView.swift in Sources */,
 				63EA5F8C2BC78F8400A48590 /* DailySurveyResponse.swift in Sources */,
 				639B69DB2C2BCD6A00C0FF4A /* ConsentPDFVIewer.swift in Sources */,
 				2FE5DC4529EDD7F2004B9AB4 /* Binding+Negate.swift in Sources */,
@@ -830,7 +834,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.odden.lifespace-dev";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.lifespace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1034,7 +1038,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.odden.lifespace-dev";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.lifespace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1054,10 +1058,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "LifeSpace/Supporting Files/LifeSpace.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "LifeSpace/Supporting Files/Info.plist";
@@ -1081,9 +1087,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.odden.lifespace-dev";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.lifespace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
