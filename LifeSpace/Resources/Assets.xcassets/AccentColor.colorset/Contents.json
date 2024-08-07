@@ -13,16 +13,26 @@
       "idiom" : "universal"
     },
     {
-      "idiom" : "universal"
-    },
-    {
       "appearances" : [
         {
           "appearance" : "luminosity",
           "value" : "dark"
         }
       ],
+      "color" : {
+        "color-space" : "srgb",
+        "components" : {
+          "alpha" : "1.000",
+          "blue" : "0x74",
+          "green" : "0x81",
+          "red" : "0xC8"
+        }
+      },
       "idiom" : "universal"
+    },
+    {
+      "idiom" : "universal",
+      "unassigned" : true
     }
   ],
   "info" : {
