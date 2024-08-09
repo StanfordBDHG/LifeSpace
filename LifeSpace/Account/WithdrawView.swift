@@ -12,8 +12,13 @@ import SwiftUI
 
 struct WithdrawView: View {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
+    @AppStorage(StorageKeys.studyID) var studyID = "unknownStudyID"
+
     @Environment(Account.self) var account
+    @Environment(LocationModule.self) private var locationModule
+    
     @State private var showingAlert = false
+    @State private var showingDeleteSheet = false
     @State private var errorMessage = ""
     
     var body: some View {
@@ -25,7 +30,7 @@ struct WithdrawView: View {
             Section {
                 Button(action: {
                     Task {
-                        await removeAccount()
+                        await processWithdrawal()
                     }
                 }, label: {
                     Text("WITHDRAW")
@@ -38,12 +43,48 @@ struct WithdrawView: View {
             }
         }
         .navigationTitle("WITHDRAW_VIEW_TITLE")
+        .sheet(isPresented: $showingDeleteSheet) {
+           deleteInstructionView
+                .interactiveDismissDisabled()
+        }
         .alert("LOG_OUT_ERROR", isPresented: $showingAlert) {
             Button("OK") { }
         }
     }
     
-    private func removeAccount() async {
+    private var deleteInstructionView: some View {
+        VStack {
+            Spacer()
+            
+            Text("APP_DELETION_INSTRUCTION")
+                .font(.largeTitle)
+                .padding()
+                .multilineTextAlignment(.center)
+
+            Spacer()
+
+            Button(action: {
+                // Send user back to onboarding flow
+                completedOnboardingFlow = false
+            }, label: {
+                Text("CLOSE")
+                    .padding()
+            })
+            .buttonStyle(.borderedProminent)
+            
+            Spacer()
+        }
+    }
+    
+    private func processWithdrawal() async {
+        // Stop location tracking
+        locationModule.stopTracking()
+        UserDefaults.standard.set(false, forKey: Constants.prefTrackingStatus)
+        
+        // Clear the user's study ID
+        studyID = ""
+        
+        // Sign out the user
         do {
             try Auth.auth().signOut()
         } catch {
@@ -51,8 +92,11 @@ struct WithdrawView: View {
             self.showingAlert = true
         }
         
+        // Remove the user's account
         await account.removeUserDetails()
-        completedOnboardingFlow = false
+        
+        // Instruct the user to delete the app
+        self.showingDeleteSheet = true
     }
 }
 

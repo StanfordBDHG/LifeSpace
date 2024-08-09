@@ -1,5 +1,5 @@
 //
-//  LocationService.swift
+//  LocationModule.swift
 //  LifeSpace
 //
 //  Created by Vishnu Ravi on 4/2/24.
@@ -127,7 +127,6 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
             } catch {
                 logger.error("Error adding location: \(error.localizedDescription)")
             }
-            
         }
     }
 
