@@ -52,6 +52,16 @@
         }
       }
     },
+    "APP_DELETION_INSTRUCTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have withdrawn from the study. You can delete the app from your phone."
+          }
+        }
+      }
+    },
     "CLOSE" : {
       "comment" : "MARK: General",
       "localizations" : {
