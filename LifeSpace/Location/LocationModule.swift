@@ -29,7 +29,9 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
             guard let lastKnownLocation = lastKnownLocation else {
                 return
             }
-            self.appendNewLocationPoint(point: lastKnownLocation)
+            Task {
+                await self.appendNewLocationPoint(point: lastKnownLocation)
+            }
         }
     }
 
@@ -90,7 +92,12 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     /// Adds a new point to the map and saves the location to the database,
     /// if it meets the criteria to be added.
     /// - Parameter point: the point to add
-    private func appendNewLocationPoint(point: CLLocationCoordinate2D) {
+    private func appendNewLocationPoint(point: CLLocationCoordinate2D) async {
+        // Check that we only append points if location tracking is turned on
+        guard UserDefaults.standard.bool(forKey: Constants.prefTrackingStatus) else {
+            return
+        }
+        
         var add = true
 
         if let previousLocation = previousLocation,
@@ -103,10 +110,8 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
 
             // Reset all points when day changes
             if Date().startOfDay != previousDate.startOfDay {
+                await fetchLocations()
                 add = true
-                Task {
-                    await fetchLocations()
-                }
             }
         }
 
@@ -117,18 +122,17 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
             previousLocation = point
             previousDate = Date()
             
-            Task {
-                do {
-                    try await standard?.add(location: point)
-                } catch {
-                    logger.error("Error adding location: \(error.localizedDescription)")
-                }
+            do {
+                try await standard?.add(location: point)
+            } catch {
+                logger.error("Error adding location: \(error.localizedDescription)")
             }
+            
         }
     }
 
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // An additional check that we only append points if location tracking is turned on
+        // Check that we only append points if location tracking is turned on
         guard UserDefaults.standard.bool(forKey: Constants.prefTrackingStatus) else {
             return
         }
