@@ -125,6 +125,11 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             throw LifeSpaceStandardError.invalidStudyID
         }
         
+        // Check that we only save points if location tracking is turned on
+        guard UserDefaults.standard.bool(forKey: Constants.prefTrackingStatus) else {
+            return
+        }
+        
         let dataPoint = LocationDataPoint(
             currentDate: Date(),
             time: Date().timeIntervalSince1970,

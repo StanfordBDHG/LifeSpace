@@ -29,9 +29,8 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
             guard let lastKnownLocation = lastKnownLocation else {
                 return
             }
-            Task {
-                await self.appendNewLocationPoint(point: lastKnownLocation)
-            }
+            
+            self.appendNewLocation(point: lastKnownLocation)
         }
     }
 
@@ -72,7 +71,6 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         logger.info("Stopping tracking...")
     }
     
-
     public func requestAuthorizationLocation() {
         self.manager.requestWhenInUseAuthorization()
         self.manager.requestAlwaysAuthorization()
@@ -88,16 +86,26 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
             logger.error("Error fetching locations: \(error.localizedDescription)")
         }
     }
-
+    
     /// Adds a new point to the map and saves the location to the database,
     /// if it meets the criteria to be added.
     /// - Parameter point: the point to add
-    private func appendNewLocationPoint(point: CLLocationCoordinate2D) async {
+    private func appendNewLocation(point: CLLocationCoordinate2D) {
         // Check that we only append points if location tracking is turned on
         guard UserDefaults.standard.bool(forKey: Constants.prefTrackingStatus) else {
             return
         }
         
+        Task {
+            await appendNewLocationAsync(point: point)
+        }
+    }
+
+    /// Adds a new point to the map and saves the location to the database,
+    /// if it meets the criteria to be added.
+    /// - Parameter point: the point to add
+    @MainActor
+    private func appendNewLocationAsync(point: CLLocationCoordinate2D) async {
         var add = true
 
         if let previousLocation = previousLocation,
