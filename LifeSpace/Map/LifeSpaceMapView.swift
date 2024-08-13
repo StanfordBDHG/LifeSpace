@@ -68,7 +68,7 @@ struct LifeSpaceMapView: View {
                 refreshMap()
             }
         }
-        .onAppear() {
+        .onAppear {
             refreshMap()
         }
     }

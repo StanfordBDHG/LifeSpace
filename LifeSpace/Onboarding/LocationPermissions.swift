@@ -42,7 +42,11 @@ struct LocationPermissions: View {
         .onReceive(locationModule.$authorizationStatus) { status in
             switch status {
             case .authorizedAlways:
+                /// Set `trackingPreference` in UserDefaults
                 UserDefaults.standard.setValue(true, forKey: StorageKeys.trackingPreference)
+                /// Start tracking via location module
+                locationModule.startTracking()
+                /// Go to next step in onboarding
                 onboardingNavigationPath.nextStep()
             case .authorizedWhenInUse:
                 if isFirstRequest {

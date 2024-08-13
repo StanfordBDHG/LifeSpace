@@ -27,12 +27,12 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         super.init()
         manager.delegate = self
 
-        /// If tracking preference is `on`, start tracking
+        /// If `trackingPreference` is set to true, we can start tracking.
         if UserDefaults.standard.bool(forKey: StorageKeys.trackingPreference) {
             self.startTracking()
         }
         
-        /// Disable Mapbox telemetry -- required for study
+        /// Disable Mapbox telemetry as required by the study protocol.
         UserDefaults.standard.set(false, forKey: "MGLMapboxMetricsEnabled")
     }
 
@@ -52,6 +52,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     public func stopTracking() {
         self.manager.stopUpdatingLocation()
         self.manager.stopMonitoringSignificantLocationChanges()
+        self.manager.allowsBackgroundLocationUpdates = false
         logger.info("Stopping tracking...")
     }
     
