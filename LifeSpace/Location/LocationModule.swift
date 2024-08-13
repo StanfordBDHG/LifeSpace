@@ -27,13 +27,8 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         super.init()
         manager.delegate = self
 
-        /// If user doesn't have a tracking preference, default to `on`
-        if UserDefaults.standard.value(forKey: Constants.prefTrackingStatus) == nil {
-            UserDefaults.standard.set(true, forKey: Constants.prefTrackingStatus)
-        }
-
         /// If tracking preference is `on`, start tracking
-        if UserDefaults.standard.bool(forKey: Constants.prefTrackingStatus) {
+        if UserDefaults.standard.bool(forKey: StorageKeys.trackingPreference) {
             self.startTracking()
         }
         
@@ -92,7 +87,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     /// - Parameter coordinate: The `CLLocationCoordinate2D` of the location to be saved.
     private func determineIfShouldAddLocation(_ coordinate: CLLocationCoordinate2D) async -> Bool {
         /// Check if the user has set tracking `on` before adding the new location.
-        guard UserDefaults.standard.bool(forKey: Constants.prefTrackingStatus) else {
+        guard UserDefaults.standard.bool(forKey: StorageKeys.trackingPreference) else {
             return false
         }
         

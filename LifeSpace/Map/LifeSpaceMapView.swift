@@ -64,9 +64,12 @@ struct LifeSpaceMapView: View {
             }
         }
         .onChange(of: scenePhase) { _, newPhase in
-            if newPhase == .active && trackingOn {
+            if newPhase == .active {
                 refreshMap()
             }
+        }
+        .onAppear() {
+            refreshMap()
         }
     }
     

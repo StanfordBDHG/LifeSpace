@@ -79,7 +79,7 @@ struct WithdrawView: View {
     private func processWithdrawal() async {
         // Stop location tracking
         locationModule.stopTracking()
-        UserDefaults.standard.set(false, forKey: Constants.prefTrackingStatus)
+        UserDefaults.standard.set(false, forKey: StorageKeys.trackingPreference)
         
         // Clear the user's study ID
         studyID = ""

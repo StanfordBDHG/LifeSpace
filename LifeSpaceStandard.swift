@@ -126,7 +126,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         }
         
         // Check that we only save points if location tracking is turned on
-        guard UserDefaults.standard.bool(forKey: Constants.prefTrackingStatus) else {
+        guard UserDefaults.standard.bool(forKey: StorageKeys.trackingPreference) else {
             return
         }
         

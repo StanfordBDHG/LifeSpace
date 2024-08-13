@@ -11,7 +11,6 @@ enum Constants {
     static let prefUserEmail = "PREF_USER_EMAIL"
     static let prefStudyID = "PREF_STUDY_ID"
     static let prefsNotificationsSchedule = "PREFS_NOTIFICATIONS_SCHEDULE"
-    static let prefTrackingStatus = "PREF_TRACKING_STATUS"
     
     static let prefCareKitCoreDataInitDate = "PREF_CORE_DATA_INIT_DATE"
     static let prefHealthRecordsLastUploaded = "PREF_HEALTH_LAST_UPLOAD"
