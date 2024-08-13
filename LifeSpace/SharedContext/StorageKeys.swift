@@ -13,17 +13,17 @@ enum StorageKeys {
     static let onboardingFlowComplete = "onboardingFlow.complete"
     /// A `Step` flag indicating the current step in the onboarding process.
     static let onboardingFlowStep = "onboardingFlow.step"
-    /// The user's study ID
+    /// A `String` containing the user's study ID.
     static let studyID = "studyID"
     
     
     // MARK: - Home
-    /// The currently selected home tab.
+    /// A `String` containing the currently selected home tab.
     static let homeTabSelection = "home.tabselection"
-    
+    /// A `Bool` representing whether the user has chosen to enable or disable location tracking.
     static let trackingPreference = "tracking.preference"
-    
+    /// A `String` containing the date of the last survey the user has taken.
     static let lastSurveyDate = "lastSurveyDate"
-    
+    /// A `Bool` representing whether location permissions have been previously requested.
     static let isFirstLocationRequest = "isFirstLocationRequest"
 }
