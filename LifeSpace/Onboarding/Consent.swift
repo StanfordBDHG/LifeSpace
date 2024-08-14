@@ -105,7 +105,7 @@ struct Consent: View {
             onboardingNavigationPath.nextStep()
         }
         .processingOverlay(
-            isProcessing: checkingConsentForms,
+            isProcessing: savingConsentForms,
             overlay: {
                 VStack {
                     Text("CONSENT_PROGRESS")

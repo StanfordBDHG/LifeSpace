@@ -12,7 +12,7 @@ import Spezi
 
 
 public class LocationModule: NSObject, CLLocationManagerDelegate, Module, DefaultInitializable, EnvironmentAccessible {
-    @Dependency private var standard: LifeSpaceStandard?
+    @Dependency(LifeSpaceStandard.self) private var standard: LifeSpaceStandard?
     private let logger = Logger(subsystem: "LifeSpace", category: "Standard")
     private(set) var manager = CLLocationManager()
     
