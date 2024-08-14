@@ -11,7 +11,7 @@ import OSLog
 import Spezi
 
 public class LocationModule: NSObject, CLLocationManagerDelegate, Module, DefaultInitializable, EnvironmentAccessible {
-    @Dependency private var standard: LifeSpaceStandard?
+    @Dependency(LifeSpaceStandard.self) private var standard: LifeSpaceStandard?
     
     private(set) var manager = CLLocationManager()
     public var allLocations = [CLLocationCoordinate2D]()

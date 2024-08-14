@@ -153,16 +153,6 @@
         }
       }
     },
-    "CONTACTS_NAVIGATION_TITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contacts"
-          }
-        }
-      }
-    },
     "CONTINUE" : {
       "localizations" : {
         "en" : {
@@ -314,16 +304,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You entered an invalid Study ID."
-          }
-        }
-      }
-    },
-    "LELAND_STANFORD_BIO" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Amasa Leland Stanford (March 9, 1824 – June 21, 1893) was an American industrialist and politician. [...] He and his wife Jane were also the founders of Stanford University, which they named after their late son.\n[https://en.wikipedia.org/wiki/Leland_Stanford]"
           }
         }
       }
@@ -560,18 +540,6 @@
       }
     },
     "SCHEDULE_LIST_TITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schedule"
-          }
-        }
-      }
-    },
-    "SCHEDULE_TAB_TITLE" : {
-      "comment" : "MARK: - Schedule",
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
