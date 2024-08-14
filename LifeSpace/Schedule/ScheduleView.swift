@@ -20,8 +20,7 @@ struct ScheduleView: View {
     @State private var presentedContext: EventContext?
     @Binding private var presentingAccount: Bool
     
-    
-    private var eventContextsByDate: OrderedDictionary<Date, [EventContext]> {
+    @MainActor private var eventContextsByDate: OrderedDictionary<Date, [EventContext]> {
         let eventContexts = scheduler.tasks.flatMap { task in
             task
                 .events(
