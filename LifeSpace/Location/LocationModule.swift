@@ -11,7 +11,7 @@ import OSLog
 import Spezi
 
 public class LocationModule: NSObject, CLLocationManagerDelegate, Module, DefaultInitializable, EnvironmentAccessible {
-    @Dependency private var standard: LifeSpaceStandard?
+    @Dependency(LifeSpaceStandard.self) private var standard: LifeSpaceStandard?
     
     private(set) var manager = CLLocationManager()
     public var allLocations = [CLLocationCoordinate2D]()
@@ -40,12 +40,12 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         manager.delegate = self
 
         // If user doesn't have a tracking preference, default to true
-        if UserDefaults.standard.value(forKey: Constants.prefTrackingStatus) == nil {
-            UserDefaults.standard.set(true, forKey: Constants.prefTrackingStatus)
+        if UserDefaults.standard.value(forKey: StorageKeys.trackingPreference) == nil {
+            UserDefaults.standard.set(true, forKey: StorageKeys.trackingPreference)
         }
 
         // If tracking status is true, start tracking
-        if UserDefaults.standard.bool(forKey: Constants.prefTrackingStatus) {
+        if UserDefaults.standard.bool(forKey: StorageKeys.trackingPreference) {
             self.startTracking()
         }
         
@@ -94,7 +94,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     /// - Parameter point: the point to add
     private func appendNewLocationPoint(point: CLLocationCoordinate2D) async {
         // Check that we only append points if location tracking is turned on
-        guard UserDefaults.standard.bool(forKey: Constants.prefTrackingStatus) else {
+        guard UserDefaults.standard.bool(forKey: StorageKeys.trackingPreference) else {
             return
         }
         
@@ -132,7 +132,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
 
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Check that we only append points if location tracking is turned on
-        guard UserDefaults.standard.bool(forKey: Constants.prefTrackingStatus) else {
+        guard UserDefaults.standard.bool(forKey: StorageKeys.trackingPreference) else {
             return
         }
 

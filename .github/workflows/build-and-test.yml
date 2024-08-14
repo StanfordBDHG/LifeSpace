@@ -26,7 +26,7 @@ jobs:
       contents: read
   buildandtest:
     name: Build and Test
-    runs-on: macos-14
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - name: Add Mapbox credentials
@@ -40,8 +40,6 @@ jobs:
       - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '15.3'
-      - name: Build Xcode project
-        run: xcodebuild -project LifeSpace.xcodeproj -scheme LifeSpace -sdk iphonesimulator -configuration Debug build
-      - name: Run tests
-        run: xcodebuild test -project LifeSpace.xcodeproj -scheme LifeSpace -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.2'
+          xcode-version: '15.4'
+      - name: Build and Test
+        run: xcodebuild test -project LifeSpace.xcodeproj -scheme LifeSpace -destination 'platform=iOS Simulator,name=iPhone 15 Pro'

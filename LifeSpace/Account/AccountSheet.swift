@@ -133,7 +133,7 @@ struct AccountSheet: View {
     
     private var privacyPolicyButton: some View {
         NavigationLink(destination: {
-            if let url = URL(string: "https://michelleodden.com/cardinal-lifespace-privacy-policy/") {
+            if let url = URL(string: Constants.privacyPolicyURL) {
                 DocumentWebView(url: url)
             } else {
                 Text("DOCUMENT_NOT_FOUND_MESSAGE")
