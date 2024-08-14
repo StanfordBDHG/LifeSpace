@@ -34,7 +34,7 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         return Firestore.firestore().collection(bundleIdentifier).document("study").collection("ls_users")
     }
     
-    @Dependency var accountStorage: FirestoreAccountStorage?
+    @Dependency(FirestoreAccountStorage.self) var accountStorage: FirestoreAccountStorage?
     
     @AccountReference var account: Account
     
