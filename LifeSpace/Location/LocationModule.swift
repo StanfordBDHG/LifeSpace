@@ -10,46 +10,29 @@ import Foundation
 import OSLog
 import Spezi
 
+
 public class LocationModule: NSObject, CLLocationManagerDelegate, Module, DefaultInitializable, EnvironmentAccessible {
     @Dependency(LifeSpaceStandard.self) private var standard: LifeSpaceStandard?
-    
-    private(set) var manager = CLLocationManager()
-    public var allLocations = [CLLocationCoordinate2D]()
-    public var onLocationsUpdated: (([CLLocationCoordinate2D]) -> Void)?
     private let logger = Logger(subsystem: "LifeSpace", category: "Standard")
-
-    private var previousLocation: CLLocationCoordinate2D?
-    private var previousDate: Date?
-
+    private(set) var manager = CLLocationManager()
+    
     @Published var authorizationStatus = CLLocationManager().authorizationStatus
     @Published var canShowRequestMessage = true
-
-    private var lastKnownLocation: CLLocationCoordinate2D? {
-        didSet {
-            guard let lastKnownLocation = lastKnownLocation else {
-                return
-            }
-            Task {
-                await self.appendNewLocationPoint(point: lastKnownLocation)
-            }
-        }
-    }
+    
+    public var allLocations = [CLLocationCoordinate2D]()
+    public var onLocationsUpdated: (([CLLocationCoordinate2D]) -> Void)?
+    private var lastSaved: (location: CLLocationCoordinate2D, date: Date)?
 
     override public required init() {
         super.init()
         manager.delegate = self
 
-        // If user doesn't have a tracking preference, default to true
-        if UserDefaults.standard.value(forKey: StorageKeys.trackingPreference) == nil {
-            UserDefaults.standard.set(true, forKey: StorageKeys.trackingPreference)
-        }
-
-        // If tracking status is true, start tracking
+        /// If `trackingPreference` is set to true, we can start tracking.
         if UserDefaults.standard.bool(forKey: StorageKeys.trackingPreference) {
             self.startTracking()
         }
         
-        // Disable Mapbox telemetry
+        /// Disable Mapbox telemetry as required by the study protocol.
         UserDefaults.standard.set(false, forKey: "MGLMapboxMetricsEnabled")
     }
 
@@ -69,10 +52,10 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     public func stopTracking() {
         self.manager.stopUpdatingLocation()
         self.manager.stopMonitoringSignificantLocationChanges()
+        self.manager.allowsBackgroundLocationUpdates = false
         logger.info("Stopping tracking...")
     }
     
-
     public func requestAuthorizationLocation() {
         self.manager.requestWhenInUseAuthorization()
         self.manager.requestAlwaysAuthorization()
@@ -88,55 +71,71 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
             logger.error("Error fetching locations: \(error.localizedDescription)")
         }
     }
-
-    /// Adds a new point to the map and saves the location to the database,
-    /// if it meets the criteria to be added.
-    /// - Parameter point: the point to add
-    private func appendNewLocationPoint(point: CLLocationCoordinate2D) async {
-        // Check that we only append points if location tracking is turned on
+    
+    /// Adds a new coordinate to the map and database,
+    /// - Parameter coordinate: the new coordinate to add.
+    @MainActor
+    private func appendNewLocation(_ coordinate: CLLocationCoordinate2D) async {
+        let shouldAddLocation = await determineIfShouldAddLocation(coordinate)
+        
+        if shouldAddLocation {
+            updateLocalLocations(with: coordinate)
+            await saveLocation(coordinate)
+        }
+    }
+    
+    /// Determines if a location meets the criteria to be saved.
+    /// - Parameter coordinate: The `CLLocationCoordinate2D` of the location to be saved.
+    private func determineIfShouldAddLocation(_ coordinate: CLLocationCoordinate2D) async -> Bool {
+        /// Check if the user has set tracking `on` before adding the new location.
         guard UserDefaults.standard.bool(forKey: StorageKeys.trackingPreference) else {
-            return
+            return false
         }
         
-        var add = true
-
-        if let previousLocation = previousLocation,
-           let previousDate = previousDate {
-            // Check if distance between current point and previous point is greater than the minimum
-            add = LocationUtils.isAboveMinimumDistance(
-                previousLocation: previousLocation,
-                currentLocation: point
-            )
-
-            // Reset all points when day changes
-            if Date().startOfDay != previousDate.startOfDay {
-                await fetchLocations()
-                add = true
-            }
+        /// Check if there is a previously saved point, so we can calculate the distance between that and the current point.
+        /// If there's no previously saved point, we can save the current point
+        guard let lastSaved else {
+            return true
         }
-
-        if add {
-            // update local location data for map
-            allLocations.append(point)
-            onLocationsUpdated?(allLocations)
-            previousLocation = point
-            previousDate = Date()
-            
-            do {
-                try await standard?.add(location: point)
-            } catch {
-                logger.error("Error adding location: \(error.localizedDescription)")
-            }
+        
+        /// Check if the date of the current point is a different day then the last saved point. If so,
+        /// Refresh the locations array and save this point.
+        if Date().startOfDay != lastSaved.date.startOfDay {
+            await fetchLocations()
+            return true
+        }
+        
+        return LocationUtils.isAboveMinimumDistance(
+            previousLocation: lastSaved.location,
+            currentLocation: coordinate
+        )
+    }
+    
+    /// Updates the local set of locations and the map with the latest location
+    /// - Parameter coordinate: The `CLLocationCoordinate2D` of the location to be saved.
+    private func updateLocalLocations(with coordinate: CLLocationCoordinate2D) {
+        allLocations.append(coordinate)
+        onLocationsUpdated?(allLocations)
+        lastSaved = (location: coordinate, date: Date())
+    }
+    
+    /// Saves a location to Firestore via the Standard.
+    /// - Parameter coordinate: the `CLLocationCoordinate2D` of the location to be saved.
+    private func saveLocation(_ coordinate: CLLocationCoordinate2D) async {
+        do {
+            try await standard?.add(location: coordinate)
+        } catch {
+            logger.error("Error saving location: \(error.localizedDescription)")
         }
     }
 
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Check that we only append points if location tracking is turned on
-        guard UserDefaults.standard.bool(forKey: StorageKeys.trackingPreference) else {
+        guard let latestLocation = locations.first?.coordinate else {
             return
         }
-
-        lastKnownLocation = locations.first?.coordinate
+        Task {
+            await appendNewLocation(latestLocation)
+        }
     }
 
     public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
