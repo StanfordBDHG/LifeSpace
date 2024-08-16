@@ -16,6 +16,7 @@ struct StudyIDView: View {
     @State private var showInvalidIDAlert = false
     @ValidationState private var validation
     
+    
     var body: some View {
         VStack(spacing: 32) {
             OnboardingView(
@@ -60,11 +61,10 @@ struct StudyIDView: View {
         .validate(input: studyID, rules: [validationRule])
         .receiveValidation(in: $validation)
         .alert(
-            "ERROR",
+            "INVALID_STUDYID_MESSAGE",
             isPresented: $showInvalidIDAlert
         ) {
-            Text("INVALID_STUDYID_MESSAGE")
-            Button("RETRY_BUTTON_LABEL") { }
+            Button("RETRY_BUTTON_LABEL", role: .cancel) { }
         }
     }
     
@@ -77,20 +77,18 @@ struct StudyIDView: View {
         )
     }
     
-    private func verify(id: String) -> Bool {
-        var validStudyIDs = [String]()
-        
+    private let validStudyIDs: Set<String> = {
         if let studyIDsURL = Bundle.main.url(forResource: "studyIDs", withExtension: ".csv"),
            let studyIDs = try? String(contentsOf: studyIDsURL) {
-            let allStudyIDs = studyIDs.components(separatedBy: "\n")
-            
-            for studyID in allStudyIDs {
-                validStudyIDs.append(studyID.filter { !$0.isWhitespace })
-            }
-            
-            return validStudyIDs.contains(id)
+            return Set(studyIDs
+                .components(separatedBy: "\n")
+                .map { $0.filter { !$0.isWhitespace } })
         }
-        return false
+        return []
+    }()
+    
+    private func verify(id: String) -> Bool {
+        validStudyIDs.contains(id)
     }
 }
 

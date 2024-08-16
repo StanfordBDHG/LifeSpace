@@ -176,16 +176,6 @@
         }
       }
     },
-    "ERROR" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ERROR"
-          }
-        }
-      }
-    },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
