@@ -6,15 +6,11 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SpeziAccount
+@_spi(TestingSupport) import SpeziAccount
 import SwiftUI
 
 
 struct HomeView: View {
-    static var accountEnabled: Bool {
-        !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
-    }
-
     @State private var presentingAccount = false
 
     
@@ -23,34 +19,23 @@ struct HomeView: View {
             .sheet(isPresented: $presentingAccount) {
                 AccountSheet()
             }
-            .accountRequired(Self.accountEnabled) {
+            .accountRequired(!FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding) {
                 AccountSheet()
             }
-            .verifyRequiredAccountDetails(Self.accountEnabled)
     }
 }
 
 
 #if DEBUG
 #Preview {
-    let details = AccountDetails.Builder()
-        .set(\.userId, value: "lelandstanford@stanford.edu")
-        .set(\.name, value: PersonNameComponents(givenName: "Leland", familyName: "Stanford"))
+    var details = AccountDetails()
+    details.userId = "lelandstanford@stanford.edu"
+    details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
     
     return HomeView()
         .previewWith(standard: LifeSpaceStandard()) {
             LifeSpaceScheduler()
-            AccountConfiguration(building: details, active: MockUserIdPasswordAccountService())
-        }
-}
-
-#Preview {
-    HomeView()
-        .previewWith(standard: LifeSpaceStandard()) {
-            LifeSpaceScheduler()
-            AccountConfiguration {
-                MockUserIdPasswordAccountService()
-            }
+            AccountConfiguration(service: InMemoryAccountService(), activeDetails: details)
         }
 }
 #endif

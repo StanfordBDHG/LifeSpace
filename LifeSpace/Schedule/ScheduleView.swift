@@ -7,7 +7,7 @@
 //
 
 import OrderedCollections
-import SpeziAccount
+@_spi(TestingSupport) import SpeziAccount
 import SpeziQuestionnaire
 import SpeziScheduler
 import SwiftUI
@@ -88,7 +88,7 @@ struct ScheduleView: View {
                 }
             case let .test(string):
                 ModalView(text: string, buttonText: String(localized: "CLOSE")) {
-                    await eventContext.event.complete(true)
+                    eventContext.event.complete(true)
                 }
             }
         }
@@ -110,9 +110,7 @@ struct ScheduleView: View {
     ScheduleView(presentingAccount: .constant(false))
         .previewWith(standard: LifeSpaceStandard()) {
             LifeSpaceScheduler()
-            AccountConfiguration {
-                MockUserIdPasswordAccountService()
-            }
+            AccountConfiguration(service: InMemoryAccountService())
         }
 }
 #endif

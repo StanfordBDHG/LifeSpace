@@ -14,7 +14,8 @@ import HealthKitOnFHIR
 import OSLog
 import PDFKit
 import Spezi
-import SpeziAccount
+@_spi(TestingSupport) import SpeziAccount
+import SpeziFirebaseAccount
 import SpeziFirebaseAccountStorage
 import SpeziFirestore
 import SpeziHealthKit
@@ -23,7 +24,11 @@ import SpeziQuestionnaire
 import SwiftUI
 
 
-actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, OnboardingConstraint, AccountStorageConstraint {
+actor LifeSpaceStandard: Standard,
+                         EnvironmentAccessible,
+                         HealthKitConstraint,
+                         OnboardingConstraint,
+                         AccountNotifyConstraint {
     enum LifeSpaceStandardError: Error {
         case userNotAuthenticatedYet
         case invalidStudyID
@@ -33,12 +38,6 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         let bundleIdentifier = Bundle.main.bundleIdentifier ?? "edu.stanford.lifespace"
         return Firestore.firestore().collection(bundleIdentifier).document("study").collection("ls_users")
     }
-    
-    @Dependency(FirestoreAccountStorage.self) var accountStorage: FirestoreAccountStorage?
-    
-    @AccountReference var account: Account
-    
-    private let logger = Logger(subsystem: "LifeSpace", category: "Standard")
     
     
     private var userDocumentReference: DocumentReference {
@@ -66,6 +65,11 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         UserDefaults.standard.string(forKey: StorageKeys.studyID) ?? "unknownStudyID"
     }
     
+    @Dependency(FirestoreAccountStorage.self) var accountStorage: FirestoreAccountStorage?
+    
+    @Application(\.logger) private var logger
+    
+    @Dependency(FirebaseConfiguration.self) private var configuration
     
     init() {
         if !FeatureFlags.disableFirebase {
@@ -73,6 +77,15 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         }
     }
     
+    func respondToEvent(_ event: AccountNotifications.Event) async {
+        if case let .deletingAccount(accountId) = event {
+            do {
+                try await configuration.userDocumentReference(for: accountId).delete()
+            } catch {
+                logger.error("Could not delete user document: \(error)")
+            }
+        }
+    }
     
     func add(sample: HKSample) async {
         guard let userId = Auth.auth().currentUser?.uid else {
@@ -311,40 +324,5 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         } catch {
             logger.error("Unable to set Study ID: \(error)")
         }
-    }
-    
-    func create(_ identifier: AdditionalRecordId, _ details: SignupDetails) async throws {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        try await accountStorage.create(identifier, details)
-    }
-    
-    func load(_ identifier: AdditionalRecordId, _ keys: [any AccountKey.Type]) async throws -> PartialAccountDetails {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        return try await accountStorage.load(identifier, keys)
-    }
-    
-    func modify(_ identifier: AdditionalRecordId, _ modifications: AccountModifications) async throws {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        try await accountStorage.modify(identifier, modifications)
-    }
-    
-    func clear(_ identifier: AdditionalRecordId) async {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        await accountStorage.clear(identifier)
-    }
-    
-    func delete(_ identifier: AdditionalRecordId) async throws {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        try await accountStorage.delete(identifier)
     }
 }

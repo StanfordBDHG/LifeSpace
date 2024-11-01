@@ -118,15 +118,3 @@ struct LifeSpaceMapView: View {
         }
     }
 }
-
-struct LifeSpaceMapView_Previews: PreviewProvider {
-    static var previews: some View {
-        LifeSpaceMapView(presentingAccount: .constant(false))
-            .previewWith(standard: LifeSpaceStandard()) {
-                LifeSpaceScheduler()
-                AccountConfiguration {
-                    MockUserIdPasswordAccountService()
-                }
-            }
-    }
-}
