@@ -29,7 +29,7 @@ jobs:
       contents: read
   buildandtest:
     name: Build and Test
-    runs-on: macos-latest
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
       - name: Add Mapbox credentials
