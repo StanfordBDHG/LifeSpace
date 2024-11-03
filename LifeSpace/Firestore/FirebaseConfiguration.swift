@@ -18,7 +18,8 @@ final class FirebaseConfiguration: Module, DefaultInitializable, @unchecked Send
     }
 
     static var userCollection: CollectionReference {
-        Firestore.firestore().collection("users")
+        let bundleIdentifier = Bundle.main.bundleIdentifier ?? Constants.defaultBundleIdentifier
+        return Firestore.firestore().collection(bundleIdentifier).document("study").collection(Constants.userCollectionName)
     }
 
 
@@ -38,7 +39,8 @@ final class FirebaseConfiguration: Module, DefaultInitializable, @unchecked Send
                 throw ConfigurationError.userNotAuthenticatedYet
             }
 
-            return Storage.storage().reference().child("users/\(details.accountId)")
+            let bundleIdentifier = Bundle.main.bundleIdentifier ?? Constants.defaultBundleIdentifier
+            return Storage.storage().reference().child("\(bundleIdentifier)/study/\(Constants.userCollectionName)/\(details.accountId)")
         }
     }
 
@@ -77,7 +79,7 @@ final class FirebaseConfiguration: Module, DefaultInitializable, @unchecked Send
             }
         }
 
-        // account doesn't exist yet, signup
+        /// account doesn't exist yet, signup
         var details = AccountDetails()
         details.userId = "lelandstanford@stanford.edu"
         details.password = "StanfordRocks!"

@@ -13,4 +13,16 @@ enum Constants {
     static let minDistanceBetweenPoints = 100.0
     /// URL of the privacy policy for the app
     static let privacyPolicyURL = "https://michelleodden.com/cardinal-lifespace-privacy-policy/"
+    /// User collection on Firestore
+    static let userCollectionName = "ls_users"
+    /// Location data collection on Firestore
+    static let locationDataCollectionName = "ls_location_data"
+    /// HealthKit data collection on Firestore
+    static let healthKitCollectionName = "ls_healthkit"
+    /// Survey collection on Firestore
+    static let surveyCollectionName = "ls_surveys"
+    /// Consent bucket name
+    static let consentBucketName = "ls_consent"
+    /// Default bundle identifier
+    static let defaultBundleIdentifier = "edu.stanford.lifespace"
 }

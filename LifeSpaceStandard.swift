@@ -34,33 +34,6 @@ actor LifeSpaceStandard: Standard,
         case invalidStudyID
     }
     
-    private static var userCollection: CollectionReference {
-        let bundleIdentifier = Bundle.main.bundleIdentifier ?? "edu.stanford.lifespace"
-        return Firestore.firestore().collection(bundleIdentifier).document("study").collection("ls_users")
-    }
-    
-    
-    private var userDocumentReference: DocumentReference {
-        get async throws {
-            guard let userId = Auth.auth().currentUser?.uid else {
-                throw LifeSpaceStandardError.userNotAuthenticatedYet
-            }
-            
-            return Self.userCollection.document(userId)
-        }
-    }
-    
-    private var userBucketReference: StorageReference {
-        get async throws {
-            guard let userId = Auth.auth().currentUser?.uid else {
-                throw LifeSpaceStandardError.userNotAuthenticatedYet
-            }
-            
-            let bundleIdentifier = Bundle.main.bundleIdentifier ?? "edu.stanford.lifespace"
-            return Storage.storage().reference().child("\(bundleIdentifier)/study/ls_users/\(userId)")
-        }
-    }
-    
     var studyID: String {
         UserDefaults.standard.string(forKey: StorageKeys.studyID) ?? "unknownStudyID"
     }
@@ -71,11 +44,7 @@ actor LifeSpaceStandard: Standard,
     
     @Dependency(FirebaseConfiguration.self) private var configuration
     
-    init() {
-        if !FeatureFlags.disableFirebase {
-            _accountStorage = Dependency(wrappedValue: FirestoreAccountStorage(storeIn: LifeSpaceStandard.userCollection))
-        }
-    }
+    init() {}
     
     func respondToEvent(_ event: AccountNotifications.Event) async {
         if case let .deletingAccount(accountId) = event {
@@ -120,9 +89,9 @@ actor LifeSpaceStandard: Standard,
         let id = response.identifier?.value?.value?.string ?? UUID().uuidString
         
         do {
-            try await userDocumentReference
-                .collection("QuestionnaireResponse") // Add all HealthKit sources in a /QuestionnaireResponse collection.
-                .document(id) // Set the document identifier to the id of the response.
+            try await configuration.userDocumentReference
+                .collection(Constants.surveyCollectionName)
+                .document(id)
                 .setData(from: response)
         } catch {
             logger.error("Could not store questionnaire response: \(error)")
@@ -152,8 +121,8 @@ actor LifeSpaceStandard: Standard,
             UpdatedBy: userId
         )
         
-        try await userDocumentReference
-            .collection("ls_location_data")
+        try await configuration.userDocumentReference
+            .collection(Constants.locationDataCollectionName)
             .document(UUID().uuidString)
             .setData(from: dataPoint)
     }
@@ -166,8 +135,8 @@ actor LifeSpaceStandard: Standard,
         var locations = [CLLocationCoordinate2D]()
         
         do {
-            let snapshot = try await userDocumentReference
-                .collection("ls_location_data")
+            let snapshot = try await configuration.userDocumentReference
+                .collection(Constants.locationDataCollectionName)
                 .whereField("currentDate", isGreaterThanOrEqualTo: startOfDay)
                 .whereField("currentDate", isLessThan: endOfDay)
                 .getDocuments()
@@ -202,19 +171,22 @@ actor LifeSpaceStandard: Standard,
         response.studyID = studyID
         response.UpdatedBy = userId
         
-        try await userDocumentReference
-            .collection("ls_surveys")
+        try await configuration.userDocumentReference
+            .collection(Constants.surveyCollectionName)
             .document(UUID().uuidString)
             .setData(from: response)
         
         // Update the user document with the latest survey date
-        try await userDocumentReference.setData([
-            "latestSurveyDate": response.surveyDate ?? ""
-        ], merge: true)
+        try await configuration.userDocumentReference.setData(
+            [
+                "latestSurveyDate": response.surveyDate ?? ""
+            ],
+            merge: true
+        )
     }
     
     func getLatestSurveyDate() async -> String {
-        let document = try? await userDocumentReference.getDocument()
+        let document = try? await configuration.userDocumentReference.getDocument()
         
         if let data = document?.data(), let surveyDate = data["latestSurveyDate"] as? String {
             // Update the latest survey date in UserDefaults
@@ -228,15 +200,15 @@ actor LifeSpaceStandard: Standard,
     
     
     private func healthKitDocument(id uuid: UUID) async throws -> DocumentReference {
-        try await userDocumentReference
-            .collection("ls_healthkit") // Add all HealthKit sources in a /HealthKit collection.
+        try await configuration.userDocumentReference
+            .collection(Constants.healthKitCollectionName) // Add all HealthKit sources in a /HealthKit collection.
             .document(uuid.uuidString) // Set the document identifier to the UUID of the document.
     }
     
     func deletedAccount() async throws {
         // delete all user associated data
         do {
-            try await userDocumentReference.delete()
+            try await configuration.userDocumentReference.delete()
         } catch {
             logger.error("Could not delete user document: \(error)")
         }
@@ -266,7 +238,9 @@ actor LifeSpaceStandard: Standard,
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await userBucketReference.child("ls_consent/\(studyID)_consent.pdf").putDataAsync(consentData, metadata: metadata)
+            _ = try await configuration.userBucketReference
+                .child("\(Constants.consentBucketName)/\(studyID)_consent.pdf")
+                .putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }
@@ -292,7 +266,9 @@ actor LifeSpaceStandard: Standard,
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await userBucketReference.child("ls_consent/\(filename)").putDataAsync(consentData, metadata: metadata)
+            _ = try await configuration.userBucketReference
+                .child("\(Constants.consentBucketName)/\(filename)")
+                .putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }
@@ -301,7 +277,9 @@ actor LifeSpaceStandard: Standard,
     func isConsentFormUploaded(name: String) async -> Bool {
         do {
             let maxSize: Int64 = 10 * 1024 * 1024
-            let data = try await userBucketReference.child("ls_consent/\(studyID)_\(name).pdf").data(maxSize: maxSize)
+            let data = try await configuration.userBucketReference
+                .child("\(Constants.consentBucketName)/\(studyID)_\(name).pdf")
+                .data(maxSize: maxSize)
             
             if let docURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 let filename = "\(studyID)_\(name).pdf"
@@ -318,9 +296,12 @@ actor LifeSpaceStandard: Standard,
     /// Update the user document with the user's study ID
     func setStudyID(_ studyID: String) async {
         do {
-            try await userDocumentReference.setData([
-                "studyID": studyID
-            ], merge: true)
+            try await configuration.userDocumentReference.setData(
+                [
+                    "studyID": studyID
+                ],
+                merge: true
+            )
         } catch {
             logger.error("Unable to set Study ID: \(error)")
         }
