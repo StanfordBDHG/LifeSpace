@@ -6,9 +6,12 @@
 // SPDX-License-Identifier: MIT
 //
 
+import class FirebaseFirestore.FirestoreSettings
+import class FirebaseFirestore.MemoryCacheSettings
 import Spezi
 import SpeziAccount
 import SpeziFirebaseAccount
+import SpeziFirebaseAccountStorage
 import SpeziFirebaseStorage
 import SpeziFirestore
 import SpeziHealthKit
@@ -21,23 +24,18 @@ class LifeSpaceDelegate: SpeziAppDelegate {
     override var configuration: Configuration {
         Configuration(standard: LifeSpaceStandard()) {
             if !FeatureFlags.disableFirebase {
-                AccountConfiguration(configuration: [
-                    .requires(\.userId)
-                ])
-
-                if FeatureFlags.useFirebaseEmulator {
-                    FirebaseAccountConfiguration(
-                        authenticationMethods: [.signInWithApple],
-                        emulatorSettings: (host: "localhost", port: 9099)
-                    )
-                } else {
-                    FirebaseAccountConfiguration(
-                        authenticationMethods: [.signInWithApple]
-                    )
-                }
+                AccountConfiguration(
+                    service: FirebaseAccountService(
+                        providers: [.signInWithApple],
+                        emulatorSettings: accountEmulator
+                    ),
+                    configuration: [
+                        .requires(\.userId)
+                    ]
+                )
                 
                 firestore
-                
+
                 if FeatureFlags.useFirebaseEmulator {
                     FirebaseStorageConfiguration(emulatorSettings: (host: "localhost", port: 9199))
                 } else {
@@ -55,6 +53,13 @@ class LifeSpaceDelegate: SpeziAppDelegate {
         }
     }
     
+    private var accountEmulator: (host: String, port: Int)? {
+        if FeatureFlags.useFirebaseEmulator {
+            (host: "localhost", port: 9099)
+        } else {
+            nil
+        }
+    }
     
     private var firestore: Firestore {
         let settings = FirestoreSettings()

@@ -28,7 +28,7 @@ enum SurveyModule {
     static var surveyAlreadyTaken: Bool {
         let lastSurveyDateString = UserDefaults.standard.string(forKey: StorageKeys.lastSurveyDate)
         
-        // Determine the survey date based on the current time
+        /// Determine the survey date based on the current time
         let surveyDate: Date
         if currentHour < 7 {
             surveyDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())?.startOfDay ?? Date().startOfDay
@@ -36,10 +36,10 @@ enum SurveyModule {
             surveyDate = Date().startOfDay
         }
         
-        // Format the survey date to a string
+        /// Format the survey date to a string
         let surveyDateString = dateFormatter.string(from: surveyDate)
         
-        // Compare the last survey date with the calculated survey date
+        /// Compare the last survey date with the calculated survey date
         return lastSurveyDateString == surveyDateString
     }
 

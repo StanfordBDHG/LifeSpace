@@ -64,7 +64,7 @@ struct WithdrawView: View {
             Spacer()
 
             Button(action: {
-                // Send user back to onboarding flow
+                /// Send user back to onboarding flow
                 completedOnboardingFlow = false
             }, label: {
                 Text("CLOSE")
@@ -77,14 +77,14 @@ struct WithdrawView: View {
     }
     
     private func processWithdrawal() async {
-        // Stop location tracking
+        /// Stop location tracking
         locationModule.stopTracking()
         UserDefaults.standard.set(false, forKey: StorageKeys.trackingPreference)
         
-        // Clear the user's study ID
+        /// Clear the user's study ID
         studyID = ""
         
-        // Sign out the user
+        /// Sign out the user
         do {
             try Auth.auth().signOut()
         } catch {
@@ -92,10 +92,10 @@ struct WithdrawView: View {
             self.showingAlert = true
         }
         
-        // Remove the user's account
-        await account.removeUserDetails()
+        /// Remove the user's account
+        account.removeUserDetails()
         
-        // Instruct the user to delete the app
+        /// Instruct the user to delete the app
         self.showingDeleteSheet = true
     }
 }

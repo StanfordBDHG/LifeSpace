@@ -14,7 +14,8 @@ import HealthKitOnFHIR
 import OSLog
 import PDFKit
 import Spezi
-import SpeziAccount
+@_spi(TestingSupport) import SpeziAccount
+import SpeziFirebaseAccount
 import SpeziFirebaseAccountStorage
 import SpeziFirestore
 import SpeziHealthKit
@@ -23,56 +24,37 @@ import SpeziQuestionnaire
 import SwiftUI
 
 
-actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, OnboardingConstraint, AccountStorageConstraint {
+actor LifeSpaceStandard: Standard,
+                         EnvironmentAccessible,
+                         HealthKitConstraint,
+                         OnboardingConstraint,
+                         AccountNotifyConstraint {
     enum LifeSpaceStandardError: Error {
         case userNotAuthenticatedYet
         case invalidStudyID
-    }
-    
-    private static var userCollection: CollectionReference {
-        let bundleIdentifier = Bundle.main.bundleIdentifier ?? "edu.stanford.lifespace"
-        return Firestore.firestore().collection(bundleIdentifier).document("study").collection("ls_users")
-    }
-    
-    @Dependency(FirestoreAccountStorage.self) var accountStorage: FirestoreAccountStorage?
-    
-    @AccountReference var account: Account
-    
-    private let logger = Logger(subsystem: "LifeSpace", category: "Standard")
-    
-    
-    private var userDocumentReference: DocumentReference {
-        get async throws {
-            guard let userId = Auth.auth().currentUser?.uid else {
-                throw LifeSpaceStandardError.userNotAuthenticatedYet
-            }
-            
-            return Self.userCollection.document(userId)
-        }
-    }
-    
-    private var userBucketReference: StorageReference {
-        get async throws {
-            guard let userId = Auth.auth().currentUser?.uid else {
-                throw LifeSpaceStandardError.userNotAuthenticatedYet
-            }
-            
-            let bundleIdentifier = Bundle.main.bundleIdentifier ?? "edu.stanford.lifespace"
-            return Storage.storage().reference().child("\(bundleIdentifier)/study/ls_users/\(userId)")
-        }
     }
     
     var studyID: String {
         UserDefaults.standard.string(forKey: StorageKeys.studyID) ?? "unknownStudyID"
     }
     
+    @Dependency(FirestoreAccountStorage.self) var accountStorage: FirestoreAccountStorage?
     
-    init() {
-        if !FeatureFlags.disableFirebase {
-            _accountStorage = Dependency(wrappedValue: FirestoreAccountStorage(storeIn: LifeSpaceStandard.userCollection))
+    @Application(\.logger) private var logger
+    
+    @Dependency(FirebaseConfiguration.self) private var configuration
+    
+    init() {}
+    
+    func respondToEvent(_ event: AccountNotifications.Event) async {
+        if case let .deletingAccount(accountId) = event {
+            do {
+                try await configuration.userDocumentReference(for: accountId).delete()
+            } catch {
+                logger.error("Could not delete user document: \(error)")
+            }
         }
     }
-    
     
     func add(sample: HKSample) async {
         guard let userId = Auth.auth().currentUser?.uid else {
@@ -107,9 +89,9 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         let id = response.identifier?.value?.value?.string ?? UUID().uuidString
         
         do {
-            try await userDocumentReference
-                .collection("QuestionnaireResponse") // Add all HealthKit sources in a /QuestionnaireResponse collection.
-                .document(id) // Set the document identifier to the id of the response.
+            try await configuration.userDocumentReference
+                .collection(Constants.surveyCollectionName)
+                .document(id)
                 .setData(from: response)
         } catch {
             logger.error("Could not store questionnaire response: \(error)")
@@ -139,8 +121,8 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             UpdatedBy: userId
         )
         
-        try await userDocumentReference
-            .collection("ls_location_data")
+        try await configuration.userDocumentReference
+            .collection(Constants.locationDataCollectionName)
             .document(UUID().uuidString)
             .setData(from: dataPoint)
     }
@@ -153,8 +135,8 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         var locations = [CLLocationCoordinate2D]()
         
         do {
-            let snapshot = try await userDocumentReference
-                .collection("ls_location_data")
+            let snapshot = try await configuration.userDocumentReference
+                .collection(Constants.locationDataCollectionName)
                 .whereField("currentDate", isGreaterThanOrEqualTo: startOfDay)
                 .whereField("currentDate", isLessThan: endOfDay)
                 .getDocuments()
@@ -189,19 +171,22 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
         response.studyID = studyID
         response.UpdatedBy = userId
         
-        try await userDocumentReference
-            .collection("ls_surveys")
+        try await configuration.userDocumentReference
+            .collection(Constants.surveyCollectionName)
             .document(UUID().uuidString)
             .setData(from: response)
         
         // Update the user document with the latest survey date
-        try await userDocumentReference.setData([
-            "latestSurveyDate": response.surveyDate ?? ""
-        ], merge: true)
+        try await configuration.userDocumentReference.setData(
+            [
+                "latestSurveyDate": response.surveyDate ?? ""
+            ],
+            merge: true
+        )
     }
     
     func getLatestSurveyDate() async -> String {
-        let document = try? await userDocumentReference.getDocument()
+        let document = try? await configuration.userDocumentReference.getDocument()
         
         if let data = document?.data(), let surveyDate = data["latestSurveyDate"] as? String {
             // Update the latest survey date in UserDefaults
@@ -215,15 +200,15 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     
     
     private func healthKitDocument(id uuid: UUID) async throws -> DocumentReference {
-        try await userDocumentReference
-            .collection("ls_healthkit") // Add all HealthKit sources in a /HealthKit collection.
+        try await configuration.userDocumentReference
+            .collection(Constants.healthKitCollectionName) // Add all HealthKit sources in a /HealthKit collection.
             .document(uuid.uuidString) // Set the document identifier to the UUID of the document.
     }
     
     func deletedAccount() async throws {
         // delete all user associated data
         do {
-            try await userDocumentReference.delete()
+            try await configuration.userDocumentReference.delete()
         } catch {
             logger.error("Could not delete user document: \(error)")
         }
@@ -253,7 +238,9 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await userBucketReference.child("ls_consent/\(studyID)_consent.pdf").putDataAsync(consentData, metadata: metadata)
+            _ = try await configuration.userBucketReference
+                .child("\(Constants.consentBucketName)/\(studyID)_consent.pdf")
+                .putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }
@@ -279,7 +266,9 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await userBucketReference.child("ls_consent/\(filename)").putDataAsync(consentData, metadata: metadata)
+            _ = try await configuration.userBucketReference
+                .child("\(Constants.consentBucketName)/\(filename)")
+                .putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }
@@ -288,7 +277,9 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     func isConsentFormUploaded(name: String) async -> Bool {
         do {
             let maxSize: Int64 = 10 * 1024 * 1024
-            let data = try await userBucketReference.child("ls_consent/\(studyID)_\(name).pdf").data(maxSize: maxSize)
+            let data = try await configuration.userBucketReference
+                .child("\(Constants.consentBucketName)/\(studyID)_\(name).pdf")
+                .data(maxSize: maxSize)
             
             if let docURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 let filename = "\(studyID)_\(name).pdf"
@@ -305,46 +296,14 @@ actor LifeSpaceStandard: Standard, EnvironmentAccessible, HealthKitConstraint, O
     /// Update the user document with the user's study ID
     func setStudyID(_ studyID: String) async {
         do {
-            try await userDocumentReference.setData([
-                "studyID": studyID
-            ], merge: true)
+            try await configuration.userDocumentReference.setData(
+                [
+                    "studyID": studyID
+                ],
+                merge: true
+            )
         } catch {
             logger.error("Unable to set Study ID: \(error)")
         }
-    }
-    
-    func create(_ identifier: AdditionalRecordId, _ details: SignupDetails) async throws {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        try await accountStorage.create(identifier, details)
-    }
-    
-    func load(_ identifier: AdditionalRecordId, _ keys: [any AccountKey.Type]) async throws -> PartialAccountDetails {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        return try await accountStorage.load(identifier, keys)
-    }
-    
-    func modify(_ identifier: AdditionalRecordId, _ modifications: AccountModifications) async throws {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        try await accountStorage.modify(identifier, modifications)
-    }
-    
-    func clear(_ identifier: AdditionalRecordId) async {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        await accountStorage.clear(identifier)
-    }
-    
-    func delete(_ identifier: AdditionalRecordId) async throws {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        try await accountStorage.delete(identifier)
     }
 }
