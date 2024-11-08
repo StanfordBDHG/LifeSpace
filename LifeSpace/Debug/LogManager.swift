@@ -14,38 +14,32 @@ actor LogManager: Module, DefaultInitializable, EnvironmentAccessible {
     @Application(\.logger) private var logger
     
     func query(
-        startDate: Date? = nil,
+        startDate: Date,
         endDate: Date? = nil,
         logType: OSLogEntryLog.Level? = nil
     ) -> String {
         do {
             let store = try OSLogStore(scope: .currentProcessIdentifier)
-            let position: OSLogPosition
-            if let startDate = startDate {
-                position = store.position(date: startDate)
-            } else {
-                position = store.position(timeIntervalSinceLatestBoot: 1)
+            let position = store.position(date: startDate)
+            
+            guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
+                return ""
             }
             
-            let logs = try store.getEntries(at: position).compactMap { $0 as? OSLogEntryLog }
+            let predicate = NSPredicate(format: "subsystem == %@", bundleIdentifier)
+            
+            let logs = try store.getEntries(at: position, matching: predicate)
+                .reversed()
+                .compactMap { $0 as? OSLogEntryLog }
             
             return logs
                 .filter { logEntry in
-                    /// Filter by subsystem
-                    guard logEntry.subsystem == Bundle.main.bundleIdentifier else {
-                        return false
-                    }
-                    
                     /// Filter by log type if specified
                     if let logType, logEntry.level != logType {
                         return false
                     }
                     
-                    /// Filter by date range if specified
-                    if let startDate, logEntry.date < startDate {
-                        return false
-                    }
-                    
+                    /// Filter by end date if specified
                     if let endDate, logEntry.date > endDate {
                         return false
                     }

@@ -22,10 +22,9 @@ struct LogViewer: View {
     var body: some View {
         VStack {
             /// Date range selection
-            HStack {
-                DatePicker("FROM", selection: $startDate, displayedComponents: .date)
-                Spacer()
-                DatePicker("TO", selection: $endDate, displayedComponents: .date)
+            VStack {
+                DatePicker("FROM", selection: $startDate, displayedComponents: [.date, .hourAndMinute])
+                DatePicker("TO", selection: $endDate, displayedComponents: [.date, .hourAndMinute])
             }
             .padding()
             
