@@ -70,9 +70,9 @@ struct LogViewer: View {
             }
         }
         .toolbar {
-            if !logs.isEmpty {
+            if !logs.isEmpty, let fileURL = saveLogsToTextFile(logs) {
                 ShareLink(
-                    item: logs,
+                    item: fileURL,
                     preview: SharePreview(
                         "LOGS",
                         image: Image(systemName: "doc.text") // swiftlint:disable:this accessibility_label_for_image
@@ -94,5 +94,19 @@ struct LogViewer: View {
         }.value
         
         isLoading = false
+    }
+    
+    private func saveLogsToTextFile(_ logs: String) -> URL? {
+        let fileName = "Logs.txt"
+        let tempDirectory = FileManager.default.temporaryDirectory
+        let fileURL = tempDirectory.appendingPathComponent(fileName)
+        
+        do {
+            try logs.write(to: fileURL, atomically: true, encoding: .utf8)
+            return fileURL
+        } catch {
+            print("Error saving logs to file: \(error)")
+            return nil
+        }
     }
 }
