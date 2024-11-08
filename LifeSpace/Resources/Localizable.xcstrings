@@ -163,8 +163,25 @@
         }
       }
     },
+    "DEBUG_SECTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Debug"
+          }
+        }
+      }
+    },
     "DOCUMENT_NOT_FOUND_MESSAGE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Document not found"
+          }
+        }
+      }
     },
     "DOCUMENTS_SECTION" : {
       "localizations" : {
@@ -172,6 +189,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Documents"
+          }
+        }
+      }
+    },
+    "FROM" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From"
           }
         }
       }
@@ -298,6 +325,16 @@
         }
       }
     },
+    "LOADING_LOGS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading logs…"
+          }
+        }
+      }
+    },
     "LOCATION_ALLOW_WHILE_USING_DESCRIPTION" : {
       "localizations" : {
         "en" : {
@@ -384,6 +421,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error logging out"
+          }
+        }
+      }
+    },
+    "LOG_TYPE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log Type"
+          }
+        }
+      }
+    },
+    "LOG_VIEWER" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log Viewer"
+          }
+        }
+      }
+    },
+    "LOGS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logs"
           }
         }
       }
@@ -689,6 +756,16 @@
         }
       }
     },
+    "TO" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To"
+          }
+        }
+      }
+    },
     "TRACK_LOCATION_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -725,6 +802,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "View HIPAA Authorization"
+          }
+        }
+      }
+    },
+    "VIEW_LOGS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Logs"
           }
         }
       }

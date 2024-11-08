@@ -50,6 +50,7 @@ class LifeSpaceDelegate: SpeziAppDelegate {
             LifeSpaceScheduler()
             OnboardingDataSource()
             LocationModule()
+            LogManager()
         }
     }
     
