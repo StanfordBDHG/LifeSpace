@@ -75,10 +75,10 @@ struct LogViewer: View {
                     item: logs,
                     preview: SharePreview(
                         "LOGS",
-                        image: Image(systemName: "doc.text")
+                        image: Image(systemName: "doc.text") // swiftlint:disable:this accessibility_label_for_image
                     )
                 ) {
-                    Image(systemName: "square.and.arrow.up")
+                    Image(systemName: "square.and.arrow.up") // swiftlint:disable:this accessibility_label_for_image
                 }
             }
         }
