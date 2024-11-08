@@ -73,7 +73,10 @@ struct LogViewer: View {
             if !logs.isEmpty {
                 ShareLink(
                     item: logs,
-                    preview: SharePreview("LOGS", image: Image(systemName: "doc.text"))
+                    preview: SharePreview(
+                        "LOGS",
+                        image: Image(systemName: "doc.text")
+                    )
                 ) {
                     Image(systemName: "square.and.arrow.up")
                 }

@@ -27,4 +27,6 @@ enum FeatureFlags {
     ///
     /// Requires ``disableFirebase`` to be `false`.
     static let setupTestAccount = CommandLine.arguments.contains("--setupTestAccount")
+    /// Show debug options to the user (e.g. logs)
+    static let showDebugOptions = true
 }

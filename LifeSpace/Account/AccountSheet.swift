@@ -104,8 +104,10 @@ struct AccountSheet: View {
                 locationTrackingToggle
                 withdrawButton
             }
-            Section(header: Text("DEBUG_SECTION")) {
-                logExportButton
+            if FeatureFlags.showDebugOptions {
+                Section(header: Text("DEBUG_SECTION")) {
+                    logExportButton
+                }
             }
         }
     }

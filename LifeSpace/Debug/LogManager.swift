@@ -37,15 +37,16 @@ actor LogManager: Module, DefaultInitializable, EnvironmentAccessible {
                     }
                     
                     /// Filter by log type if specified
-                    if let logType = logType, logEntry.level != logType {
+                    if let logType, logEntry.level != logType {
                         return false
                     }
                     
                     /// Filter by date range if specified
-                    if let startDate = startDate, logEntry.date < startDate {
+                    if let startDate, logEntry.date < startDate {
                         return false
                     }
-                    if let endDate = endDate, logEntry.date > endDate {
+                    
+                    if let endDate, logEntry.date > endDate {
                         return false
                     }
                     
