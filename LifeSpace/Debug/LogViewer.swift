@@ -18,6 +18,7 @@ struct LogViewer: View {
     @State private var selectedLogType: LogType = .all
     @State private var logs = ""
     @State private var isLoading = false
+    @State private var queryTask: Task<Void, Never>?
     
     var body: some View {
         VStack {
@@ -49,24 +50,16 @@ struct LogViewer: View {
         }
         .navigationTitle("LOG_VIEWER")
         .onAppear {
-            Task {
-                await queryLogs()
-            }
+            queryLogs()
         }
         .onChange(of: startDate) {
-            Task {
-                await queryLogs()
-            }
+            queryLogs()
         }
         .onChange(of: endDate) {
-            Task {
-                await queryLogs()
-            }
+            queryLogs()
         }
         .onChange(of: selectedLogType) {
-            Task {
-                await queryLogs()
-            }
+            queryLogs()
         }
         .toolbar {
             if !logs.isEmpty, let fileURL = saveLogsToTextFile(logs) {
@@ -83,16 +76,29 @@ struct LogViewer: View {
         }
     }
     
-    @MainActor
-    private func queryLogs() async {
+    private func queryLogs() {
+        /// Cancel any existing query task
+        queryTask?.cancel()
+        
+        /// Set loading state
         isLoading = true
         
-        /// This is very slow, so run as a detached task with high priority
-        logs = await Task.detached(priority: .userInitiated) { [manager, startDate, endDate, selectedLogType] in
-            await manager.query(startDate: startDate, endDate: endDate, logType: selectedLogType.osLogLevel)
-        }.value
-        
-        isLoading = false
+        /// Create a new query task and store it
+        queryTask = Task(priority: .userInitiated) { [manager, startDate, endDate, selectedLogType] in
+            /// Run the query
+            let result = await manager.query(startDate: startDate, endDate: endDate, logType: selectedLogType.osLogLevel)
+
+            /// Check to make sure the task isn't cancelled before updating UI
+            guard !Task.isCancelled else {
+                return
+            }
+
+            /// Update the UI
+            await MainActor.run {
+                logs = result
+                isLoading = false
+            }
+        }
     }
     
     private func saveLogsToTextFile(_ logs: String) -> URL? {
