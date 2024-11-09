@@ -17,7 +17,7 @@ actor LogManager: Module, DefaultInitializable, EnvironmentAccessible {
         startDate: Date,
         endDate: Date? = nil,
         logType: OSLogEntryLog.Level? = nil
-    ) -> [String] {
+    ) -> [OSLogEntryLog] {
         do {
             let store = try OSLogStore(scope: .currentProcessIdentifier)
             let position = store.position(date: startDate)
@@ -46,7 +46,7 @@ actor LogManager: Module, DefaultInitializable, EnvironmentAccessible {
                     
                     return true
                 }
-                .map { "[\($0.date.formatted())] [\($0.category)] \($0.composedMessage)" }
+                //.map { "[\($0.date.formatted())] [\($0.category)] \($0.composedMessage)" }
         } catch {
             logger.warning("\(error.localizedDescription, privacy: .public)")
             return []

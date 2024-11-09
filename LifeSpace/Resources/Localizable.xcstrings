@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "[%@] [%@] %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "[%1$@] [%2$@] %3$@"
+          }
+        }
+      }
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -471,6 +481,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No"
+          }
+        }
+      }
+    },
+    "NO_LOGS_AVAILABLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No logs available"
           }
         }
       }

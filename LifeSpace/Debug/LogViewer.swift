@@ -16,34 +16,39 @@ struct LogViewer: View {
     @State private var startDate: Date = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
     @State private var endDate = Date()
     @State private var selectedLogType: LogType = .all
-    @State private var logs: [String] = []
+    @State private var logs: [OSLogEntryLog] = []
     @State private var isLoading = false
     @State private var queryTask: Task<Void, Never>?
     
     var body: some View {
         VStack {
-            /// Date range selection
             VStack {
                 DatePicker("FROM", selection: $startDate, displayedComponents: [.date, .hourAndMinute])
                 DatePicker("TO", selection: $endDate, displayedComponents: [.date, .hourAndMinute])
-            }
-            .padding()
-            
-            /// Log type selection
-            Picker("LOG_TYPE", selection: $selectedLogType) {
-                ForEach(LogType.allCases) { type in
-                    Text(type.rawValue).tag(type)
+                HStack {
+                    Text("LOG_TYPE")
+                    Spacer()
+                    Picker("LOG_TYPE", selection: $selectedLogType) {
+                        ForEach(LogType.allCases) { type in
+                            Text(type.rawValue).tag(type)
+                        }
+                    }
                 }
             }
-            .pickerStyle(SegmentedPickerStyle())
             .padding()
             
             if isLoading {
+                Spacer()
                 ProgressView("LOADING_LOGS")
                     .padding()
+                Spacer()
             } else {
-                List(logs, id: \.self) { entry in
-                    Text(entry)
+                if !logs.isEmpty {
+                    List(logs, id: \.self) { entry in
+                        Text("[\(entry.date.formatted())] [\(entry.category)] \(entry.composedMessage)")
+                    }
+                } else {
+                    ContentUnavailableView("NO_LOGS_AVAILABLE", systemImage: "magnifyingglass")
                 }
             }
             
@@ -65,7 +70,7 @@ struct LogViewer: View {
         .toolbar {
             if !logs.isEmpty {
                 ShareLink(
-                    item: logs.joined(separator: "\n"),
+                    item: logs.combinedLogString(),
                     preview: SharePreview(
                         "LOGS",
                         image: Image(systemName: "doc.text") // swiftlint:disable:this accessibility_label_for_image
@@ -100,5 +105,19 @@ struct LogViewer: View {
                 isLoading = false
             }
         }
+    }
+}
+
+extension Array where Element == OSLogEntryLog {
+    func combinedLogString() -> String {
+        self.map { entry in
+            let timestamp = entry.date.formatted()
+            let level = entry.level.rawValue
+            let category = entry.category
+            let message = entry.composedMessage
+            
+            return "[\(timestamp)] [\(category)] [\(level)]: \(message)"
+        }
+        .joined(separator: "\n")
     }
 }
