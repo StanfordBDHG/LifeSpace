@@ -45,7 +45,11 @@ struct LogViewer: View {
             } else {
                 if !logs.isEmpty {
                     List(logs, id: \.self) { entry in
-                        Text("[\(entry.date.formatted())] [\(entry.category)] \(entry.composedMessage)")
+                        VStack(alignment: .leading) {
+                            Text(entry.date.formatted())
+                            Text("Category: \(entry.category)")
+                            Text(entry.composedMessage)
+                        }
                     }
                 } else {
                     ContentUnavailableView("NO_LOGS_AVAILABLE", systemImage: "magnifyingglass")

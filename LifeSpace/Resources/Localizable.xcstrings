@@ -1,16 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "[%@] [%@] %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "[%1$@] [%2$@] %3$@"
-          }
-        }
-      }
-    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -71,6 +61,9 @@
           }
         }
       }
+    },
+    "Category: %@" : {
+
     },
     "CLOSE" : {
       "comment" : "MARK: General",

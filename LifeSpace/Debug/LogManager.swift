@@ -46,7 +46,6 @@ actor LogManager: Module, DefaultInitializable, EnvironmentAccessible {
                     
                     return true
                 }
-                //.map { "[\($0.date.formatted())] [\($0.category)] \($0.composedMessage)" }
         } catch {
             logger.warning("\(error.localizedDescription, privacy: .public)")
             return []
