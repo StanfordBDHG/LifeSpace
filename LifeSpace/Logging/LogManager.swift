@@ -10,15 +10,22 @@ import OSLog
 import Spezi
 import SwiftUI
 
-actor LogManager: Module, DefaultInitializable, EnvironmentAccessible {
-    @Application(\.logger) private var logger
+class LogManager {
+    private let store: OSLogStore?
+    
+    init() {
+        self.store = try? OSLogStore(scope: .currentProcessIdentifier)
+    }
     
     func query(
         startDate: Date,
         endDate: Date? = nil,
         logLevel: OSLogEntryLog.Level? = nil
     ) throws -> [OSLogEntryLog] {
-        let store = try OSLogStore(scope: .currentProcessIdentifier)
+        guard let store else {
+            return []
+        }
+        
         let position = store.position(date: startDate)
         
         guard let bundleIdentifier = Bundle.main.bundleIdentifier else {

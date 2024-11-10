@@ -312,7 +312,7 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
-		634E38462CDE790800B16E20 /* Debug */ = {
+		634E38462CDE790800B16E20 /* Logging */ = {
 			isa = PBXGroup;
 			children = (
 				634E38532CE055C300B16E20 /* OSLogEntryLog+FormattedLogOutput.swift */,
@@ -321,7 +321,7 @@
 				634E38432CDE6E2900B16E20 /* LogViewer.swift */,
 				634E38552CE0EA4600B16E20 /* LogsListView.swift */,
 			);
-			path = Debug;
+			path = Logging;
 			sourceTree = "<group>";
 		};
 		635198772CD53FE30087B1F3 /* Firestore */ = {
@@ -383,7 +383,7 @@
 		653A254F283387FE005D4D48 /* LifeSpace */ = {
 			isa = PBXGroup;
 			children = (
-				634E38462CDE790800B16E20 /* Debug */,
+				634E38462CDE790800B16E20 /* Logging */,
 				635198772CD53FE30087B1F3 /* Firestore */,
 				A9720E412ABB68B300872D23 /* Account */,
 				637AA5CF2BBDA686007BD7A3 /* Location */,

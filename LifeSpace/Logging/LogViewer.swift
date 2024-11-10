@@ -11,7 +11,7 @@ import SwiftUI
 
 
 struct LogViewer: View {
-    @Environment(LogManager.self) var manager
+    private let manager = LogManager()
     
     @State private var startDate: Date = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
     @State private var endDate = Date()
