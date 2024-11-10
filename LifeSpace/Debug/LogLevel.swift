@@ -1,5 +1,5 @@
 //
-//  LogType.swift
+//  LogLevel.swift
 //  LifeSpace
 //
 //  Created by Vishnu Ravi on 11/8/24.
@@ -8,12 +8,14 @@
 import OSLog
 
 
-enum LogType: String, CaseIterable, Identifiable {
+enum LogLevel: String, CaseIterable, Identifiable {
     case all = "All"
     case info = "Info"
     case debug = "Debug"
     case error = "Error"
     case fault = "Fault"
+    case notice = "Notice"
+    case undefined = "Undefined"
     
     var id: String { self.rawValue }
     
@@ -29,6 +31,10 @@ enum LogType: String, CaseIterable, Identifiable {
             return .error
         case .fault:
             return .fault
+        case .notice:
+            return .notice
+        case .undefined:
+            return .undefined
         }
     }
 }

@@ -57,7 +57,8 @@
 		63497B732BBF855E001F8419 /* OptionsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63497B722BBF855E001F8419 /* OptionsPanel.swift */; };
 		634E38422CDE6B4000B16E20 /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E38412CDE6B3B00B16E20 /* LogManager.swift */; };
 		634E38442CDE6E2B00B16E20 /* LogViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E38432CDE6E2900B16E20 /* LogViewer.swift */; };
-		634E38482CDE7A7400B16E20 /* LogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E38472CDE7A7100B16E20 /* LogType.swift */; };
+		634E38482CDE7A7400B16E20 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E38472CDE7A7100B16E20 /* LogLevel.swift */; };
+		634E38542CE055CC00B16E20 /* OSLogEntryLog+FormattedLogOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E38532CE055C300B16E20 /* OSLogEntryLog+FormattedLogOutput.swift */; };
 		634FFF672C169F40005E8217 /* LifeSpaceConsent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634FFF662C169F40005E8217 /* LifeSpaceConsent.swift */; };
 		634FFF6D2C16B81A005E8217 /* HIPAAAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634FFF6C2C16B81A005E8217 /* HIPAAAuthorization.swift */; };
 		635198792CD53FF40087B1F3 /* FirebaseConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635198782CD53FF10087B1F3 /* FirebaseConfiguration.swift */; };
@@ -142,7 +143,8 @@
 		63497B722BBF855E001F8419 /* OptionsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsPanel.swift; sourceTree = "<group>"; };
 		634E38412CDE6B3B00B16E20 /* LogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
 		634E38432CDE6E2900B16E20 /* LogViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewer.swift; sourceTree = "<group>"; };
-		634E38472CDE7A7100B16E20 /* LogType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogType.swift; sourceTree = "<group>"; };
+		634E38472CDE7A7100B16E20 /* LogLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogLevel.swift; sourceTree = "<group>"; };
+		634E38532CE055C300B16E20 /* OSLogEntryLog+FormattedLogOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLogEntryLog+FormattedLogOutput.swift"; sourceTree = "<group>"; };
 		634FFF662C169F40005E8217 /* LifeSpaceConsent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeSpaceConsent.swift; sourceTree = "<group>"; };
 		634FFF6C2C16B81A005E8217 /* HIPAAAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIPAAAuthorization.swift; sourceTree = "<group>"; };
 		635198782CD53FF10087B1F3 /* FirebaseConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConfiguration.swift; sourceTree = "<group>"; };
@@ -311,7 +313,8 @@
 		634E38462CDE790800B16E20 /* Debug */ = {
 			isa = PBXGroup;
 			children = (
-				634E38472CDE7A7100B16E20 /* LogType.swift */,
+				634E38532CE055C300B16E20 /* OSLogEntryLog+FormattedLogOutput.swift */,
+				634E38472CDE7A7100B16E20 /* LogLevel.swift */,
 				634E38412CDE6B3B00B16E20 /* LogManager.swift */,
 				634E38432CDE6E2900B16E20 /* LogViewer.swift */,
 			);
@@ -651,7 +654,7 @@
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				634FFF672C169F40005E8217 /* LifeSpaceConsent.swift in Sources */,
-				634E38482CDE7A7400B16E20 /* LogType.swift in Sources */,
+				634E38482CDE7A7400B16E20 /* LogLevel.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
 				630D3B572C616E9D006066E5 /* WithdrawView.swift in Sources */,
@@ -669,6 +672,7 @@
 				2FF53D8D2A8729D600042B76 /* LifeSpaceStandard.swift in Sources */,
 				63497B702BBF6ECE001F8419 /* LocationDataPoint.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
+				634E38542CE055CC00B16E20 /* OSLogEntryLog+FormattedLogOutput.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
 				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
 				63AB851F2C3DACA40011AEB6 /* HealthKitDataPoint.swift in Sources */,

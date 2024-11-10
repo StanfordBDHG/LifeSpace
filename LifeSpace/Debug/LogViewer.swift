@@ -15,7 +15,7 @@ struct LogViewer: View {
     
     @State private var startDate: Date = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
     @State private var endDate = Date()
-    @State private var selectedLogType: LogType = .all
+    @State private var selectedLogLevel: LogLevel = .all
     @State private var logs: [OSLogEntryLog] = []
     @State private var isLoading = false
     @State private var queryTask: Task<Void, Never>?
@@ -30,9 +30,9 @@ struct LogViewer: View {
                 HStack {
                     Text("LOG_TYPE")
                     Spacer()
-                    Picker("LOG_TYPE", selection: $selectedLogType) {
-                        ForEach(LogType.allCases) { type in
-                            Text(type.rawValue).tag(type)
+                    Picker("LOG_TYPE", selection: $selectedLogLevel) {
+                        ForEach(LogLevel.allCases) { level in
+                            Text(level.rawValue).tag(level)
                         }
                     }
                 }
@@ -70,13 +70,13 @@ struct LogViewer: View {
         .onChange(of: endDate) {
             queryLogs()
         }
-        .onChange(of: selectedLogType) {
+        .onChange(of: selectedLogLevel) {
             queryLogs()
         }
         .toolbar {
             if !logs.isEmpty {
                 ShareLink(
-                    item: logs.combinedLogString(),
+                    item: logs.formattedLogOutput(),
                     preview: SharePreview(
                         "LOGS",
                         image: Image(systemName: "doc.text") // swiftlint:disable:this accessibility_label_for_image
@@ -99,13 +99,13 @@ struct LogViewer: View {
         isLoading = true
         
         /// Create a new query task and store it
-        queryTask = Task(priority: .userInitiated) { [manager, startDate, endDate, selectedLogType] in
+        queryTask = Task(priority: .userInitiated) { [manager, startDate, endDate, selectedLogLevel] in
             do {
                 /// Run the query
                 let result = try await manager.query(
                     startDate: startDate,
                     endDate: endDate,
-                    logType: selectedLogType.osLogLevel
+                    logLevel: selectedLogLevel.osLogLevel
                 )
                 
                 /// Check to make sure the task isn't cancelled before updating UI
@@ -123,19 +123,5 @@ struct LogViewer: View {
                 self.showingAlert = true
             }
         }
-    }
-}
-
-extension Array where Element == OSLogEntryLog {
-    func combinedLogString() -> String {
-        self.map { entry in
-            let timestamp = entry.date.formatted()
-            let level = entry.level.rawValue
-            let category = entry.category
-            let message = entry.composedMessage
-            
-            return "[\(timestamp)] [\(category)] [\(level)]: \(message)"
-        }
-        .joined(separator: "\n")
     }
 }

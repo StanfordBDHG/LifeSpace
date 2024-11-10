@@ -16,7 +16,7 @@ actor LogManager: Module, DefaultInitializable, EnvironmentAccessible {
     func query(
         startDate: Date,
         endDate: Date? = nil,
-        logType: OSLogEntryLog.Level? = nil
+        logLevel: OSLogEntryLog.Level? = nil
     ) throws -> [OSLogEntryLog] {
         let store = try OSLogStore(scope: .currentProcessIdentifier)
         let position = store.position(date: startDate)
@@ -34,7 +34,7 @@ actor LogManager: Module, DefaultInitializable, EnvironmentAccessible {
         return logs
             .filter { logEntry in
                 /// Filter by log type if specified
-                if let logType, logEntry.level != logType {
+                if let logLevel, logEntry.level != logLevel {
                     return false
                 }
                 
