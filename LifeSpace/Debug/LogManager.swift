@@ -17,38 +17,33 @@ actor LogManager: Module, DefaultInitializable, EnvironmentAccessible {
         startDate: Date,
         endDate: Date? = nil,
         logType: OSLogEntryLog.Level? = nil
-    ) -> [OSLogEntryLog] {
-        do {
-            let store = try OSLogStore(scope: .currentProcessIdentifier)
-            let position = store.position(date: startDate)
-            
-            guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
-                return []
-            }
-            
-            let predicate = NSPredicate(format: "subsystem == %@", bundleIdentifier)
-            
-            let logs = try store.getEntries(at: position, matching: predicate)
-                .reversed()
-                .compactMap { $0 as? OSLogEntryLog }
-            
-            return logs
-                .filter { logEntry in
-                    /// Filter by log type if specified
-                    if let logType, logEntry.level != logType {
-                        return false
-                    }
-                    
-                    /// Filter by end date if specified
-                    if let endDate, logEntry.date > endDate {
-                        return false
-                    }
-                    
-                    return true
-                }
-        } catch {
-            logger.warning("\(error.localizedDescription, privacy: .public)")
+    ) throws -> [OSLogEntryLog] {
+        let store = try OSLogStore(scope: .currentProcessIdentifier)
+        let position = store.position(date: startDate)
+        
+        guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
             return []
         }
+        
+        let predicate = NSPredicate(format: "subsystem == %@", bundleIdentifier)
+        
+        let logs = try store.getEntries(at: position, matching: predicate)
+            .reversed()
+            .compactMap { $0 as? OSLogEntryLog }
+        
+        return logs
+            .filter { logEntry in
+                /// Filter by log type if specified
+                if let logType, logEntry.level != logType {
+                    return false
+                }
+                
+                /// Filter by end date if specified
+                if let endDate, logEntry.date > endDate {
+                    return false
+                }
+                
+                return true
+            }
     }
 }

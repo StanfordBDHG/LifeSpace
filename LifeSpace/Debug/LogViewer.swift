@@ -19,6 +19,8 @@ struct LogViewer: View {
     @State private var logs: [OSLogEntryLog] = []
     @State private var isLoading = false
     @State private var queryTask: Task<Void, Never>?
+    @State private var showingAlert = false
+    @State private var errorMessage = ""
     
     var body: some View {
         VStack {
@@ -84,6 +86,9 @@ struct LogViewer: View {
                 }
             }
         }
+        .alert(errorMessage, isPresented: $showingAlert) {
+                   Button("OK", role: .cancel) { }
+        }
     }
     
     private func queryLogs() {
@@ -95,18 +100,27 @@ struct LogViewer: View {
         
         /// Create a new query task and store it
         queryTask = Task(priority: .userInitiated) { [manager, startDate, endDate, selectedLogType] in
-            /// Run the query
-            let result = await manager.query(startDate: startDate, endDate: endDate, logType: selectedLogType.osLogLevel)
-            
-            /// Check to make sure the task isn't cancelled before updating UI
-            guard !Task.isCancelled else {
-                return
-            }
-            
-            /// Update the UI
-            await MainActor.run {
-                logs = result
-                isLoading = false
+            do {
+                /// Run the query
+                let result = try await manager.query(
+                    startDate: startDate,
+                    endDate: endDate,
+                    logType: selectedLogType.osLogLevel
+                )
+                
+                /// Check to make sure the task isn't cancelled before updating UI
+                guard !Task.isCancelled else {
+                    return
+                }
+                
+                /// Update the UI
+                await MainActor.run {
+                    logs = result
+                    isLoading = false
+                }
+            } catch {
+                errorMessage = error.localizedDescription
+                self.showingAlert = true
             }
         }
     }
