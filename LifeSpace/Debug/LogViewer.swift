@@ -41,21 +41,10 @@ struct LogViewer: View {
             
             if isLoading {
                 Spacer()
-                ProgressView("LOADING_LOGS")
-                    .padding()
+                ProgressView("LOADING_LOGS").padding()
                 Spacer()
             } else {
-                if !logs.isEmpty {
-                    List(logs, id: \.self) { entry in
-                        VStack(alignment: .leading) {
-                            Text(entry.date.formatted())
-                            Text("Category: \(entry.category)")
-                            Text(entry.composedMessage)
-                        }
-                    }
-                } else {
-                    ContentUnavailableView("NO_LOGS_AVAILABLE", systemImage: "magnifyingglass")
-                }
+                LogsListView(logs: logs)
             }
             
             Spacer()
