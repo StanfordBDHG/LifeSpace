@@ -6,6 +6,7 @@
 //
 
 import OSLog
+import SwiftUI
 
 
 enum LogLevel: String, CaseIterable, Identifiable {
@@ -35,6 +36,40 @@ enum LogLevel: String, CaseIterable, Identifiable {
             return .notice
         case .undefined:
             return .undefined
+        }
+    }
+    
+    var color: Color {
+        switch self {
+        case .info:
+            return .blue
+        case .debug:
+            return .green
+        case .error:
+            return .red
+        case .fault:
+            return .purple
+        case .notice:
+            return .orange
+        case .all, .undefined:
+            return .gray
+        }
+    }
+    
+    init(from osLogLevel: OSLogEntryLog.Level) {
+        switch osLogLevel {
+        case .info:
+            self = .info
+        case .debug:
+            self = .debug
+        case .error:
+            self = .error
+        case .fault:
+            self = .fault
+        case .notice:
+            self = .notice
+        @unknown default:
+            self = .undefined
         }
     }
 }
