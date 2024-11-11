@@ -66,6 +66,7 @@
 		639B69DB2C2BCD6A00C0FF4A /* ConsentPDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639B69DA2C2BCD6A00C0FF4A /* ConsentPDFViewer.swift */; };
 		63A28D312C0580310025A1E0 /* RefreshIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A28D302C0580310025A1E0 /* RefreshIcon.swift */; };
 		63A28D332C062E2E0025A1E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63A28D322C062E2E0025A1E0 /* GoogleService-Info.plist */; };
+		63A3155D2CE2936400310EF5 /* LogManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A3155C2CE2936100310EF5 /* LogManagerError.swift */; };
 		63A8DB292C1FE81200939757 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A8DB282C1FE81200939757 /* AppIcon.png */; };
 		63AB851F2C3DACA40011AEB6 /* HealthKitDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AB851E2C3DACA40011AEB6 /* HealthKitDataPoint.swift */; };
 		63BBF8162BB8993B006890CE /* StudyIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BBF8152BB8993B006890CE /* StudyIDView.swift */; };
@@ -153,6 +154,7 @@
 		639B69DA2C2BCD6A00C0FF4A /* ConsentPDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentPDFViewer.swift; sourceTree = "<group>"; };
 		63A28D302C0580310025A1E0 /* RefreshIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshIcon.swift; sourceTree = "<group>"; };
 		63A28D322C062E2E0025A1E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		63A3155C2CE2936100310EF5 /* LogManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogManagerError.swift; sourceTree = "<group>"; };
 		63A8DB282C1FE81200939757 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
 		63AB851E2C3DACA40011AEB6 /* HealthKitDataPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitDataPoint.swift; sourceTree = "<group>"; };
 		63BBF8152BB8993B006890CE /* StudyIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyIDView.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 		634E38462CDE790800B16E20 /* Logging */ = {
 			isa = PBXGroup;
 			children = (
+				63A3155C2CE2936100310EF5 /* LogManagerError.swift */,
 				634E38532CE055C300B16E20 /* OSLogEntryLog+FormattedLogOutput.swift */,
 				634E38472CDE7A7100B16E20 /* LogLevel.swift */,
 				634E38412CDE6B3B00B16E20 /* LogManager.swift */,
@@ -672,6 +675,7 @@
 				63A28D312C0580310025A1E0 /* RefreshIcon.swift in Sources */,
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
+				63A3155D2CE2936400310EF5 /* LogManagerError.swift in Sources */,
 				2F1AC9DF2B4E840E00C24973 /* LifeSpace.docc in Sources */,
 				2FF53D8D2A8729D600042B76 /* LifeSpaceStandard.swift in Sources */,
 				63497B702BBF6ECE001F8419 /* LocationDataPoint.swift in Sources */,

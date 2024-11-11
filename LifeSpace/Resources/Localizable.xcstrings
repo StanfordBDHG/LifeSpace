@@ -446,6 +446,7 @@
       }
     },
     "LOGS" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -454,6 +455,9 @@
           }
         }
       }
+    },
+    "LOGS_SHARE_PREVIEW_TITLE" : {
+
     },
     "NEXT_BUTTON" : {
       "localizations" : {

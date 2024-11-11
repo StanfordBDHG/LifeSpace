@@ -9,7 +9,8 @@ import OSLog
 import Spezi
 import SwiftUI
 
-
+/// A SwiftUI view that displays logs retrieved from `LogManager`.
+/// Allows users to filter logs by date range and log level, view them in a list, and share the output.
 struct LogViewer: View {
     private let manager = LogManager()
     
@@ -63,15 +64,20 @@ struct LogViewer: View {
             queryLogs()
         }
         .toolbar {
-            if !logs.isEmpty {
-                ShareLink(
-                    item: logs.formattedLogOutput(),
-                    preview: SharePreview(
-                        "LOGS",
-                        image: Image(systemName: "doc.text") // swiftlint:disable:this accessibility_label_for_image
-                    )
-                ) {
-                    Image(systemName: "square.and.arrow.up") // swiftlint:disable:this accessibility_label_for_image
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button(action: queryLogs) {
+                    Image(systemName: "arrow.clockwise") // swiftlint:disable:this accessibility_label_for_image
+                }
+                if !logs.isEmpty {
+                    ShareLink(
+                        item: logs.formattedLogOutput(),
+                        preview: SharePreview(
+                            "LOGS_SHARE_PREVIEW_TITLE",
+                            image: Image(systemName: "doc.text") // swiftlint:disable:this accessibility_label_for_image
+                        )
+                    ) {
+                        Image(systemName: "square.and.arrow.up") // swiftlint:disable:this accessibility_label_for_image
+                    }
                 }
             }
         }
@@ -91,7 +97,7 @@ struct LogViewer: View {
         queryTask = Task(priority: .userInitiated) { [manager, startDate, endDate, selectedLogLevel] in
             do {
                 /// Run the query
-                let result = try await manager.query(
+                let result = try manager.query(
                     startDate: startDate,
                     endDate: endDate,
                     logLevel: selectedLogLevel.osLogLevel
@@ -108,9 +114,16 @@ struct LogViewer: View {
                     isLoading = false
                 }
             } catch {
-                errorMessage = error.localizedDescription
-                self.showingAlert = true
+                displayError(message: error.localizedDescription)
             }
         }
+    }
+    
+    /// Displays an error message in an alert if a query fails.
+    ///
+    /// - Parameter message: The error message to display.
+    private func displayError(message: String) {
+        errorMessage = message
+        showingAlert = true
     }
 }
