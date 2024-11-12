@@ -104,6 +104,11 @@ struct AccountSheet: View {
                 locationTrackingToggle
                 withdrawButton
             }
+            if FeatureFlags.showDebugOptions {
+                Section(header: Text("DEBUG_SECTION")) {
+                    logExportButton
+                }
+            }
         }
     }
     
@@ -167,6 +172,14 @@ struct AccountSheet: View {
             Button("CLOSE") {
                 dismiss()
             }
+        }
+    }
+    
+    private var logExportButton: some View {
+        NavigationLink(destination: {
+            LogViewer()
+        }) {
+            Text("VIEW_LOGS")
         }
     }
     
