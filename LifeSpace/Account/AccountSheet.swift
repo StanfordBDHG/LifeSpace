@@ -49,6 +49,8 @@ struct AccountSheet: View {
     
     @AppStorage(StorageKeys.studyID) var studyID = "unknownStudyID"
     @AppStorage(StorageKeys.trackingPreference) private var trackingOn = true
+    @AppStorage(StorageKeys.lastSurveyTransmissionDate) private var lastSurveyTransmissionDate = "Not set"
+    @AppStorage(StorageKeys.lastLocationTransmissionDate) private var lastLocationTransmissionDate = "Not set"
     
     var body: some View {
         NavigationStack {
@@ -107,6 +109,12 @@ struct AccountSheet: View {
             if FeatureFlags.showDebugOptions {
                 Section(header: Text("DEBUG_SECTION")) {
                     logExportButton
+                }
+                Section(header: Text("LAST_SURVEY_TRANSMISSION_SECTION")) {
+                    Text(lastSurveyTransmissionDate)
+                }
+                Section(header: Text("LAST_LOCATION_TRANSMISSION_SECTION")) {
+                    Text(lastLocationTransmissionDate)
                 }
             }
         }
@@ -182,7 +190,6 @@ struct AccountSheet: View {
             Text("VIEW_LOGS")
         }
     }
-    
     
     private func getDocumentURL(for fileName: String) -> URL? {
         guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
