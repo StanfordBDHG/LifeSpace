@@ -125,6 +125,11 @@ actor LifeSpaceStandard: Standard,
             .collection(Constants.locationDataCollectionName)
             .document(UUID().uuidString)
             .setData(from: dataPoint)
+        
+        // Store a timestamp of this transmission for debugging purposes
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        UserDefaults.standard.set(formatter.string(from: Date.now), forKey: StorageKeys.lastLocationTransmissionDate)
     }
     
     func fetchLocations(on date: Date = Date()) async throws -> [CLLocationCoordinate2D] {
@@ -183,6 +188,11 @@ actor LifeSpaceStandard: Standard,
             ],
             merge: true
         )
+        
+        // Store a timestamp of this transmission for debugging purposes
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        UserDefaults.standard.set(formatter.string(from: Date.now), forKey: StorageKeys.lastSurveyTransmissionDate)
     }
     
     func getLatestSurveyDate() async -> String {
@@ -201,8 +211,8 @@ actor LifeSpaceStandard: Standard,
     
     private func healthKitDocument(id uuid: UUID) async throws -> DocumentReference {
         try await configuration.userDocumentReference
-            .collection(Constants.healthKitCollectionName) // Add all HealthKit sources in a /HealthKit collection.
-            .document(uuid.uuidString) // Set the document identifier to the UUID of the document.
+            .collection(Constants.healthKitCollectionName)
+            .document(uuid.uuidString)
     }
     
     func deletedAccount() async throws {

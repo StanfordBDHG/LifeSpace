@@ -325,6 +325,26 @@
         }
       }
     },
+    "LAST_LOCATION_TRANSMISSION_SECTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Successful Location Data Transmission"
+          }
+        }
+      }
+    },
+    "LAST_SURVEY_TRANSMISSION_SECTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Successful Survey Transmission"
+          }
+        }
+      }
+    },
     "LOADING_LOGS" : {
       "localizations" : {
         "en" : {
