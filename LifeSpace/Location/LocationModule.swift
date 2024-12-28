@@ -24,7 +24,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     
     public var allLocations: [CLLocationCoordinate2D] {
         get async {
-            await storage.allLocations
+            await storage.getAllLocations()
         }
     }
 
@@ -69,7 +69,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     public func fetchLocations() async {
         do {
             if let locations = try await standard?.fetchLocations() {
-                await storage.updateLocations(locations)
+                await storage.updateAllLocations(locations)
                 if let callback = onLocationsUpdated {
                     let currentLocations = await storage.getAllLocations()
                     await MainActor.run {
@@ -104,7 +104,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         
         /// Check if there is a previously saved point, so we can calculate the distance between that and the current point.
         /// If there's no previously saved point, we can save the current point
-        guard let lastSaved = await storage.lastSaved else {
+        guard let lastSaved = await storage.getLastSaved() else {
             return true
         }
         
