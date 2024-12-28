@@ -19,9 +19,14 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     @Published var authorizationStatus = CLLocationManager().authorizationStatus
     @Published var canShowRequestMessage = true
     
-    public var allLocations = [CLLocationCoordinate2D]()
+    private let storage = LocationStorage()
     public var onLocationsUpdated: (([CLLocationCoordinate2D]) -> Void)?
-    private var lastSaved: (location: CLLocationCoordinate2D, date: Date)?
+    
+    public var allLocations: [CLLocationCoordinate2D] {
+        get async {
+            await storage.allLocations
+        }
+    }
 
     override public required init() {
         super.init()
@@ -64,8 +69,13 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     public func fetchLocations() async {
         do {
             if let locations = try await standard?.fetchLocations() {
-                self.allLocations = locations
-                self.onLocationsUpdated?(self.allLocations)
+                await storage.updateLocations(locations)
+                if let callback = onLocationsUpdated {
+                    let currentLocations = await storage.getAllLocations()
+                    await MainActor.run {
+                        callback(currentLocations)
+                    }
+                }
             }
         } catch {
             logger.error("Error fetching locations: \(error.localizedDescription)")
@@ -79,7 +89,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         let shouldAddLocation = await determineIfShouldAddLocation(coordinate)
         
         if shouldAddLocation {
-            updateLocalLocations(with: coordinate)
+            await updateLocalLocations(with: coordinate)
             await saveLocation(coordinate)
         }
     }
@@ -94,7 +104,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         
         /// Check if there is a previously saved point, so we can calculate the distance between that and the current point.
         /// If there's no previously saved point, we can save the current point
-        guard let lastSaved else {
+        guard let lastSaved = await storage.lastSaved else {
             return true
         }
         
@@ -113,10 +123,17 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     
     /// Updates the local set of locations and the map with the latest location
     /// - Parameter coordinate: The `CLLocationCoordinate2D` of the location to be saved.
-    private func updateLocalLocations(with coordinate: CLLocationCoordinate2D) {
-        allLocations.append(coordinate)
-        onLocationsUpdated?(allLocations)
-        lastSaved = (location: coordinate, date: Date())
+    private func updateLocalLocations(with coordinate: CLLocationCoordinate2D) async {
+        await storage.appendLocation(coordinate)
+        
+        if let callback = onLocationsUpdated {
+            let locations = await storage.getAllLocations()
+            await MainActor.run {
+                callback(locations)
+            }
+        }
+        
+        await storage.updateLastSaved(location: coordinate, date: Date())
     }
     
     /// Saves a location to Firestore via the Standard.
