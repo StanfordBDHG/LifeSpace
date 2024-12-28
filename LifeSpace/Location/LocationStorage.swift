@@ -23,11 +23,19 @@ internal actor LocationStorage {
         self.allLocations.append(coordinate)
     }
     
+    func getLastSaved() -> (location: CLLocationCoordinate2D, date: Date)? {
+        lastSaved
+    }
+    
     func updateLastSaved(location: CLLocationCoordinate2D, date: Date) {
         self.lastSaved = (location: location, date: date)
     }
     
     func getAllLocations() -> [CLLocationCoordinate2D] {
         allLocations
+    }
+    
+    func clearLocations() {
+        allLocations.removeAll()
     }
 }
