@@ -80,6 +80,7 @@
 		63F4C39D2BBCCD200033D985 /* LocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F4C39C2BBCCD200033D985 /* LocationUtils.swift */; };
 		63F4C39F2BBCCDB70033D985 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F4C39E2BBCCDB70033D985 /* Date+Helpers.swift */; };
 		63F4C3A32BBCE79B0033D985 /* LocationPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F4C3A22BBCE79B0033D985 /* LocationPermissions.swift */; };
+		63FA22C32D2045B600A15017 /* LocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FA22C22D2045B300A15017 /* LocationStorage.swift */; };
 		653A2551283387FE005D4D48 /* LifeSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* LifeSpace.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
 		653A256228338800005D4D48 /* LifeSpaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A256128338800005D4D48 /* LifeSpaceTests.swift */; };
@@ -169,6 +170,7 @@
 		63F4C39C2BBCCD200033D985 /* LocationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUtils.swift; sourceTree = "<group>"; };
 		63F4C39E2BBCCDB70033D985 /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
 		63F4C3A22BBCE79B0033D985 /* LocationPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissions.swift; sourceTree = "<group>"; };
+		63FA22C22D2045B300A15017 /* LocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStorage.swift; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* LifeSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* LifeSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeSpace.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 		637AA5CF2BBDA686007BD7A3 /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				63FA22C22D2045B300A15017 /* LocationStorage.swift */,
 				63F4C39A2BBCCCF80033D985 /* LocationModule.swift */,
 				63F4C39C2BBCCD200033D985 /* LocationUtils.swift */,
 				63497B6F2BBF6ECE001F8419 /* LocationDataPoint.swift */,
@@ -658,6 +661,7 @@
 			files = (
 				2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */,
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
+				63FA22C32D2045B600A15017 /* LocationStorage.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				634FFF672C169F40005E8217 /* LifeSpaceConsent.swift in Sources */,
 				634E38482CDE7A7400B16E20 /* LogLevel.swift in Sources */,
@@ -820,7 +824,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LifeSpace/Supporting Files/LifeSpace.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -1022,7 +1026,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LifeSpace/Supporting Files/LifeSpace.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -1070,7 +1074,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = "";

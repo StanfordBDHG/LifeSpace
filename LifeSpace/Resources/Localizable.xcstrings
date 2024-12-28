@@ -325,12 +325,22 @@
         }
       }
     },
+    "LAST_HEALTHKIT_TRANSMISSION_SECTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last HealthKit Transmission"
+          }
+        }
+      }
+    },
     "LAST_LOCATION_TRANSMISSION_SECTION" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Last Successful Location Data Transmission"
+            "value" : "Last Location Transmission"
           }
         }
       }
@@ -340,7 +350,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Last Successful Survey Transmission"
+            "value" : "Last Survey Transmission"
           }
         }
       }
@@ -461,17 +471,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Log Viewer"
-          }
-        }
-      }
-    },
-    "LOGS" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Logs"
           }
         }
       }

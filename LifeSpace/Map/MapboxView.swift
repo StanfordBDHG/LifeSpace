@@ -65,15 +65,23 @@ public class MapManagerView: UIViewController {
             return
         }
         
-        self.mapView.mapboxMap.onNext(event: .mapLoaded) { _ in
-            let locations = locationModule.allLocations
-            do {
-                try self.addGeoJSONSource(with: locations)
-                try self.addCircleLayer(sourceId: Constants.geoSourceId)
-                self.centerCamera(at: locations.last, zoomLevel: Constants.zoomLevel)
-                self.setupDynamicLocationUpdates()
-            } catch {
-                print("[MapboxMap] Error: \(error.localizedDescription)")
+        self.mapView.mapboxMap.onNext(event: .mapLoaded) { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            
+            Task {
+                let locations = await locationModule.allLocations
+                do {
+                    try await MainActor.run {
+                        try self.addGeoJSONSource(with: locations)
+                        try self.addCircleLayer(sourceId: Constants.geoSourceId)
+                        self.centerCamera(at: locations.last, zoomLevel: Constants.zoomLevel)
+                        self.setupDynamicLocationUpdates()
+                    }
+                } catch {
+                    print("[MapboxMap] Error: \(error.localizedDescription)")
+                }
             }
         }
     }
