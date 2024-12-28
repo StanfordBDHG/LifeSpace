@@ -173,9 +173,7 @@ actor LifeSpaceStandard: Standard,
         
         return locations
     }
-    
-    
-    
+
     /// Saves a LifeSpace daily survey response to Firestore
     /// - Parameter response: A `DailySurveyResponse`
     func add(response: DailySurveyResponse) async throws {
@@ -221,9 +219,7 @@ actor LifeSpaceStandard: Standard,
             return ""
         }
     }
-    
-    
-    
+
     /// Returns a reference to a given HealthKit document
     /// - Parameter uuid: The document's unique identifier as a `UUID`.
     /// - Returns: A reference to the document as a `DocumentReference`.

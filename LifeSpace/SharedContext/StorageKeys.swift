@@ -28,5 +28,4 @@ enum StorageKeys {
     static let lastLocationTransmissionDate = "lastLocationTransmissionDate"
     /// `Date`s containing the timestamp of the last successful transmission for HealthKit data.
     static let lastHealthKitTransmissionDate = "lastHealthKitTransmissionDate"
-    
 }
