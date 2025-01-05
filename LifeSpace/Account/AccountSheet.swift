@@ -49,8 +49,10 @@ struct AccountSheet: View {
     
     @AppStorage(StorageKeys.studyID) var studyID = "unknownStudyID"
     @AppStorage(StorageKeys.trackingPreference) private var trackingOn = true
-    @AppStorage(StorageKeys.lastSurveyTransmissionDate) private var lastSurveyTransmissionDate = "Not set"
-    @AppStorage(StorageKeys.lastLocationTransmissionDate) private var lastLocationTransmissionDate = "Not set"
+    
+    @AppStorage(StorageKeys.lastSurveyTransmissionDate) private var lastSurveyTransmissionDate = "None"
+    @AppStorage(StorageKeys.lastLocationTransmissionDate) private var lastLocationTransmissionDate = "None"
+    @AppStorage(StorageKeys.lastHealthKitTransmissionDate) private var lastHealthKitTransmissionDate = "None"
     
     var body: some View {
         NavigationStack {
@@ -120,6 +122,9 @@ struct AccountSheet: View {
                 }
                 Section(header: Text("LAST_LOCATION_TRANSMISSION_SECTION")) {
                     Text(lastLocationTransmissionDate)
+                }
+                Section(header: Text("LAST_HEALTHKIT_TRANSMISSION_SECTION")) {
+                    Text(lastHealthKitTransmissionDate)
                 }
             }
         }
