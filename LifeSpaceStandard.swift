@@ -242,8 +242,6 @@ actor LifeSpaceStandard: Standard,
         
         return surveys
     }
-    
-    
 
     /// Returns a reference to a given HealthKit document
     /// - Parameter uuid: The document's unique identifier as a `UUID`.
