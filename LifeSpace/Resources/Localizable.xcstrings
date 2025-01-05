@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld/4" : {
+
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -72,6 +75,9 @@
           }
         }
       }
+    },
+    "Completed Surveys" : {
+
     },
     "COMPLETED_TASK_LABEL %@" : {
       "localizations" : {
@@ -163,6 +169,16 @@
         }
       }
     },
+    "DATA_SECTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data"
+          }
+        }
+      }
+    },
     "DEBUG_SECTION" : {
       "localizations" : {
         "en" : {
@@ -192,6 +208,12 @@
           }
         }
       }
+    },
+    "Error" : {
+
+    },
+    "Fatigue Level:" : {
+
     },
     "FROM" : {
       "localizations" : {
@@ -330,7 +352,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Last Successful Location Data Transmission"
+            "value" : "Last Location Transmission"
           }
         }
       }
@@ -340,10 +362,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Last Successful Survey Transmission"
+            "value" : "Last Survey Transmission"
           }
         }
       }
+    },
+    "Loading surveys..." : {
+
     },
     "LOADING_LOGS" : {
       "localizations" : {
@@ -465,17 +490,6 @@
         }
       }
     },
-    "LOGS" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Logs"
-          }
-        }
-      }
-    },
     "LOGS_SHARE_PREVIEW_TITLE" : {
 
     },
@@ -485,6 +499,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next"
+          }
+        }
+      }
+    },
+    "No" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No"
           }
         }
       }
@@ -499,6 +523,16 @@
         }
       }
     },
+    "No Surveys" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Surveys"
+          }
+        }
+      }
+    },
     "NO_LOGS_AVAILABLE" : {
       "localizations" : {
         "en" : {
@@ -508,6 +542,9 @@
           }
         }
       }
+    },
+    "Not answered" : {
+
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
@@ -650,6 +687,9 @@
         }
       }
     },
+    "Social Interactions:" : {
+
+    },
     "STUDYID_ACTION_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -709,6 +749,9 @@
           }
         }
       }
+    },
+    "Submitted: %@" : {
+
     },
     "SURVEY_NOT_AVAILABLE_MESSAGE" : {
       "localizations" : {
@@ -790,6 +833,9 @@
         }
       }
     },
+    "Time Outside:" : {
+
+    },
     "TO" : {
       "localizations" : {
         "en" : {
@@ -816,6 +862,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Turn Tracking On"
+          }
+        }
+      }
+    },
+    "VIEW_COMPLETED_SURVEYS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Completed Surveys"
           }
         }
       }
@@ -859,6 +915,9 @@
           }
         }
       }
+    },
+    "Was Happy:" : {
+
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {
@@ -981,6 +1040,9 @@
         }
       }
     },
+    "Yes" : {
+
+    },
     "YES" : {
       "localizations" : {
         "en" : {
@@ -990,6 +1052,9 @@
           }
         }
       }
+    },
+    "You haven't completed any surveys yet." : {
+
     }
   },
   "version" : "1.0"

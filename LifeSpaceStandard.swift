@@ -208,6 +208,29 @@ actor LifeSpaceStandard: Standard,
         }
     }
     
+    func fetchSurveys() async throws -> [DailySurveyResponse] {
+        var surveys = [DailySurveyResponse]()
+        
+        do {
+            let snapshot = try await configuration.userDocumentReference
+                .collection(Constants.surveyCollectionName)
+                .getDocuments()
+            
+            let decoder = Firestore.Decoder()
+            surveys = try snapshot.documents.compactMap { document in
+                try decoder.decode(DailySurveyResponse.self, from: document.data())
+            }
+            .filter {
+                $0.surveyDate != nil
+            }
+        } catch {
+            self.logger.error("Error fetching surveys: \(String(describing: error))")
+            throw error
+        }
+        
+        return surveys
+    }
+    
     
     private func healthKitDocument(id uuid: UUID) async throws -> DocumentReference {
         try await configuration.userDocumentReference

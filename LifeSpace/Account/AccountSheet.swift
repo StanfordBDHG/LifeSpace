@@ -102,6 +102,11 @@ struct AccountSheet: View {
                 hipaaAuthorizationDocumentButton
                 privacyPolicyButton
             }
+            Section(header: Text("DATA_SECTION")) {
+                NavigationLink(destination: CompletedSurveysView()) {
+                    Text("VIEW_COMPLETED_SURVEYS")
+                }
+            }
             Section(header: Text("SETTINGS_SECTION")) {
                 locationTrackingToggle
                 withdrawButton
