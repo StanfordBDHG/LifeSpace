@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld/4" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld/4"
+          }
+        }
+      }
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -69,6 +79,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Close"
+          }
+        }
+      }
+    },
+    "Completed Surveys" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completed Surveys"
           }
         }
       }
@@ -163,6 +183,16 @@
         }
       }
     },
+    "DATA_SECTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data"
+          }
+        }
+      }
+    },
     "DEBUG_SECTION" : {
       "localizations" : {
         "en" : {
@@ -189,6 +219,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Documents"
+          }
+        }
+      }
+    },
+    "Error" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        }
+      }
+    },
+    "Fatigue Level:" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fatigue Level:"
           }
         }
       }
@@ -355,6 +405,16 @@
         }
       }
     },
+    "Loading surveys..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading surveys…"
+          }
+        }
+      }
+    },
     "LOADING_LOGS" : {
       "localizations" : {
         "en" : {
@@ -476,7 +536,14 @@
       }
     },
     "LOGS_SHARE_PREVIEW_TITLE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share Logs"
+          }
+        }
+      }
     },
     "NEXT_BUTTON" : {
       "localizations" : {
@@ -484,6 +551,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next"
+          }
+        }
+      }
+    },
+    "No" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No"
           }
         }
       }
@@ -498,12 +575,32 @@
         }
       }
     },
+    "No Surveys" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Surveys"
+          }
+        }
+      }
+    },
     "NO_LOGS_AVAILABLE" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "No logs available"
+          }
+        }
+      }
+    },
+    "Not answered" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not answered"
           }
         }
       }
@@ -649,6 +746,26 @@
         }
       }
     },
+    "Social Interactions:" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Social Interactions:"
+          }
+        }
+      }
+    },
+    "STATISTICS_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistics"
+          }
+        }
+      }
+    },
     "STUDYID_ACTION_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -705,6 +822,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A study ID should be at least 6 characters long."
+          }
+        }
+      }
+    },
+    "Submitted: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Submitted: %@"
           }
         }
       }
@@ -789,6 +916,16 @@
         }
       }
     },
+    "Time Outside:" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time Outside:"
+          }
+        }
+      }
+    },
     "TO" : {
       "localizations" : {
         "en" : {
@@ -815,6 +952,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Turn Tracking On"
+          }
+        }
+      }
+    },
+    "VIEW_COMPLETED_SURVEYS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Completed Surveys"
           }
         }
       }
@@ -855,6 +1002,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "View Privacy Policy"
+          }
+        }
+      }
+    },
+    "VIEW_STATISTICS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Statistics"
+          }
+        }
+      }
+    },
+    "Was Happy:" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was Happy:"
           }
         }
       }
@@ -980,12 +1147,32 @@
         }
       }
     },
+    "Yes" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes"
+          }
+        }
+      }
+    },
     "YES" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yes"
+          }
+        }
+      }
+    },
+    "You haven't completed any surveys yet." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You haven’t completed any surveys yet."
           }
         }
       }

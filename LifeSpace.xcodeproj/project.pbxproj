@@ -72,6 +72,8 @@
 		63BBF8162BB8993B006890CE /* StudyIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BBF8152BB8993B006890CE /* StudyIDView.swift */; };
 		63BBF8192BB89CF7006890CE /* studyIDs.csv in Resources */ = {isa = PBXBuildFile; fileRef = 63BBF8182BB89CF7006890CE /* studyIDs.csv */; };
 		63D86AD62C3B7F310096B9DB /* DocumentWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D86AD52C3B7F310096B9DB /* DocumentWebView.swift */; };
+		63EA2CCA2D29C21800224C06 /* CompletedSurveysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA2CC92D29C21800224C06 /* CompletedSurveysView.swift */; };
+		63EA2CCC2D2A0F4100224C06 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA2CCB2D2A0F4100224C06 /* StatisticsView.swift */; };
 		63EA5F7B2BC04F8400A48590 /* DailySurveyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA5F7A2BC04F8400A48590 /* DailySurveyTask.swift */; };
 		63EA5F892BC78ADD00A48590 /* DailySurveyTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA5F882BC78ADD00A48590 /* DailySurveyTaskView.swift */; };
 		63EA5F8C2BC78F8400A48590 /* DailySurveyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA5F8B2BC78F8400A48590 /* DailySurveyResponse.swift */; };
@@ -162,6 +164,8 @@
 		63BBF8182BB89CF7006890CE /* studyIDs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = studyIDs.csv; sourceTree = "<group>"; };
 		63CC66972C204CC5001DCFDF /* LifeSpace.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = LifeSpace.xctestplan; sourceTree = "<group>"; };
 		63D86AD52C3B7F310096B9DB /* DocumentWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWebView.swift; sourceTree = "<group>"; };
+		63EA2CC92D29C21800224C06 /* CompletedSurveysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedSurveysView.swift; sourceTree = "<group>"; };
+		63EA2CCB2D2A0F4100224C06 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		63EA5F7A2BC04F8400A48590 /* DailySurveyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySurveyTask.swift; sourceTree = "<group>"; };
 		63EA5F882BC78ADD00A48590 /* DailySurveyTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySurveyTaskView.swift; sourceTree = "<group>"; };
 		63EA5F8B2BC78F8400A48590 /* DailySurveyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySurveyResponse.swift; sourceTree = "<group>"; };
@@ -430,6 +434,8 @@
 		A9720E412ABB68B300872D23 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				63EA2CCB2D2A0F4100224C06 /* StatisticsView.swift */,
+				63EA2CC92D29C21800224C06 /* CompletedSurveysView.swift */,
 				A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */,
 				A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */,
 				A9DFE8A82ABE551400428242 /* AccountButton.swift */,
@@ -698,6 +704,7 @@
 				2F4E23832989D51F0013F3D9 /* LifeSpaceTestingSetup.swift in Sources */,
 				63F4C39B2BBCCCF80033D985 /* LocationModule.swift in Sources */,
 				6347EB742BBBF442008E0C4A /* Constants.swift in Sources */,
+				63EA2CCA2D29C21800224C06 /* CompletedSurveysView.swift in Sources */,
 				634E38442CDE6E2B00B16E20 /* LogViewer.swift in Sources */,
 				63F4C39D2BBCCD200033D985 /* LocationUtils.swift in Sources */,
 				2FE5DC5329EDD7FA004B9AB4 /* Bundle+Questionnaire.swift in Sources */,
@@ -712,6 +719,7 @@
 				63BBF8162BB8993B006890CE /* StudyIDView.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
 				653A2551283387FE005D4D48 /* LifeSpace.swift in Sources */,
+				63EA2CCC2D2A0F4100224C06 /* StatisticsView.swift in Sources */,
 				2FE5DC3629EDD7CA004B9AB4 /* HealthKitPermissions.swift in Sources */,
 				2F65B44E2A3B8B0600A36932 /* NotificationPermissions.swift in Sources */,
 				27FA29902A388E9B009CAC45 /* ModalView.swift in Sources */,
@@ -824,7 +832,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LifeSpace/Supporting Files/LifeSpace.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -1026,7 +1034,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LifeSpace/Supporting Files/LifeSpace.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -1074,7 +1082,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = "";
