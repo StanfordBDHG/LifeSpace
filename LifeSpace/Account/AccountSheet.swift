@@ -50,10 +50,6 @@ struct AccountSheet: View {
     @AppStorage(StorageKeys.studyID) var studyID = "unknownStudyID"
     @AppStorage(StorageKeys.trackingPreference) private var trackingOn = true
     
-    @AppStorage(StorageKeys.lastSurveyTransmissionDate) private var lastSurveyTransmissionDate = "None"
-    @AppStorage(StorageKeys.lastLocationTransmissionDate) private var lastLocationTransmissionDate = "None"
-    @AppStorage(StorageKeys.lastHealthKitTransmissionDate) private var lastHealthKitTransmissionDate = "None"
-    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -116,15 +112,7 @@ struct AccountSheet: View {
             if FeatureFlags.showDebugOptions {
                 Section(header: Text("DEBUG_SECTION")) {
                     logExportButton
-                }
-                Section(header: Text("LAST_SURVEY_TRANSMISSION_SECTION")) {
-                    Text(lastSurveyTransmissionDate)
-                }
-                Section(header: Text("LAST_LOCATION_TRANSMISSION_SECTION")) {
-                    Text(lastLocationTransmissionDate)
-                }
-                Section(header: Text("LAST_HEALTHKIT_TRANSMISSION_SECTION")) {
-                    Text(lastHealthKitTransmissionDate)
+                    statisticsButton
                 }
             }
         }
@@ -198,6 +186,14 @@ struct AccountSheet: View {
             LogViewer()
         }) {
             Text("VIEW_LOGS")
+        }
+    }
+    
+    private var statisticsButton: some View {
+        NavigationLink(destination: {
+            StatisticsView()
+        }) {
+            Text("VIEW_STATISTICS")
         }
     }
     

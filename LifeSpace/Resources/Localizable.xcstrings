@@ -536,7 +536,14 @@
       }
     },
     "LOGS_SHARE_PREVIEW_TITLE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share Logs"
+          }
+        }
+      }
     },
     "NEXT_BUTTON" : {
       "localizations" : {
@@ -745,6 +752,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Social Interactions:"
+          }
+        }
+      }
+    },
+    "STATISTICS_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistics"
           }
         }
       }
@@ -985,6 +1002,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "View Privacy Policy"
+          }
+        }
+      }
+    },
+    "VIEW_STATISTICS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Statistics"
           }
         }
       }
