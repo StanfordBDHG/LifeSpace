@@ -219,7 +219,6 @@ actor LifeSpaceStandard: Standard,
             return ""
         }
     }
-<<<<<<< HEAD
     
     func fetchSurveys() async throws -> [DailySurveyResponse] {
         var surveys = [DailySurveyResponse]()
@@ -245,12 +244,10 @@ actor LifeSpaceStandard: Standard,
     }
     
     
-=======
 
     /// Returns a reference to a given HealthKit document
     /// - Parameter uuid: The document's unique identifier as a `UUID`.
     /// - Returns: A reference to the document as a `DocumentReference`.
->>>>>>> origin
     private func healthKitDocument(id uuid: UUID) async throws -> DocumentReference {
         try await configuration.userDocumentReference
             .collection(Constants.healthKitCollectionName)
