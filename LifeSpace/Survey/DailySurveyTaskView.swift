@@ -182,21 +182,23 @@ struct DailySurveyTaskView: View {
             response.emotionalWellBeingQuestion = result?.intValue
         }
         
-        if let physicalWellBeingQuestion = taskResult.stepResult(forStepIdentifier: "PhysicalWellBeingQuestion")?.results {
-            let answer = physicalWellBeingQuestion[0] as? ORKScaleQuestionResult
-            if let result = answer?.scaleAnswer {
-                response.physicalWellBeingQuestion = Int(truncating: result)
-            } else {
-                response.physicalWellBeingQuestion = -1
-            }
+        if let physicalWellBeingQuestion = taskResult.stepResult(forStepIdentifier: "PhysicalWellBeingQuestion"),
+           let result = physicalWellBeingQuestion.firstResult as? ORKChoiceQuestionResult,
+           let answer = result.choiceAnswers?.first as? NSNumber {
+            response.physicalWellBeingQuestion = answer.intValue
+        } else {
+            response.physicalWellBeingQuestion = -1
         }
         
         do {
+            savingSurvey = true
             try await standard.add(response: response)
             
             // Update the last survey date in UserDefaults
             UserDefaults.standard.set(surveyDateString, forKey: StorageKeys.lastSurveyDate)
+            savingSurvey = false
         } catch {
+            savingSurvey = false
             self.errorMessage = error.localizedDescription
             self.didError.toggle()
         }

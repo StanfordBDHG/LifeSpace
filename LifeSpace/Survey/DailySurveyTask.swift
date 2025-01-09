@@ -57,19 +57,17 @@ class DailySurveyTask: ORKOrderedTask {
         steps.append(question3Step)
         
         // Question 4: Fatigue
-        let answerFormat4 = ORKAnswerFormat.scale(
-            withMaximumValue: 4,
-            minimumValue: 0,
-            defaultValue: 0,
-            step: 1,
-            vertical: false,
-            maximumValueDescription: "Very much",
-            minimumValueDescription: "Not at all"
-        )
+        let answerFormat4 = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: [
+            ORKTextChoice(text: "Not at all", value: 0 as NSNumber),
+            ORKTextChoice(text: "A little bit", value: 1 as NSNumber),
+            ORKTextChoice(text: "Somewhat", value: 2 as NSNumber),
+            ORKTextChoice(text: "Quite a bit", value: 3 as NSNumber),
+            ORKTextChoice(text: "Very much", value: 4 as NSNumber)
+        ])
         let question4Step = ORKQuestionStep(
             identifier: "PhysicalWellBeingQuestion",
             title: "Physical Well-being",
-            question: "I feel fatigued",
+            question: "Consider your day today and evaluate your agreement with the following statement.",
             answer: answerFormat4
         )
         steps.append(question4Step)
