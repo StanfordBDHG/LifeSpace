@@ -35,9 +35,7 @@ struct DailySurveyTaskView: View {
                     }
                     
                     Task {
-                        savingSurvey = true
                         await saveResponse(taskResult: taskResult)
-                        savingSurvey = false
                         showingSurvey = false
                     }
                 }
