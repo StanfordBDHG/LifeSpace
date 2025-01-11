@@ -20,9 +20,9 @@ enum SurveyModule {
     }
     
     static var isPreviousDaySurvey: Bool {
-        /// If the user is taking the survey before 7am, they should be informed that they are taking the
-        /// previous day's survey
-        currentHour < 7
+        /// If the user is taking the survey in the morning, they should be informed that their
+        /// results will apply to the previous day not the current day.
+        currentHour < Constants.hourToCloseSurvey
     }
     
     static var surveyAlreadyTaken: Bool {
@@ -30,7 +30,7 @@ enum SurveyModule {
         
         /// Determine the survey date based on the current time
         let surveyDate: Date
-        if currentHour < 7 {
+        if currentHour < Constants.hourToCloseSurvey {
             surveyDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())?.startOfDay ?? Date().startOfDay
         } else {
             surveyDate = Date().startOfDay
@@ -44,7 +44,6 @@ enum SurveyModule {
     }
 
     static var shouldShowSurvey: Bool {
-        /// The survey should only be shown if it between 7pm and 7am
-        currentHour < 7 || currentHour >= 19
+        currentHour < Constants.hourToCloseSurvey || currentHour >= Constants.hourToOpenSurvey
     }
 }

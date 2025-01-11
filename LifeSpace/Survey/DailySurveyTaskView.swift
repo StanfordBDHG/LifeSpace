@@ -146,10 +146,10 @@ struct DailySurveyTaskView: View {
         
         response.surveyName = "dailySurveyTask"
         
-        /// If the user is taking the survey before 7am, the `surveyDate` should reflect the previous day,
+        /// If the user is taking the survey the morning after, the `surveyDate` should reflect the previous day,
         /// otherwise it should reflect the current day.
         let surveyDate: Date
-        if SurveyModule.currentHour < 7 {
+        if SurveyModule.currentHour < Constants.hourToCloseSurvey {
             surveyDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())?.startOfDay ?? Date().startOfDay
         } else {
             surveyDate = Date().startOfDay
