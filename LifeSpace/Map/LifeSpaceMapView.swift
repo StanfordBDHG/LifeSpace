@@ -63,11 +63,6 @@ struct LifeSpaceMapView: View {
                 }
             }
         }
-        .onChange(of: scenePhase) { _, newPhase in
-            if newPhase == .active {
-                refreshMap()
-            }
-        }
         .onAppear {
             refreshMap()
         }
@@ -111,9 +106,16 @@ struct LifeSpaceMapView: View {
     }
     
     private func refreshMap() {
+        guard !isRefreshing else { return }
+        
         Task {
             isRefreshing = true
-            await locationModule.fetchLocations()
+            do {
+                try await locationModule.fetchLocations()
+            } catch {
+                alertMessage = error.localizedDescription
+                showingSurveyAlert = true
+            }
             isRefreshing = false
         }
     }

@@ -21,6 +21,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     
     private let storage = LocationStorage()
     public var onLocationsUpdated: (([CLLocationCoordinate2D]) -> Void)?
+    private var currentFetchTask: Task<Void, Error>?
     
     public var allLocations: [CLLocationCoordinate2D] {
         get async {
@@ -66,20 +67,22 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         self.manager.requestAlwaysAuthorization()
     }
 
-    public func fetchLocations() async {
-        do {
-            if let locations = try await standard?.fetchLocations() {
-                await storage.updateAllLocations(locations)
-                if let callback = onLocationsUpdated {
-                    let currentLocations = await storage.getAllLocations()
-                    await MainActor.run {
-                        callback(currentLocations)
-                    }
-                }
+    public func fetchLocations() async throws {
+        // Cancel any ongoing fetch
+        currentFetchTask?.cancel()
+        
+        let task = Task { @MainActor in
+            let locations = try await standard?.fetchLocations() ?? []
+            
+            await storage.updateAllLocations(locations)
+            if let callback = onLocationsUpdated {
+                let currentLocations = await storage.getAllLocations()
+                callback(currentLocations)
             }
-        } catch {
-            logger.error("Error fetching locations: \(error.localizedDescription)")
         }
+        
+        currentFetchTask = task
+        try await task.value
     }
     
     /// Adds a new coordinate to the map and database,
@@ -111,7 +114,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         /// Check if the date of the current point is a different day then the last saved point. If so,
         /// Refresh the locations array and save this point.
         if Date().startOfDay != lastSaved.date.startOfDay {
-            await fetchLocations()
+            try? await fetchLocations()
             return true
         }
         
