@@ -18,7 +18,7 @@ struct LifeSpaceMapView: View {
     @State private var presentedContext: EventContext?
     @Binding private var presentingAccount: Bool
     
-    @State private var showingSurveyAlert = false
+    @State private var showingAlert = false
     @State private var alertMessage = ""
     @State private var showingSurvey = false
     @State private var optionsPanelOpen = true
@@ -62,6 +62,13 @@ struct LifeSpaceMapView: View {
                     .disabled(isRefreshing)
                 }
             }
+        }
+        .alert("Error", isPresented: $showingAlert) {
+            Button("OK", role: .cancel) {
+                showingAlert = false
+            }
+        } message: {
+            Text(alertMessage)
         }
         .onAppear {
             refreshMap()
@@ -116,7 +123,7 @@ struct LifeSpaceMapView: View {
                 try await locationModule.fetchLocations()
             } catch {
                 alertMessage = error.localizedDescription
-                showingSurveyAlert = true
+                showingAlert = true
             }
             isRefreshing = false
         }
