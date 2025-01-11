@@ -14,12 +14,11 @@ import SwiftUI
 struct LifeSpaceMapView: View {
     @AppStorage(StorageKeys.trackingPreference) private var trackingOn = true
     @Environment(LocationModule.self) private var locationModule
-    @Environment(\.scenePhase) var scenePhase
     
     @State private var presentedContext: EventContext?
     @Binding private var presentingAccount: Bool
     
-    @State private var showingSurveyAlert = false
+    @State private var showingAlert = false
     @State private var alertMessage = ""
     @State private var showingSurvey = false
     @State private var optionsPanelOpen = true
@@ -60,13 +59,16 @@ struct LifeSpaceMapView: View {
                         Image(systemName: "arrow.clockwise")
                             .accessibilityLabel("REFRESHING_MAP")
                     }
+                    .disabled(isRefreshing)
                 }
             }
         }
-        .onChange(of: scenePhase) { _, newPhase in
-            if newPhase == .active {
-                refreshMap()
+        .alert("Error", isPresented: $showingAlert) {
+            Button("OK", role: .cancel) {
+                showingAlert = false
             }
+        } message: {
+            Text(alertMessage)
         }
         .onAppear {
             refreshMap()
@@ -111,9 +113,18 @@ struct LifeSpaceMapView: View {
     }
     
     private func refreshMap() {
+        guard !isRefreshing else {
+            return
+        }
+        
         Task {
             isRefreshing = true
-            await locationModule.fetchLocations()
+            do {
+                try await locationModule.fetchLocations()
+            } catch {
+                alertMessage = error.localizedDescription
+                showingAlert = true
+            }
             isRefreshing = false
         }
     }

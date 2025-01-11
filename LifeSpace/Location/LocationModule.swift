@@ -66,7 +66,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         self.manager.requestAlwaysAuthorization()
     }
 
-    public func fetchLocations() async {
+    public func fetchLocations() async throws {
         do {
             if let locations = try await standard?.fetchLocations() {
                 await storage.updateAllLocations(locations)
@@ -79,6 +79,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
             }
         } catch {
             logger.error("Error fetching locations: \(error.localizedDescription)")
+            throw error
         }
     }
     
@@ -111,7 +112,7 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
         /// Check if the date of the current point is a different day then the last saved point. If so,
         /// Refresh the locations array and save this point.
         if Date().startOfDay != lastSaved.date.startOfDay {
-            await fetchLocations()
+            try? await fetchLocations()
             return true
         }
         
