@@ -14,7 +14,6 @@ import SwiftUI
 struct LifeSpaceMapView: View {
     @AppStorage(StorageKeys.trackingPreference) private var trackingOn = true
     @Environment(LocationModule.self) private var locationModule
-    @Environment(\.scenePhase) var scenePhase
     
     @State private var presentedContext: EventContext?
     @Binding private var presentingAccount: Bool
@@ -60,6 +59,7 @@ struct LifeSpaceMapView: View {
                         Image(systemName: "arrow.clockwise")
                             .accessibilityLabel("REFRESHING_MAP")
                     }
+                    .disabled(isRefreshing)
                 }
             }
         }
@@ -106,7 +106,9 @@ struct LifeSpaceMapView: View {
     }
     
     private func refreshMap() {
-        guard !isRefreshing else { return }
+        guard !isRefreshing else {
+            return
+        }
         
         Task {
             isRefreshing = true

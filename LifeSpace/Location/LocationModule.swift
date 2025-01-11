@@ -21,7 +21,6 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     
     private let storage = LocationStorage()
     public var onLocationsUpdated: (([CLLocationCoordinate2D]) -> Void)?
-    private var currentFetchTask: Task<Void, Error>?
     
     public var allLocations: [CLLocationCoordinate2D] {
         get async {
@@ -68,21 +67,20 @@ public class LocationModule: NSObject, CLLocationManagerDelegate, Module, Defaul
     }
 
     public func fetchLocations() async throws {
-        // Cancel any ongoing fetch
-        currentFetchTask?.cancel()
-        
-        let task = Task { @MainActor in
-            let locations = try await standard?.fetchLocations() ?? []
-            
-            await storage.updateAllLocations(locations)
-            if let callback = onLocationsUpdated {
-                let currentLocations = await storage.getAllLocations()
-                callback(currentLocations)
+        do {
+            if let locations = try await standard?.fetchLocations() {
+                await storage.updateAllLocations(locations)
+                if let callback = onLocationsUpdated {
+                    let currentLocations = await storage.getAllLocations()
+                    await MainActor.run {
+                        callback(currentLocations)
+                    }
+                }
             }
+        } catch {
+            logger.error("Error fetching locations: \(error.localizedDescription)")
+            throw error
         }
-        
-        currentFetchTask = task
-        try await task.value
     }
     
     /// Adds a new coordinate to the map and database,
