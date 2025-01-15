@@ -51,7 +51,7 @@ class DailySurveyTask: ORKOrderedTask {
         let question3Step = ORKQuestionStep(
             identifier: "EmotionalWellBeingQuestion",
             title: "Emotional Well-being",
-            question: "I was happy",
+            question: "Consider your day today and evaluate your agreement with the following statement:\n\nI was happy.",
             answer: answerFormat3
         )
         steps.append(question3Step)
@@ -67,7 +67,7 @@ class DailySurveyTask: ORKOrderedTask {
         let question4Step = ORKQuestionStep(
             identifier: "PhysicalWellBeingQuestion",
             title: "Physical Well-being",
-            question: "Consider your day today and evaluate your agreement with the following statement.",
+            question: "Consider your day today and evaluate your agreement with the following statement:\n\nI felt fatigued.",
             answer: answerFormat4
         )
         steps.append(question4Step)
