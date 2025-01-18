@@ -226,8 +226,8 @@ actor LifeSpaceStandard: Standard,
                 .getDocuments()
             
             let decoder = Firestore.Decoder()
-            surveys = try snapshot.documents.compactMap { document in
-                try decoder.decode(DailySurveyResponse.self, from: document.data())
+            surveys = snapshot.documents.compactMap { document in
+                try? decoder.decode(DailySurveyResponse.self, from: document.data())
             }
         } catch {
             self.logger.error("Error fetching surveys: \(String(describing: error))")

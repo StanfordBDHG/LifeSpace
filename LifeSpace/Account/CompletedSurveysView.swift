@@ -46,7 +46,7 @@ struct CompletedSurveysView: View {
                 Text(survey.surveyDate)
                     .font(.headline)
                 
-                Text("Submitted: \(survey.timestamp.formatted(date: .long, time: .shortened))")
+                Text("Submitted on \(survey.timestamp.formatted(date: .long, time: .shortened))")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                 
@@ -64,13 +64,8 @@ struct CompletedSurveysView: View {
                         Text(survey.emotionalWellBeingQuestion == 1 ? "Yes" : "No")
                     }
                     GridRow {
-                        Text("Fatigue Level:")
-                        let fatigue = survey.emotionalWellBeingQuestion
-                        if fatigue >= 0 {
-                            Text("\(fatigue)/4")
-                        } else {
-                            Text("Not answered")
-                        }
+                        Text("Felt Fatigued:")
+                        Text(formatFatigueLevel(survey.physicalWellBeingQuestion))
                     }
                 }
                 .font(.subheadline)
@@ -105,6 +100,17 @@ struct CompletedSurveysView: View {
         case 1: return "< 1 hour"
         case 2: return "1-4 hours"
         case 3: return "4+ hours"
+        default: return "Not answered"
+        }
+    }
+    
+    private func formatFatigueLevel(_ value: Int) -> String {
+        switch value {
+        case 0: return "Not at all"
+        case 1: return "A little bit"
+        case 2: return "Somewhat"
+        case 3: return "Quite a bit"
+        case 4: return "Very much"
         default: return "Not answered"
         }
     }
