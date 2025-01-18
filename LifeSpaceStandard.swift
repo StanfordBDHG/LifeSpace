@@ -182,9 +182,6 @@ actor LifeSpaceStandard: Standard,
         }
         
         var response = response
-        
-        response.timestamp = Date()
-        response.studyID = studyID
         response.UpdatedBy = userId
         
         try await configuration.userDocumentReference
@@ -195,7 +192,7 @@ actor LifeSpaceStandard: Standard,
         // Update the user document with the latest survey date
         try await configuration.userDocumentReference.setData(
             [
-                "latestSurveyDate": response.surveyDate ?? ""
+                "latestSurveyDate": response.surveyDate
             ],
             merge: true
         )
@@ -229,11 +226,8 @@ actor LifeSpaceStandard: Standard,
                 .getDocuments()
             
             let decoder = Firestore.Decoder()
-            surveys = try snapshot.documents.compactMap { document in
-                try decoder.decode(DailySurveyResponse.self, from: document.data())
-            }
-            .filter {
-                $0.surveyDate != nil
+            surveys = snapshot.documents.compactMap { document in
+                try? decoder.decode(DailySurveyResponse.self, from: document.data())
             }
         } catch {
             self.logger.error("Error fetching surveys: \(String(describing: error))")

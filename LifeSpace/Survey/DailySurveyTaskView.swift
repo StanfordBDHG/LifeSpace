@@ -142,58 +142,13 @@ struct DailySurveyTaskView: View {
     }
     
     private func saveResponse(taskResult: ORKTaskResult) async {
-        var response = DailySurveyResponse()
-        
-        response.surveyName = "dailySurveyTask"
-        
-        /// If the user is taking the survey the morning after, the `surveyDate` should reflect the previous day,
-        /// otherwise it should reflect the current day.
-        let surveyDate: Date
-        if SurveyModule.currentHour < Constants.hourToCloseSurvey {
-            surveyDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())?.startOfDay ?? Date().startOfDay
-        } else {
-            surveyDate = Date().startOfDay
-        }
-        let surveyDateString = SurveyModule.dateFormatter.string(from: surveyDate)
-        response.surveyDate = surveyDateString
-        
-        // swiftlint:disable legacy_objc_type
-        if let socialInteractionQuestion = taskResult.stepResult(forStepIdentifier: "SocialInteractionQuestion"),
-           let result = socialInteractionQuestion.firstResult as? ORKChoiceQuestionResult,
-           let answer = result.choiceAnswers?.first as? NSNumber {
-            response.socialInteractionQuestion = answer.intValue
-        } else {
-            response.socialInteractionQuestion = -1
-        }
-        
-        if let leavingTheHouseQuestion = taskResult.stepResult(forStepIdentifier: "LeavingTheHouseQuestion"),
-           let result = leavingTheHouseQuestion.firstResult as? ORKChoiceQuestionResult,
-           let answer = result.choiceAnswers?.first as? NSNumber {
-            response.leavingTheHouseQuestion = answer.intValue
-        } else {
-            response.leavingTheHouseQuestion = -1
-        }
-        
-        if let emotionalWellBeingQuestion = taskResult.stepResult(forStepIdentifier: "EmotionalWellBeingQuestion")?.results {
-            let answer = emotionalWellBeingQuestion[0] as? ORKBooleanQuestionResult
-            let result = answer?.booleanAnswer
-            response.emotionalWellBeingQuestion = result?.intValue
-        }
-        
-        if let physicalWellBeingQuestion = taskResult.stepResult(forStepIdentifier: "PhysicalWellBeingQuestion"),
-           let result = physicalWellBeingQuestion.firstResult as? ORKChoiceQuestionResult,
-           let answer = result.choiceAnswers?.first as? NSNumber {
-            response.physicalWellBeingQuestion = answer.intValue
-        } else {
-            response.physicalWellBeingQuestion = -1
-        }
-        
         do {
             savingSurvey = true
+            let response = try SurveyModule.createResponse(from: taskResult)
             try await standard.add(response: response)
             
             // Update the last survey date in UserDefaults
-            UserDefaults.standard.set(surveyDateString, forKey: StorageKeys.lastSurveyDate)
+            UserDefaults.standard.set(response.surveyDate, forKey: StorageKeys.lastSurveyDate)
             savingSurvey = false
         } catch {
             savingSurvey = false

@@ -1,16 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%lld/4" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld/4"
-          }
-        }
-      }
-    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -233,12 +223,12 @@
         }
       }
     },
-    "Fatigue Level:" : {
+    "Felt Fatigued:" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fatigue Level:"
+            "value" : "Felt Fatigued:"
           }
         }
       }
@@ -595,16 +585,6 @@
         }
       }
     },
-    "Not answered" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Not answered"
-          }
-        }
-      }
-    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -826,12 +806,12 @@
         }
       }
     },
-    "Submitted: %@" : {
+    "Submitted on %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Submitted: %@"
+            "value" : "Submitted on %@"
           }
         }
       }

@@ -40,20 +40,15 @@ struct CompletedSurveysView: View {
         }
     }
     
-    // swiftlint:disable closure_body_length
     private var surveyList: some View {
-        List(surveys.sorted { $0.timestamp ?? Date() > $1.timestamp ?? Date() }, id: \.timestamp) { survey in
+        List(surveys.sorted { $0.timestamp > $1.timestamp }, id: \.timestamp) { survey in
             VStack(alignment: .leading, spacing: 8) {
-                if let surveyDate = survey.surveyDate {
-                    Text(surveyDate)
-                        .font(.headline)
-                }
+                Text(survey.surveyDate)
+                    .font(.headline)
                 
-                if let timestamp = survey.timestamp {
-                    Text("Submitted: \(timestamp.formatted(date: .long, time: .shortened))")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                }
+                Text("Submitted on \(survey.timestamp.formatted(date: .long, time: .shortened))")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
                 
                 Grid(alignment: .leading) {
                     GridRow {
@@ -66,17 +61,11 @@ struct CompletedSurveysView: View {
                     }
                     GridRow {
                         Text("Was Happy:")
-                        if let happy = survey.emotionalWellBeingQuestion {
-                            Text(happy == 1 ? "Yes" : "No")
-                        }
+                        Text(survey.emotionalWellBeingQuestion == 1 ? "Yes" : "No")
                     }
                     GridRow {
-                        Text("Fatigue Level:")
-                        if let fatigue = survey.physicalWellBeingQuestion, fatigue > 0 {
-                            Text("\(fatigue)/4")
-                        } else {
-                            Text("Not answered")
-                        }
+                        Text("Felt Fatigued:")
+                        Text(formatFatigueLevel(survey.physicalWellBeingQuestion))
                     }
                 }
                 .font(.subheadline)
@@ -95,10 +84,7 @@ struct CompletedSurveysView: View {
         }
     }
     
-    private func formatSocialInteraction(_ value: Int?) -> String {
-        guard let value else {
-            return "Not answered"
-        }
+    private func formatSocialInteraction(_ value: Int) -> String {
         switch value {
         case 0: return "0"
         case 1: return "1-4"
@@ -108,15 +94,23 @@ struct CompletedSurveysView: View {
         }
     }
     
-    private func formatTimeOutside(_ value: Int?) -> String {
-        guard let value else {
-            return "Not answered"
-        }
+    private func formatTimeOutside(_ value: Int) -> String {
         switch value {
         case 0: return "None"
         case 1: return "< 1 hour"
         case 2: return "1-4 hours"
         case 3: return "4+ hours"
+        default: return "Not answered"
+        }
+    }
+    
+    private func formatFatigueLevel(_ value: Int) -> String {
+        switch value {
+        case 0: return "Not at all"
+        case 1: return "A little bit"
+        case 2: return "Somewhat"
+        case 3: return "Quite a bit"
+        case 4: return "Very much"
         default: return "Not answered"
         }
     }
