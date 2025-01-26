@@ -34,7 +34,7 @@ struct DailySurveyTaskView: View {
                         return
                     }
                     
-                    Task {
+                    Task { @MainActor in
                         await saveResponse(taskResult: taskResult)
                         showingSurvey = false
                     }
@@ -141,6 +141,7 @@ struct DailySurveyTaskView: View {
         }
     }
     
+    @MainActor
     private func saveResponse(taskResult: ORKTaskResult) async {
         do {
             savingSurvey = true
