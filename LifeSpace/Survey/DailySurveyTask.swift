@@ -72,6 +72,12 @@ class DailySurveyTask: ORKOrderedTask {
         )
         steps.append(question4Step)
         
+        let reviewStep = ORKReviewStep(identifier: "DailySurveyTaskReviewStep")
+        reviewStep.title = "Review Answers"
+        reviewStep.text = "Tap on a question to change your answer if you need to."
+        reviewStep.excludeInstructionSteps = true
+        steps.append(reviewStep)
+        
         let completionStep = ORKCompletionStep(identifier: "DailySurveyTaskCompletionStep")
         completionStep.title = "Thank you!"
         completionStep.text = "Tap done below to save your survey. Remember to take your survey daily!"

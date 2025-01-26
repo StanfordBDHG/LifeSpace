@@ -177,8 +177,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/ResearchKitOnFHIR",
       "state" : {
-        "revision" : "dcd5f95522ed02a873b03c9638dbf397b99c74e0",
-        "version" : "2.0.0"
+        "revision" : "2c70b9dc7a1be9c804222e93d1737be9fca9af84",
+        "version" : "2.0.3"
       }
     },
     {
@@ -240,8 +240,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziQuestionnaire.git",
       "state" : {
-        "revision" : "853585fbdd5d2d0af440c805d629a025ef5545d9",
-        "version" : "1.2.2"
+        "revision" : "d0bd55f8a0bd3eeb806a673261e9d6b9fd43f3cd",
+        "version" : "1.2.3"
       }
     },
     {
