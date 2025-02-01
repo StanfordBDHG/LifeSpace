@@ -65,7 +65,7 @@ struct EventContextView: View {
 
 #if DEBUG
 #Preview(traits: .sizeThatFitsLayout) {
-    let task = LifeSpaceScheduler.socialSupportTask
+    let task = LifeSpaceScheduler.dailySurveyTask
     
     return EventContextView(
         eventContext: EventContext(

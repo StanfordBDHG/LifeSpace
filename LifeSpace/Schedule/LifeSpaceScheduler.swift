@@ -16,7 +16,7 @@ typealias LifeSpaceScheduler = Scheduler<LifeSpaceTaskContext>
 
 
 extension LifeSpaceScheduler {
-    static var socialSupportTask: SpeziScheduler.Task<LifeSpaceTaskContext> {
+    static var dailySurveyTask: SpeziScheduler.Task<LifeSpaceTaskContext> {
         let dateComponents: DateComponents
         if FeatureFlags.testSchedule {
             // Adds a task at the current time for UI testing if the `--testSchedule` feature flag is set
@@ -43,6 +43,6 @@ extension LifeSpaceScheduler {
 
     /// Creates a default instance of the ``LifeSpaceScheduler`` by scheduling the tasks listed below.
     convenience init() {
-        self.init(tasks: [Self.socialSupportTask])
+        self.init(tasks: [Self.dailySurveyTask])
     }
 }

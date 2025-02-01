@@ -1,5 +1,5 @@
 {
-  "originHash" : "302b684b2099ac1f4a45ec2c4b2d7f565d9d8fff7bbe5ec8f8b2848edd8e320d",
+  "originHash" : "dc810d4e8dcb1944f09cbd5e0700a1b7592eea764d5ac1892ca3205de8c5f2c7",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -8,15 +8,6 @@
       "state" : {
         "revision" : "194a6706acbd25e4ef639bcaddea16e8758a3e27",
         "version" : "1.2024011602.0"
-      }
-    },
-    {
-      "identity" : "antlr4",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/antlr/antlr4",
-      "state" : {
-        "revision" : "cc82115a4e7f53d71d9d905caa2c2dfa4da58899",
-        "version" : "4.13.2"
       }
     },
     {
@@ -166,19 +157,10 @@
     {
       "identity" : "researchkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordBDHG/ResearchKit",
+      "location" : "https://github.com/StanfordBDHG/ResearchKit.git",
       "state" : {
-        "revision" : "08ab0290140e5a5e0e81d46cade1f09c7282facf",
-        "version" : "3.0.3"
-      }
-    },
-    {
-      "identity" : "researchkitonfhir",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordBDHG/ResearchKitOnFHIR",
-      "state" : {
-        "revision" : "2c70b9dc7a1be9c804222e93d1737be9fca9af84",
-        "version" : "2.0.3"
+        "revision" : "a9066441faf920671f0b64cdaebe1e61f64093d4",
+        "version" : "3.1.1"
       }
     },
     {
@@ -233,15 +215,6 @@
       "state" : {
         "revision" : "a3d7bc15e6803b2205eb8dca010a48b1a40215be",
         "version" : "1.2.2"
-      }
-    },
-    {
-      "identity" : "speziquestionnaire",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziQuestionnaire.git",
-      "state" : {
-        "revision" : "d0bd55f8a0bd3eeb806a673261e9d6b9fd43f3cd",
-        "version" : "1.2.3"
       }
     },
     {
