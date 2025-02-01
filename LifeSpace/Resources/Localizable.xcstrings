@@ -707,6 +707,7 @@
       }
     },
     "SCHEDULE_LIST_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

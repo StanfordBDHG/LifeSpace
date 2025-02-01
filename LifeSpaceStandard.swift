@@ -20,7 +20,6 @@ import SpeziFirebaseAccountStorage
 import SpeziFirestore
 import SpeziHealthKit
 import SpeziOnboarding
-import SpeziQuestionnaire
 import SwiftUI
 
 
@@ -91,23 +90,6 @@ actor LifeSpaceStandard: Standard,
         }
     }
     
-    
-    /// Saves a FHIR QuestionnaireResponse to Firestore
-    /// - Parameter response: A FHIR R4 `QuestionnaireResponse`
-    func add(response: ModelsR4.QuestionnaireResponse) async {
-        let id = response.identifier?.value?.value?.string ?? UUID().uuidString
-        
-        do {
-            try await configuration.userDocumentReference
-                .collection(Constants.surveyCollectionName)
-                .document(id)
-                .setData(from: response)
-        } catch {
-            logger.error("Could not store questionnaire response: \(error)")
-        }
-    }
-    
-    
     /// Saves a location data point to Firestore, appending a timestamp, study ID, and user ID.
     /// - Parameter location: A `CLLocationCoordinate2D` containing the latitude and longitude of a location.
     func add(location: CLLocationCoordinate2D) async throws {
@@ -142,6 +124,8 @@ actor LifeSpaceStandard: Standard,
         storeCurrentTimestamp(forKey: StorageKeys.lastLocationTransmissionDate)
     }
     
+    /// Gets all the location data points for a given date
+    /// - Parameter date: The date for which to fetch location data, defaults to today
     func fetchLocations(on date: Date = Date()) async throws -> [CLLocationCoordinate2D] {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: date)
@@ -217,6 +201,8 @@ actor LifeSpaceStandard: Standard,
         }
     }
     
+    /// Fetches all completed surveys from Firebase
+    /// - Returns: An array of `DailySurveyResponse`s
     func fetchSurveys() async throws -> [DailySurveyResponse] {
         var surveys = [DailySurveyResponse]()
         
