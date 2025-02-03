@@ -201,27 +201,37 @@ actor LifeSpaceStandard: Standard,
         }
     }
     
-    /// Fetches all completed surveys from Firebase
-    /// - Returns: An array of `DailySurveyResponse`s
-    func fetchSurveys() async throws -> [DailySurveyResponse] {
-        var surveys = [DailySurveyResponse]()
-        
+    /// Fetches completed surveys from Firebase within a specified date range.
+    /// - Parameters:
+    ///   - startDate: Optional start date (inclusive). If nil, no lower bound.
+    ///   - endDate: Optional end date (inclusive). If nil, no upper bound.
+    /// - Returns: An array of `DailySurveyResponse`s.
+    func fetchSurveys(from startDate: Date? = nil, to endDate: Date? = nil) async throws -> [DailySurveyResponse] {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+
+        var query = try await configuration.userDocumentReference
+            .collection(Constants.surveyCollectionName) as Query
+
+        if let startDate = startDate {
+            query = query.whereField("surveyDate", isGreaterThanOrEqualTo: dateFormatter.string(from: startDate))
+        }
+        if let endDate = endDate {
+            query = query.whereField("surveyDate", isLessThanOrEqualTo: dateFormatter.string(from: endDate))
+        }
+
         do {
-            let snapshot = try await configuration.userDocumentReference
-                .collection(Constants.surveyCollectionName)
-                .getDocuments()
-            
+            let snapshot = try await query.getDocuments()
             let decoder = Firestore.Decoder()
-            surveys = snapshot.documents.compactMap { document in
-                try? decoder.decode(DailySurveyResponse.self, from: document.data())
+            return snapshot.documents.compactMap {
+                try? decoder.decode(DailySurveyResponse.self, from: $0.data())
             }
         } catch {
-            self.logger.error("Error fetching surveys: \(String(describing: error))")
+            self.logger.error("Error fetching surveys: \(error.localizedDescription)")
             throw error
         }
-        
-        return surveys
     }
+
 
     /// Returns a reference to a given HealthKit document
     /// - Parameter uuid: The document's unique identifier as a `UUID`.

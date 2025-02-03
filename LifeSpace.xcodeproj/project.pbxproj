@@ -548,6 +548,7 @@
 					};
 					653A256628338800005D4D48 = {
 						CreatedOnToolsVersion = 13.4;
+						LastSwiftMigration = 1620;
 						TestTargetID = 653A254C283387FE005D4D48;
 					};
 				};
@@ -829,7 +830,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LifeSpace/Supporting Files/LifeSpace.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -889,6 +890,7 @@
 		2FEE10332998C89C000822E1 /* Test */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
@@ -897,6 +899,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.odden.strokecoguitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"SWIFT_ELicenseRef-StrokeCog_LOC_STRINGS" = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = StrokeCog;
@@ -1031,7 +1034,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LifeSpace/Supporting Files/LifeSpace.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -1079,7 +1082,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = "";
@@ -1159,6 +1162,7 @@
 		653A257828338800005D4D48 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
@@ -1167,6 +1171,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.odden.strokecoguitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"SWIFT_ELicenseRef-StrokeCog_LOC_STRINGS" = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = StrokeCog;
@@ -1176,6 +1181,7 @@
 		653A257928338800005D4D48 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
