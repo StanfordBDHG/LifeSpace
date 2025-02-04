@@ -22,11 +22,11 @@ struct DailySurveyTaskView: View {
     var body: some View {
         if !showingSurvey {
             EmptyView()
-        } else if SurveyModule.surveyAlreadyTaken {
+        } else if SurveyModule.surveyAlreadyTaken && !FeatureFlags.alwaysEnableSurvey {
             surveyTakenView
-        } else if SurveyModule.isPreviousDaySurvey && !acknowledgedPreviousDaySurvey {
+        } else if SurveyModule.isPreviousDaySurvey && !acknowledgedPreviousDaySurvey && !FeatureFlags.alwaysEnableSurvey {
             previousDaySurveyView
-        } else if SurveyModule.shouldShowSurvey {
+        } else if SurveyModule.shouldShowSurvey || FeatureFlags.alwaysEnableSurvey {
             Group {
                 ORKOrderedTaskView(tasks: DailySurveyTask(identifier: "DailySurveyTask")) { result in
                     guard case let .completed(taskResult) = result else {
