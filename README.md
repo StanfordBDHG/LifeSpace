@@ -24,7 +24,7 @@ LifeSpace was built using the [Spezi](https://github.com/StanfordSpezi/Spezi) fr
 
 ## Development
 
-See [SETUP.md] for information on how to set the application up for development.
+See [SETUP.md](SETUP.md) for information on how to set the application up for local development.
 
 ## Contributors
 
