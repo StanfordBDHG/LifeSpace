@@ -16,6 +16,7 @@ struct CompletedSurveysView: View {
     @State private var surveys: [DailySurveyResponse] = []
     @State private var isLoading = true
     @State private var errorMessage: String?
+    @State private var limit = 25
     
     var body: some View {
         Group {
@@ -34,17 +35,36 @@ struct CompletedSurveysView: View {
                 surveyList
             }
         }
-        .navigationTitle("Completed Surveys")
+        .navigationTitle("Last \(limit) Completed Surveys")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Picker("Limit", selection: $limit) {
+                        ForEach([10, 25, 50], id: \.self) { value in
+                            Text("Last \(value)").tag(value)
+                        }
+                    }
+                } label: {
+                    Label("\(limit) entries", systemImage: "line.3.horizontal.decrease")
+                }
+            }
+        }
         .task {
             await fetchSurveys()
+        }
+        .onChange(of: limit) {
+            Task {
+                isLoading = true
+                await fetchSurveys()
+            }
         }
     }
     
     private var surveyList: some View {
         List(surveys.sorted { $0.timestamp > $1.timestamp }, id: \.timestamp) { survey in
             VStack(alignment: .leading, spacing: 8) {
-                Text(survey.surveyDate)
-                    .font(.headline)
+                Text(DateFormatter.dateOnly.date(from: survey.surveyDate)?.formatted(.dateTime.month(.wide).day().year()) ?? survey.surveyDate)
+                   .font(.headline)
                 
                 Text("Submitted on \(survey.timestamp.formatted(date: .long, time: .shortened))")
                     .font(.subheadline)
@@ -76,7 +96,7 @@ struct CompletedSurveysView: View {
     
     private func fetchSurveys() async {
         do {
-            try await surveys = standard.fetchSurveys()
+            try await surveys = standard.fetchSurveys(limit: limit)
             isLoading = false
         } catch {
             errorMessage = "Could not load surveys: \(error.localizedDescription)"
@@ -114,6 +134,14 @@ struct CompletedSurveysView: View {
         default: return "Not answered"
         }
     }
+}
+
+extension DateFormatter {
+    static let dateOnly: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        return formatter
+    }()
 }
 
 #Preview {

@@ -352,6 +352,7 @@
 		63EA5F792BC04F6E00A48590 /* Survey */ = {
 			isa = PBXGroup;
 			children = (
+				63EA2CC92D29C21800224C06 /* CompletedSurveysView.swift */,
 				63EA5F7A2BC04F8400A48590 /* DailySurveyTask.swift */,
 				63EA5F882BC78ADD00A48590 /* DailySurveyTaskView.swift */,
 				63EA5F8B2BC78F8400A48590 /* DailySurveyResponse.swift */,
@@ -432,7 +433,6 @@
 			isa = PBXGroup;
 			children = (
 				63EA2CCB2D2A0F4100224C06 /* StatisticsView.swift */,
-				63EA2CC92D29C21800224C06 /* CompletedSurveysView.swift */,
 				A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */,
 				A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */,
 				A9DFE8A82ABE551400428242 /* AccountButton.swift */,
@@ -829,7 +829,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LifeSpace/Supporting Files/LifeSpace.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -1031,7 +1031,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LifeSpace/Supporting Files/LifeSpace.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -1079,7 +1079,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = "";

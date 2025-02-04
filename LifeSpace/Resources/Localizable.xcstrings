@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld entries" : {
+
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -74,6 +77,7 @@
       }
     },
     "Completed Surveys" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -365,6 +369,12 @@
         }
       }
     },
+    "Last %lld" : {
+
+    },
+    "Last %lld Completed Surveys" : {
+
+    },
     "LAST_HEALTHKIT_TRANSMISSION_SECTION" : {
       "localizations" : {
         "en" : {
@@ -394,6 +404,9 @@
           }
         }
       }
+    },
+    "Limit" : {
+
     },
     "Loading surveys..." : {
       "localizations" : {
