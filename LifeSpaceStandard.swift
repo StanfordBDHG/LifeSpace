@@ -201,14 +201,17 @@ actor LifeSpaceStandard: Standard,
         }
     }
     
-    /// Fetches all completed surveys from Firebase
+    /// Fetches completed surveys from Firebase
+    /// - Parameter limit: An integer for the number of surveys to retrieve
     /// - Returns: An array of `DailySurveyResponse`s
-    func fetchSurveys() async throws -> [DailySurveyResponse] {
+    func fetchSurveys(limit: Int = 25) async throws -> [DailySurveyResponse] {
         var surveys = [DailySurveyResponse]()
         
         do {
             let snapshot = try await configuration.userDocumentReference
                 .collection(Constants.surveyCollectionName)
+                .order(by: "timestamp", descending: true)
+                .limit(to: limit)
                 .getDocuments()
             
             let decoder = Firestore.Decoder()
