@@ -81,7 +81,7 @@ struct CompletedSurveysView: View {
                     }
                     GridRow {
                         Text("Was Happy:")
-                        Text(survey.emotionalWellBeingQuestion == 1 ? "Yes" : "No")
+                        Text(survey.emotionalWellBeingQuestion == 1 ? "YES" : "NO")
                     }
                     GridRow {
                         Text("Felt Fatigued:")

@@ -27,7 +27,9 @@ struct LifeSpaceMapView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                MapManagerViewWrapper()
+                if !FeatureFlags.disableMapView {
+                    MapManagerViewWrapper()
+                }
                 
                 if !trackingOn {
                     locationTrackingOverlay

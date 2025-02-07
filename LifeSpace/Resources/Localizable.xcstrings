@@ -2,7 +2,14 @@
   "sourceLanguage" : "en",
   "strings" : {
     "%lld entries" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld entries"
+          }
+        }
+      }
     },
     "ACCOUNT_NEXT" : {
       "localizations" : {
@@ -72,17 +79,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Close"
-          }
-        }
-      }
-    },
-    "Completed Surveys" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Completed Surveys"
           }
         }
       }
@@ -370,10 +366,24 @@
       }
     },
     "Last %lld" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last %lld"
+          }
+        }
+      }
     },
     "Last %lld Completed Surveys" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last %lld Completed Surveys"
+          }
+        }
+      }
     },
     "LAST_HEALTHKIT_TRANSMISSION_SECTION" : {
       "localizations" : {
@@ -406,7 +416,14 @@
       }
     },
     "Limit" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limit"
+          }
+        }
+      }
     },
     "Loading surveys..." : {
       "localizations" : {
@@ -559,6 +576,7 @@
       }
     },
     "No" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -715,17 +733,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saving survey..."
-          }
-        }
-      }
-    },
-    "SCHEDULE_LIST_TITLE" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schedule"
           }
         }
       }
@@ -1142,6 +1149,7 @@
       }
     },
     "Yes" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
