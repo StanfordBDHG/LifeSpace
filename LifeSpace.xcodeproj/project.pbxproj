@@ -72,7 +72,7 @@
 		63BBF8162BB8993B006890CE /* StudyIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BBF8152BB8993B006890CE /* StudyIDView.swift */; };
 		63BBF8192BB89CF7006890CE /* studyIDs.csv in Resources */ = {isa = PBXBuildFile; fileRef = 63BBF8182BB89CF7006890CE /* studyIDs.csv */; };
 		63D86AD62C3B7F310096B9DB /* DocumentWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D86AD52C3B7F310096B9DB /* DocumentWebView.swift */; };
-		63E3AAB52D566D7100276303 /* HomeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E3AAB42D566D7100276303 /* HomeViewTests.swift */; };
+		63E3AAB52D566D7100276303 /* DailySurveyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E3AAB42D566D7100276303 /* DailySurveyTests.swift */; };
 		63EA2CCA2D29C21800224C06 /* CompletedSurveysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA2CC92D29C21800224C06 /* CompletedSurveysView.swift */; };
 		63EA2CCC2D2A0F4100224C06 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA2CCB2D2A0F4100224C06 /* StatisticsView.swift */; };
 		63EA5F7B2BC04F8400A48590 /* DailySurveyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA5F7A2BC04F8400A48590 /* DailySurveyTask.swift */; };
@@ -162,7 +162,7 @@
 		63BBF8182BB89CF7006890CE /* studyIDs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = studyIDs.csv; sourceTree = "<group>"; };
 		63CC66972C204CC5001DCFDF /* LifeSpace.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = LifeSpace.xctestplan; sourceTree = "<group>"; };
 		63D86AD52C3B7F310096B9DB /* DocumentWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWebView.swift; sourceTree = "<group>"; };
-		63E3AAB42D566D7100276303 /* HomeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTests.swift; sourceTree = "<group>"; };
+		63E3AAB42D566D7100276303 /* DailySurveyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySurveyTests.swift; sourceTree = "<group>"; };
 		63EA2CC92D29C21800224C06 /* CompletedSurveysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedSurveysView.swift; sourceTree = "<group>"; };
 		63EA2CCB2D2A0F4100224C06 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		63EA5F7A2BC04F8400A48590 /* DailySurveyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySurveyTask.swift; sourceTree = "<group>"; };
@@ -420,7 +420,7 @@
 		653A256A28338800005D4D48 /* LifeSpaceUITests */ = {
 			isa = PBXGroup;
 			children = (
-				63E3AAB42D566D7100276303 /* HomeViewTests.swift */,
+				63E3AAB42D566D7100276303 /* DailySurveyTests.swift */,
 			);
 			path = LifeSpaceUITests;
 			sourceTree = "<group>";
@@ -739,7 +739,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63E3AAB52D566D7100276303 /* HomeViewTests.swift in Sources */,
+				63E3AAB52D566D7100276303 /* DailySurveyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
