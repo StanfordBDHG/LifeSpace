@@ -78,6 +78,10 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
+            argument = "--disableFirebase"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "--showOnboarding"
             isEnabled = "NO">
          </CommandLineArgument>
@@ -86,7 +90,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--alwaysShowSurvey"
+            argument = "--alwaysEnableSurvey"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
