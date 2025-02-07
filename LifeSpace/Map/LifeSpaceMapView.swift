@@ -75,10 +75,6 @@ struct LifeSpaceMapView: View {
         }
     }
     
-    private var mapView: some View {
-        
-    }
-    
     private var locationTrackingOverlay: some View {
         VStack {
             Spacer()
