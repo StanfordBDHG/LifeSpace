@@ -73,6 +73,7 @@
 		63BBF8192BB89CF7006890CE /* studyIDs.csv in Resources */ = {isa = PBXBuildFile; fileRef = 63BBF8182BB89CF7006890CE /* studyIDs.csv */; };
 		63D86AD62C3B7F310096B9DB /* DocumentWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D86AD52C3B7F310096B9DB /* DocumentWebView.swift */; };
 		63E3AAB52D566D7100276303 /* DailySurveyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E3AAB42D566D7100276303 /* DailySurveyTests.swift */; };
+		63E3AAB82D56BB9A00276303 /* LocationStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E3AAB72D56BB9A00276303 /* LocationStorageTests.swift */; };
 		63EA2CCA2D29C21800224C06 /* CompletedSurveysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA2CC92D29C21800224C06 /* CompletedSurveysView.swift */; };
 		63EA2CCC2D2A0F4100224C06 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA2CCB2D2A0F4100224C06 /* StatisticsView.swift */; };
 		63EA5F7B2BC04F8400A48590 /* DailySurveyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA5F7A2BC04F8400A48590 /* DailySurveyTask.swift */; };
@@ -86,7 +87,6 @@
 		63FA22C32D2045B600A15017 /* LocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FA22C22D2045B300A15017 /* LocationStorage.swift */; };
 		653A2551283387FE005D4D48 /* LifeSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* LifeSpace.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
-		653A256228338800005D4D48 /* LifeSpaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A256128338800005D4D48 /* LifeSpaceTests.swift */; };
 		9733CFC62A8066DE001B7ABC /* SpeziOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC8029EDD91D004B9AB4 /* SpeziOnboarding */; };
 		97D73D6A2AD860AD00B47FA0 /* SpeziFirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 97D73D692AD860AD00B47FA0 /* SpeziFirebaseStorage */; };
 		A92E4DF02BAA001100AC8DE8 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = A92E4DEF2BAA001100AC8DE8 /* OrderedCollections */; };
@@ -163,6 +163,7 @@
 		63CC66972C204CC5001DCFDF /* LifeSpace.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = LifeSpace.xctestplan; sourceTree = "<group>"; };
 		63D86AD52C3B7F310096B9DB /* DocumentWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWebView.swift; sourceTree = "<group>"; };
 		63E3AAB42D566D7100276303 /* DailySurveyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySurveyTests.swift; sourceTree = "<group>"; };
+		63E3AAB72D56BB9A00276303 /* LocationStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStorageTests.swift; sourceTree = "<group>"; };
 		63EA2CC92D29C21800224C06 /* CompletedSurveysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedSurveysView.swift; sourceTree = "<group>"; };
 		63EA2CCB2D2A0F4100224C06 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		63EA5F7A2BC04F8400A48590 /* DailySurveyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySurveyTask.swift; sourceTree = "<group>"; };
@@ -178,7 +179,6 @@
 		653A2550283387FE005D4D48 /* LifeSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeSpace.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		653A255D28338800005D4D48 /* LifeSpaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LifeSpaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		653A256128338800005D4D48 /* LifeSpaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeSpaceTests.swift; sourceTree = "<group>"; };
 		653A256728338800005D4D48 /* LifeSpaceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LifeSpaceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A258928339462005D4D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupHeader.swift; sourceTree = "<group>"; };
@@ -412,7 +412,7 @@
 		653A256028338800005D4D48 /* LifeSpaceTests */ = {
 			isa = PBXGroup;
 			children = (
-				653A256128338800005D4D48 /* LifeSpaceTests.swift */,
+				63E3AAB72D56BB9A00276303 /* LocationStorageTests.swift */,
 			);
 			path = LifeSpaceTests;
 			sourceTree = "<group>";
@@ -731,7 +731,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				653A256228338800005D4D48 /* LifeSpaceTests.swift in Sources */,
+				63E3AAB82D56BB9A00276303 /* LocationStorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
