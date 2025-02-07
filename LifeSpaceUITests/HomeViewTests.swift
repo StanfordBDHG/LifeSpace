@@ -14,7 +14,7 @@ final class HomeViewTests: XCTestCase {
         continueAfterFailure = false
         
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding", "--disableFirebase", "--alwaysEnableSurvey"]
+        app.launchArguments = ["--skipOnboarding", "--alwaysEnableSurvey"]
         app.deleteAndLaunch(withSpringboardAppName: "LifeSpace")
     }
     

@@ -31,6 +31,4 @@ enum FeatureFlags {
     static let showDebugOptions = CommandLine.arguments.contains("--showDebugOptions")
     /// Always enable survey (e.g. for testing)
     static let alwaysEnableSurvey = CommandLine.arguments.contains("--alwaysEnableSurvey")
-    /// Turns off the map view on the home screen
-    static let disableMapView = CommandLine.arguments.contains("--disableMapView")
 }
