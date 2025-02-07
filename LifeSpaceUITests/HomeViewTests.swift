@@ -14,29 +14,28 @@ final class HomeViewTests: XCTestCase {
         continueAfterFailure = false
         
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding"]
+        app.launchArguments = ["--skipOnboarding", "--disableFirebase", "--alwaysEnableSurvey"]
         app.deleteAndLaunch(withSpringboardAppName: "LifeSpace")
     }
     
-    func testTakeDailySurveyButtonExists() throws {
+    func testDailySurveyLaunch() throws {
         let app = XCUIApplication()
         
         waitForAndHandleLocationPermission()
         
+        // Bypass Firebase configuration error
         let alert = app.alerts.firstMatch
         if alert.waitForExistence(timeout: 5) {
            alert.buttons["OK"].tap()
         }
         
-        // Check if the button exists
+        // Try to launch the daily survey
         let dailySurveyButton = app.buttons["Take Daily Survey"]
         XCTAssertTrue(dailySurveyButton.exists, "Take Daily Survey button should be visible on the home screen")
+        dailySurveyButton.tap()
         
-        // Verify the button is enabled
-        XCTAssertTrue(dailySurveyButton.isEnabled, "Take Daily Survey button should be enabled")
-        
-        // Optional: Verify the button is hittable (visible and interactable)
-        XCTAssertTrue(dailySurveyButton.isHittable, "Take Daily Survey button should be hittable")
+        let sheetText = app.staticTexts["Social Interaction"]
+        XCTAssertTrue(sheetText.waitForExistence(timeout: 5))
     }
     
     private func waitForAndHandleLocationPermission() {
